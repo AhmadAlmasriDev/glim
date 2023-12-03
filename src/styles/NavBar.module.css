@@ -1,0 +1,16 @@
+.header {
+    height: 59px;
+    justify-content: left;
+    background-color: #221F1F;
+    border-bottom: 1px solid #a0a0b140;
+}
+.sign_in{
+    margin-left: auto; 
+    margin-right: 27px;
+}
+.bar_menu{
+    font-size: 32px;
+    padding: 6px 27px;
+    cursor: pointer;
+}
+

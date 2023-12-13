@@ -5,7 +5,7 @@ import styles from "../styles/SideNav.module.css"
 
 const SideNav = ({viewSideNav}) => {
   return (
-    <div className= {`main-container`}>
+    <aside className= {`main-container`}>
         <div className= {`${styles.blur} ${viewSideNav ? "" : "display-non"}`}>
         </div>   
     
@@ -51,7 +51,7 @@ const SideNav = ({viewSideNav}) => {
         </div>
 
         
-    </div>
+    </aside>
   )
 }
 

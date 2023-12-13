@@ -6,11 +6,14 @@ import FilmBanner from './FilmBanner';
 const FilmCarousel = () => {
     
     return (
-      <div className={`${styles.main_container} flex-container`}>
-        <FilmBanner/>
-        <FilmBanner/>
 
-      </div>
+      <article className={`${styles.main_container} flex-container`}>
+        <div className={`${styles.carousel_container} flex-container`}>
+          <FilmBanner/>
+          <FilmBanner/>
+
+        </div>
+      </article>
       
     );
 }

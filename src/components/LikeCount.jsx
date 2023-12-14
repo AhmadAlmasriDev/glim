@@ -1,10 +1,12 @@
 import React from 'react'
+import styles from '../styles/LikeCommentCount.module.css'
+
 
 const Like = ({liked}) => {
   return (
-    <div className={`flex-container`}>
-      { {liked} ? <i class="fa-regular fa-heart"></i> : <i class="fa-solid fa-heart"></i>}
-      <p>32</p>
+    <div className={` ${styles.main_container} ${styles.like} flex-container`}>
+      { {liked} ? <i className={`fa-regular fa-heart`}></i> : <i className={`fa-solid fa-heart`}></i>}
+      <p className={` ${styles.number}`}>32</p>
     </div>
   )
 }

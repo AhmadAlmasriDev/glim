@@ -1,0 +1,16 @@
+.main_container{
+    font-size: 24px;
+}
+.like{
+    justify-content: flex-start;
+}
+
+.comment{
+    justify-content: flex-end;
+}
+
+.number{
+    margin: 0 0 0 12px ;
+    
+    
+}

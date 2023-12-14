@@ -16,9 +16,11 @@ const FilmBanner = () => {
         <div className={`${styles.content_background} v-flex-container`}>
           <div className={`${styles.content_container}`}>
             <div className={`v-flex-container`}>
-              <section className={`flex-container`}>
-                <LikeCount  liked = {liked}/>
-                <CommentCount/>
+              <section className={`v-flex-container`}>
+                <div className={`flex-container`}>
+                  <LikeCount  liked = {liked}/>
+                  <CommentCount/>
+                </div>
                 <TrailerButton type = {type}/>
               </section>
               <section className={`${styles.form_section} flex-container`}>

@@ -1,0 +1,50 @@
+.main_container{
+    position: relative;
+    align-items: stretch;
+    
+    flex-grow: 1;
+}
+
+.back_ground_container{
+    /* align-items: stretch;
+    flex-grow: 1;
+    overflow: hidden;
+    width:50%; */
+
+    position: relative;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-grow: 1;
+    width: 50%;
+   
+    
+}
+
+.image_container{
+    position: absolute;
+    
+    height: 100%;
+    
+    align-items: stretch;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.back_ground_image{
+    object-fit: cover;
+    width: 100%;
+    flex: 0 0 auto;
+
+
+    
+    /* flex: 0 0 auto; */
+    /* width: 100%; */
+    /* height: 100%; */
+    
+   
+}
+
+.form_container{
+    width: 50%;
+    
+}

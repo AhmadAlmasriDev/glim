@@ -1,13 +1,15 @@
 import React from "react"
-import logo from "../assets/logo.svg"
 import Logo from "./Logo"
 import styles from  "../styles/NavBar.module.css"
+import {NavLink} from 'react-router-dom'
+
 
 
 
 const NavBar = ({viewSideNav, setViewSideNav}) => {
 
     const handleToggleSideBar = ()=> setViewSideNav(!viewSideNav)
+
     return (
         <header className={`main-container flex-container ${styles.header}`}>
             <nav>
@@ -21,11 +23,13 @@ const NavBar = ({viewSideNav, setViewSideNav}) => {
                 </ul>
                 
             </nav>
-            <Logo height = {45}/>
+            <NavLink to='/'>
+                <Logo height = {45}/>
+            </NavLink>
             
-            <div className= {`${styles.sign_in} `}>
-                <a aria-label="Sign in buttom"><i className={`fa-regular fa-user`}></i>Sign in</a>
-            </div>
+            <NavLink to ='/signin' className= {`${styles.sign_in} `}>
+                <a aria-label="Sign in buttom"><i className={`${styles.sign_in_icon} fa-regular fa-user`}></i>Sign in</a>
+            </NavLink>
 
         </header>
     )

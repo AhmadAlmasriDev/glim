@@ -15,3 +15,9 @@
     cursor: pointer;
 }
 
+.sign_in_icon{
+    margin-right: 8px;
+}
+.sign_in:hover .sign_in_icon{
+    color: #F50000;
+}

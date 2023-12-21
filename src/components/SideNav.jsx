@@ -1,4 +1,6 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
+
 import SideNavMediaLink from './SideNavMediaLink'
 import Logo from './Logo'
 import styles from "../styles/SideNav.module.css"
@@ -20,23 +22,25 @@ const SideNav = ({viewSideNav}) => {
                 </button>
             </div> 
             <div className= {`${styles.side_menu} v-flex-container`}>
-                <Logo className= {`${styles.side_menu_logo}`} height = {90}/>
+                <NavLink to = '/'>
+                    <Logo className= {`${styles.side_menu_logo}`} height = {90}/>
+                </NavLink>
                 <div className= {`button ${styles.side_signin_button}`}>
-                    <a aria-label="Sign in buttom"><i className={`fa-regular fa-user`}></i>Sign in</a>
+                    <NavLink to ='/signin' aria-label="Sign in buttom"><i className={`${styles.signin_icon} fa-regular fa-user`}></i>Sign in</NavLink>
                 </div>
                 <nav className= {`${styles.side_nav_container}`}>
                     <ul>
                         <li>
-                            <a>Home</a>
+                            <NavLink to ='/'>Home</NavLink>
                         </li>
                         <li>
-                            <a>Movies</a>
+                            <NavLink to ='/movies'>Movies</NavLink>
                         </li>
                         <li>
-                            <a>About</a>
+                            <NavLink to ='/about'>About</NavLink>
                         </li>
                         <li>
-                            <a>Contact us</a>
+                            <NavLink to ='/contact'>Contact us</NavLink>
                         </li>
                     </ul>
                     

@@ -1,8 +1,6 @@
 
 .film_background{
     position: relative;
-    /* background-image: linear-gradient(to bottom, rgba(0,0,0,0)50%, rgba(0,0,0,.5)80%, rgba(0,0,0,1)); */
-    
     background-size: cover;
     width: 380px;
     flex: 0 0 auto;

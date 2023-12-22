@@ -59,6 +59,7 @@ a, a:hover{
 }
 
 .button{
+  border: none;
   color: #f1f1f1;
   font-size: 18px;
   
@@ -71,5 +72,7 @@ a, a:hover{
 }
 
 .button:hover{
+  color: #f1f1f1;
   background-color: #cc0000;
+  
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import styles from '../styles/SignIn.module.css'
+import styles from '../styles/SignInUp.module.css'
 import Logo from './Logo'
 import backImage from '../assets/signBackGround.jpg'
 
@@ -12,30 +12,30 @@ const SignIn = () => {
     <article className={`${styles.main_container} flex-container`}>
       <section className={`${styles.form_container} v-flex-container`}>
         <div>
-          <Logo/>
+          <Logo className={styles.logo} height={130}/>
         </div>
-        <h1>Sign in</h1>
-        <Form>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
+        <h1 className={`${styles.form_header}`}>Sign in</h1>
+        <Form className={`${styles.form} v-flex-container`}>
+          <Form.Group className={`${styles.form_input_container}`} controlId="username">
+            <Form.Label className={`display-non`}>User name</Form.Label>
+            <Form.Control type="text" placeholder="User name" />
+            
           </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+          <Form.Group className={`${styles.form_input_container}`} controlId="password1">
+            <Form.Label className={`display-non`}>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" />
           </Form.Group>
-          
-          <Button variant="primary" type="submit">
+
+                    
+          <Button className={`${styles.form_button} button`} type="submit">
             Sign In
           </Button>
+          <div className={`${styles.link_container} flex-container`}>
+            <Link className={`${styles.signup_link}`} to='/signup'>I don't have an account!</Link>
+          </div>
+          
         </Form>
-        <div>
-          <a href="">I don't have an account!</a>
-        </div>
         
 
 
@@ -51,6 +51,7 @@ const SignIn = () => {
 
     </article>
   )
+    
 }
 
 export default SignIn

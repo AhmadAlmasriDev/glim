@@ -2,13 +2,14 @@ import React from "react"
 import Logo from "./Logo"
 import styles from  "../styles/NavBar.module.css"
 import {NavLink} from 'react-router-dom'
+import { useContext } from "react"
+import DataContext from "../context/DataContext"
 
 
 
-
-const NavBar = ({viewSideNav, setViewSideNav}) => {
-
-    const handleToggleSideBar = ()=> setViewSideNav(!viewSideNav)
+const NavBar = () => {
+    const {handleToggleSideBar} = useContext(DataContext)
+    
 
     return (
         <header className={`main-container flex-container ${styles.header}`}>

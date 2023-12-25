@@ -5,10 +5,11 @@ import {NavLink} from 'react-router-dom'
 import { useContext } from "react"
 import DataContext from "../context/DataContext"
 
-
+import UserLogNotification from "./UserLogNotification"
 
 const NavBar = () => {
     const {handleToggleSideBar} = useContext(DataContext)
+    
     
 
     return (
@@ -28,9 +29,7 @@ const NavBar = () => {
                 <Logo height = {45}/>
             </NavLink>
             
-            <NavLink to ='/signin' className= {`${styles.sign_in} `}>
-                <a aria-label="Sign in buttom"><i className={`${styles.sign_in_icon} fa-regular fa-user`}></i>Sign in</a>
-            </NavLink>
+            <UserLogNotification/>
 
         </header>
     )

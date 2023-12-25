@@ -8,15 +8,27 @@ import Movies from './components/Movies'
 import About from './components/About'
 import Contact from './components/Contact'
 
-import { useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './api/axiosDefaults'
-import { DataProvider } from './context/DataContext';
+import DataContext, { DataProvider} from './context/DataContext';
+import axios from 'axios';
 
 
 function App() {
+  const setCurrentUser = useContext(DataContext)
+  const handleMount = async()=>{
+    try{
+      const{data} = await axios.get('dj-rest-auth/user/')
+      setCurrentUser(data)
+    } catch(err) {
+      console.log(err)
+    }
+  }
 
-
+  useEffect(()=>{
+    handleMount()
+  },[])
 
   return (
     <div className={styles.App}>

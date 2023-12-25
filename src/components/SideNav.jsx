@@ -20,7 +20,7 @@ const SideNav = () => {
                 <div className= {`flex-container ${styles.close_button_container}`}>
                     <button className= {`${styles.close_button}`} onClick={handleToggleSideBar}> 
                         <a>
-                            <i class="fa-solid fa-xmark"></i>
+                            <i className="fa-solid fa-xmark"></i>
                         </a>
 
                     </button>

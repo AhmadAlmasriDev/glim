@@ -9,9 +9,9 @@ import axios from 'axios';
 
 
 const SignIn = () => {
-  const setCurrentUser = useContext(DataContext)
+  const {setCurrentUser} = useContext(DataContext)
   const [signInData, setSignInData] = useState({
-    username:'',
+    username: '',
     password: '',
   })
 
@@ -33,10 +33,13 @@ const SignIn = () => {
     try{
       const {data} =  await axios.post("/dj-rest-auth/login/", signInData)
       setCurrentUser(data.user)
+      console.log(signInData)
       history.push("/");
     }
     catch (err){
       setErrors(err.response?.data);
+      console.log(signInData)
+      
     }
   }
 

@@ -10,7 +10,7 @@ const UserLogNotification = () => {
     const loggedIn = (
         
             <NavLink to ='/signin' className= {`${styles.sign_in} `}>
-                Hello, {currentUser}
+                Hello, {currentUser?.username}
             </NavLink>  
         
     )

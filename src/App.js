@@ -10,25 +10,17 @@ import Contact from './components/Contact'
 
 import { useContext, useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import './api/axiosDefaults'
 import DataContext, { DataProvider} from './context/DataContext';
-import axios from 'axios';
+
+import { axiosReq, axiosRes } from "./api/axiosDefaults";
+
+import './api/axiosDefaults'
 
 
 function App() {
-  const setCurrentUser = useContext(DataContext)
-  const handleMount = async()=>{
-    try{
-      const{data} = await axios.get('dj-rest-auth/user/')
-      setCurrentUser(data)
-    } catch(err) {
-      console.log(err)
-    }
-  }
-
-  useEffect(()=>{
-    handleMount()
-  },[])
+  // const {setCurrentUser} = useContext(DataContext)
+  
+  
 
   return (
     <div className={styles.App}>

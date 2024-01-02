@@ -76,3 +76,9 @@ a, a:hover{
   background-color: #cc0000;
   
 }
+.button:focus{
+  border: none;
+  
+  background-color: #F50000;
+  
+}

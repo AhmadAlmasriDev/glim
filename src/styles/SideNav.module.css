@@ -21,6 +21,7 @@ div.blur{
     padding: 18px;
     justify-content: left;
     transition: 0.5s;
+    overflow: auto;
 }
 
 .background_hide{
@@ -62,6 +63,7 @@ div.blur{
     align-items: center;
 }
 .side_nav_container{
+    margin-top: 24px;
     width: 100%;
     padding: 0 18px;
 }
@@ -97,9 +99,7 @@ div.blur{
     margin: 32px 0;
    
 }
-.side_signin_button{
-    margin-bottom: 18px;
-}
+
 
 .media_links_container{
     margin-top: 64px;
@@ -108,6 +108,42 @@ div.blur{
     padding: 3px 16px;
 }
 
-.signin_icon{
+.sign_icon{
     margin-right: 8px;
+}
+
+.avatar_image{
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 16px;
+
+}
+.avatar_name{
+    font-size: 18px;
+}
+.avatar_memo{
+    font-size: 12px;
+}
+.sign_out_link_container{
+    flex-grow: 1;
+    align-items: flex-end;
+    padding: 24px 0 32px 0;
+}
+
+.my_cabinet_link{
+    /* margin: 24px 0 32px 0; */
+}
+.my_cabinet_link:hover{
+    color: #F50000;
+
+}
+
+
+.side_nav_link:hover{
+    color: #A0A0B1
+
+}
+
+.logged_out_user_container{
+    margin: 32px 0 24px 0;
 }

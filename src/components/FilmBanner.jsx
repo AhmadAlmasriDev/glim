@@ -8,7 +8,7 @@ import TicketForm from './TicketForm'
 
 
 const FilmBanner = () => {
-  const liked = true
+  const liked = false
   const type = ''
   return (
 

@@ -5,7 +5,8 @@
     /* border-bottom: 1px solid #a0a0b140; */
     border-bottom: 1px solid #393636;
 }
-.sign_in{
+.sign_in,
+.sign_in_user{
     margin-left: auto; 
     margin-right: 27px;
 }
@@ -18,6 +19,8 @@
 .sign_in_icon{
     margin-right: 8px;
 }
-.sign_in:hover .sign_in_icon{
+.sign_in:hover .sign_in_icon,
+.sign_in_user:hover{
     color: #F50000;
 }
+

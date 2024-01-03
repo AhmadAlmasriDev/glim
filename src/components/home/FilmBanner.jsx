@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from '../styles/FilmBanner.module.css'
-import image from '../assets/test.jpg'
-import LikeCount from './LikeCount'
-import CommentCount from './CommentCount'
+import styles from './styles/FilmBanner.module.css'
+import image from '../../assets/test.jpg'
+import LikeCount from '../likes_comments_count/LikeCount'
+import CommentCount from '../likes_comments_count/CommentCount'
 import TrailerButton from './TrailerButton'
 import TicketForm from './TicketForm'
 

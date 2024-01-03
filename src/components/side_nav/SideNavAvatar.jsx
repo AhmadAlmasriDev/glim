@@ -1,6 +1,6 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
-import styles from "../styles/SideNav.module.css"
+import styles from "./styles/SideNav.module.css"
 
 const SideNavAvatar = ({currentUser, width}) => {
     console.log(currentUser)

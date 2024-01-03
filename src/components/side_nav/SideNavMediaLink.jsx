@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "../styles/SideNav.module.css"
+import styles from "./styles/SideNav.module.css"
 
 const SideNavMediaLink = ({brand}) => {
     const label = brand.slice(0,1).toUpperCase() + brand.slice(1, brand.length)

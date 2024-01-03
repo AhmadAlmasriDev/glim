@@ -1,8 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min'
-import styles from '../styles/NavBar.module.css'
+import styles from './styles/NavBar.module.css'
 import { useContext } from 'react';
-import DataContext from '../context/DataContext';
+import DataContext from '../../context/DataContext';
 
 const UserLogNotification = () => {
     const {currentUser} = useContext(DataContext)

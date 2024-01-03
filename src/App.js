@@ -1,12 +1,12 @@
 import styles from './App.module.css';
-import NavBar from './components/NavBar';
-import SideNav from "./components/SideNav"
-import Carousel from './components/FilmCarousel';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
-import Movies from './components/Movies'
-import About from './components/About'
-import Contact from './components/Contact'
+import NavBar from './components/nav_bar/NavBar';
+import SideNav from "./components/side_nav/SideNav"
+import Carousel from './components/home/FilmCarousel';
+import SignIn from './components/sign/SignIn';
+import SignUp from './components/sign/SignUp';
+import Movies from './components/movies/Movies'
+import About from './components/about/About'
+import Contact from './components/contact/Contact'
 
 import { useContext, useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
@@ -18,7 +18,6 @@ import './api/axiosDefaults'
 
 
 function App() {
-  // const {setCurrentUser} = useContext(DataContext)
   
   
 

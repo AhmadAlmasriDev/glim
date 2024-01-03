@@ -1,9 +1,9 @@
 import React from "react"
-import Logo from "./Logo"
-import styles from  "../styles/NavBar.module.css"
+import Logo from "../Logo"
+import styles from  "./styles/NavBar.module.css"
 import {NavLink} from 'react-router-dom'
 import { useContext } from "react"
-import DataContext from "../context/DataContext"
+import DataContext from "../../context/DataContext"
 
 import UserLogNotification from "./UserLogNotification"
 

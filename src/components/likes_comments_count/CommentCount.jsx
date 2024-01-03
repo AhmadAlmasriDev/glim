@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/LikeCommentCount.module.css'
+import styles from './styles/LikeCommentCount.module.css'
 
 const CommentCount = () => {
   return (

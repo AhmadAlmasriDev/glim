@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/FilmCarousel.module.css'
+import styles from './styles/FilmCarousel.module.css'
 import FilmBanner from './FilmBanner';
 
 

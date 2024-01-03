@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/FilmDate.module.css'
+import styles from './styles/FilmDate.module.css'
 
 const FilmDate = () => {
   return (

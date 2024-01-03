@@ -3,11 +3,11 @@ import {NavLink} from 'react-router-dom'
 
 import SideNavMediaLink from './SideNavMediaLink'
 import SideNavAvatar from './SideNavAvatar'
-import Logo from './Logo'
-import styles from "../styles/SideNav.module.css"
+import Logo from '../Logo'
+import styles from "./styles/SideNav.module.css"
 import SideNavSignButton from './SideNavSignButton'
 import { useContext, useRef, useEffect } from "react"
-import DataContext from "../context/DataContext"
+import DataContext from "../../context/DataContext"
 import axios from 'axios'
 
 const SideNav = () => {

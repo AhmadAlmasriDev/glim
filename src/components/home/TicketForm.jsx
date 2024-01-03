@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/TicketForm.module.css'
+import styles from './styles/TicketForm.module.css'
 import FilmDate from './FilmDate'
 
 const TicketForm = () => {

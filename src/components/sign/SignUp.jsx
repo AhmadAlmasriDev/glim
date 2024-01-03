@@ -1,29 +1,28 @@
-import React, { useContext, useState}  from 'react'
-import { Form, Button,Alert} from "react-bootstrap";
-import { Link,useHistory } from "react-router-dom";
-import styles from '../styles/SignInUp.module.css'
-import Logo from './Logo'
-import backImage from '../assets/signBackGround.jpg'
-import  DataContext  from '../context/DataContext';
+import React, { useState } from 'react'
+import { Form, Button, Alert } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
+import styles from './styles/SignInUp.module.css'
+import Logo from '../Logo'
+import backImage from '../../assets/signBackGround.jpg'
 import axios from 'axios';
 
 
-const SignIn = () => {
-  const {setCurrentUser} = useContext(DataContext)
-  const [signInData, setSignInData] = useState({
-    username: '',
-    password: '',
+const SignUp = () => {
+  const [signUpData, setSignUpData] = useState({
+    username:'',
+    password1: '',
+    password2: '',
   })
 
   const [errors, setErrors] = useState({})
 
   const history = useHistory()
 
-  const {username, password} = signInData
+  const {username, password1,password2} = signUpData
 
   const handleChange = (event)=>{
-    setSignInData({
-      ...signInData,
+    setSignUpData({
+      ...signUpData,
       [event.target.name]: event.target.value,
     })
   }
@@ -31,15 +30,11 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try{
-      const {data} =  await axios.post("/dj-rest-auth/login/", signInData)
-      setCurrentUser(data.user)
-      console.log(signInData)
-      history.push("/");
+      await axios.post("/dj-rest-auth/registration/", signUpData)
+      history.push("/signin");
     }
     catch (err){
       setErrors(err.response?.data);
-      console.log(signInData)
-      
     }
   }
 
@@ -49,7 +44,7 @@ const SignIn = () => {
         <div>
           <Logo className={styles.logo} height={130}/>
         </div>
-        <h1 className={`${styles.form_header}`}>Sign in</h1>
+        <h1 className={`${styles.form_header}`}>Sign up</h1>
         <Form 
         className={`${styles.form} v-flex-container`}
         onSubmit={handleSubmit}
@@ -70,22 +65,43 @@ const SignIn = () => {
                 {message}
               </Alert>
             ))}
-          <Form.Group className={`${styles.form_input_container}`} controlId="password">
+          <Form.Group className={`${styles.form_input_container}`} controlId="password1">
             <Form.Label className={`display-non`}>Password</Form.Label>
             <Form.Control 
             type="password" 
             placeholder="Password" 
-            name = "password"
-            value = {password}
+            name = "password1"
+            value = {password1}
             onChange={handleChange}
 
             />
           </Form.Group>
+          {errors.password1?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+          <Form.Group className={`${styles.form_input_container}`} controlId="password2">
+            <Form.Label className={`display-non`}>Confirm password</Form.Label>
+            <Form.Control 
+            type="password" 
+            placeholder="Confirm password"
+            name = "password2"
+            value = {password2}
+            onChange={handleChange}
+
+            />
+          </Form.Group>
+          {errors.password2?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           <Button className={`${styles.form_button} button`} type="submit">
-            Sign in
+            Sign up
           </Button>
           <div className={`${styles.link_container} flex-container`}>
-            <Link className={`${styles.signup_link}`} to='/signup'>I don't have an account!</Link>
+            <Link className={`${styles.signup_link}`} to='/signin'>I already have an account!</Link>
           </div>
           {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
@@ -108,7 +124,6 @@ const SignIn = () => {
 
     </article>
   )
-    
 }
 
-export default SignIn
+export default SignUp

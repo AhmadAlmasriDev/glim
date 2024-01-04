@@ -7,6 +7,7 @@ import SignUp from './components/sign/SignUp';
 import Movies from './components/movies/Movies'
 import About from './components/about/About'
 import Contact from './components/contact/Contact'
+import MovieCreateForm from './components/movie_create_form/MovieCreateForm';
 
 import { useContext, useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
@@ -33,6 +34,7 @@ function App() {
           <Route exact path = '/movies' render = {()=> <Movies/>}/>
           <Route exact path = '/about' render = {()=> <About/>}/>
           <Route exact path = '/contact' render = {()=> <Contact/>}/>
+          <Route exact path = '/movies/add-movie' render = {()=> <MovieCreateForm/>}/>
         </Switch>
       </DataProvider>
       

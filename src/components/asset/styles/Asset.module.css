@@ -1,0 +1,32 @@
+.Asset {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+  }
+
+.icon_container{
+  border: solid 3px #F50000;
+  /* background-color: #65646C; */
+  background-color: #221F1F;
+  border-radius: 5px;
+  width:100%;
+  height: 300px;
+}
+.icon{
+  
+  color: #F50000;
+  font-size: 60px;
+}
+.main_container{
+  cursor: pointer;
+}
+.main_container:hover .icon{
+  color: #CC0000;
+}
+
+.main_container:hover .icon_container{
+  border: solid 3px #CC0000;
+  background-color: #2A2727
+}

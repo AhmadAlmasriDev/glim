@@ -16,6 +16,17 @@ const MovieCreateForm = () => {
     const posterInput = useRef(null) 
     const history = useHistory();
 
+    const RATING = ["G", "PG", "PG-13", "NC-17", "R"]
+
+    const years = ()=> {
+        let yearsArr = [] 
+        let currentYear = new Date().getFullYear()
+        for (currentYear; currentYear >= 1980; currentYear--) {
+            yearsArr.push(currentYear) 
+        }
+        return yearsArr
+        }
+    
     const [postData, setPostData] = useState({
         title:'',
         trailer:'',
@@ -91,16 +102,18 @@ const MovieCreateForm = () => {
         formData.append("price", price);
         formData.append("status", status);
         formData.append("manager_name", currentUser?.username);
-              
+            
         try {
-          const { data } = await axiosReq.post("/movies/", formData);
-          history.push(`/movies/${data.id}`);
-        } catch (err) {
-          console.log(err);
-          if (err.response?.status !== 401) {
-            setErrors(err.response?.data);
-          }
-        }
+            console.log(formData) 
+            const { data } = await axiosReq.post("/movies/", formData);
+            console.log(data)
+            history.push(`/movies/${data.id}`);
+            } catch (err) {
+            console.log(err);
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data);
+            }
+            }
     };
 
 
@@ -185,11 +198,8 @@ const MovieCreateForm = () => {
                                     name = "rated"
                                     onChange={handleChange}
                                 >
-                                <option>G</option>
-                                <option>PG</option>
-                                <option>PG-13</option>
-                                <option>NC-17</option>
-                                <option>R</option>
+                                {RATING.map((rating, idx)=> <option key={rating} value = {idx}>{rating}</option>)}
+                                
                                 </Form.Control>
                             </Form.Group>
                         </Col>
@@ -200,11 +210,11 @@ const MovieCreateForm = () => {
                                     as="select"
                                     value = {year}
                                     name = "year"
+                                    
                                     onChange={handleChange}
                                 >
-                                <option>1990</option>
-                                <option>1990</option>
-                                <option>1990</option>
+                                {years().map((year,idx)=> <option key = {idx} value = {year}>{year}</option>)}
+                                
                                 </Form.Control>
                             </Form.Group>
                         </Col>
@@ -295,8 +305,8 @@ const MovieCreateForm = () => {
                                     name = "status"
                                     onChange={handleChange}
                                     >
-                                <option>Draft</option>
-                                <option>Published</option>
+                                <option value = {0}>Draft</option>
+                                <option value = {1}>Published</option>
                                 </Form.Control>
                             </Form.Group>
                         </Col>

@@ -1,5 +1,6 @@
 
 import React, { useState, useContext, useRef } from 'react'
+import Moment from 'moment';
 import DataContext from "../../context/DataContext"
 import { Form, Button, Alert, Col, Row, Container, Image } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
@@ -11,7 +12,6 @@ import Asset from '../asset/Asset';
 
 
 const MovieCreateForm = () => {
-    const {currentUser} = useContext(DataContext)
     const [errors, setErrors] = useState({});
     const posterInput = useRef(null) 
     const history = useHistory();
@@ -26,15 +26,17 @@ const MovieCreateForm = () => {
         }
         return yearsArr
         }
+
+    const currentDate =  Moment().format('YYYY-MM-DD');
     
     const [postData, setPostData] = useState({
         title:'',
         trailer:'',
         manager:'',
-        manager_name:'',
-        start_date:'',
-        end_date:'',
-        session_time:'',
+        
+        start_date: currentDate,
+        end_date: currentDate,
+        session_time:'00:00:00',
         rated:'',
         year:'',
         director:'',
@@ -49,7 +51,7 @@ const MovieCreateForm = () => {
     const {
         title,
         trailer,
-        manager_name,
+        
         start_date,
         end_date,
         session_time,
@@ -69,6 +71,7 @@ const MovieCreateForm = () => {
           ...postData,
           [event.target.name]: event.target.value,
         });
+        console.log(postData)
       };
     
     const handleChangeImage = (event) => {
@@ -101,7 +104,7 @@ const MovieCreateForm = () => {
         formData.append("discreption", discreption);
         formData.append("price", price);
         formData.append("status", status);
-        formData.append("manager_name", currentUser?.username);
+        // formData.append("manager_name", currentUser?.username);
             
         try {
             console.log(formData) 
@@ -118,6 +121,7 @@ const MovieCreateForm = () => {
 
 
     return (
+        
     <Container>
         <h1 className={`${styles.header}`}>Add a movie</h1>
         <Form onSubmit={handleSubmit}>
@@ -135,6 +139,11 @@ const MovieCreateForm = () => {
                                     placeholder="Title" 
                                 />
                             </Form.Group>
+                            {errors?.title?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                         </Col>
                         <Col sm={12} md={6}>
                             <Form.Group controlId="trailer">
@@ -147,6 +156,11 @@ const MovieCreateForm = () => {
                                     placeholder="Trailer link"
                                 />
                             </Form.Group>
+                            {errors?.trailer?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                         </Col>
 
                     </Form.Row>
@@ -157,11 +171,17 @@ const MovieCreateForm = () => {
                                 <Form.Control 
                                     type="date" 
                                     value = {start_date}
+                                    
                                     name = "start_date"
                                     onChange={handleChange}
                                     placeholder="Start date"
                                 />
                             </Form.Group>
+                            {errors?.start_date?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                         </Col>
                         <Col xs={12} sm={4}>
                             <Form.Group controlId="end_date">
@@ -174,6 +194,11 @@ const MovieCreateForm = () => {
                                     placeholder="End date"
                                 />
                             </Form.Group>
+                            {errors?.end_date?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                         </Col>
                         <Col xs={12} sm={4}>
                             <Form.Group controlId="session_time">
@@ -186,6 +211,11 @@ const MovieCreateForm = () => {
                                     placeholder="Session time"
                                 />
                             </Form.Group>
+                            {errors?.session_time?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                         </Col>
                     </Form.Row>
                     <Form.Row>
@@ -202,6 +232,11 @@ const MovieCreateForm = () => {
                                 
                                 </Form.Control>
                             </Form.Group>
+                            {errors?.rated?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                         </Col>
                         <Col xs={12} sm={4}>
                             <Form.Group controlId="year">
@@ -216,6 +251,11 @@ const MovieCreateForm = () => {
                                 {years().map((year,idx)=> <option key = {idx} value = {year}>{year}</option>)}
                                 
                                 </Form.Control>
+                                {errors?.year?.map((message, idx) => (
+                                    <Alert variant="warning" key={idx}>
+                                        {message}
+                                    </Alert>
+                                ))}
                             </Form.Group>
                         </Col>
                         <Col xs={12} sm={4}>
@@ -223,12 +263,18 @@ const MovieCreateForm = () => {
                                 <Form.Label>Price</Form.Label>
                                 <Form.Control 
                                     type="number" 
+                                    min={1}
                                     value = {price}
                                     name = "price"
                                     onChange={handleChange}
                                     placeholder="Price"
                                 />
                             </Form.Group>
+                            {errors?.price?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                         </Col>
 
                     </Form.Row>
@@ -244,6 +290,11 @@ const MovieCreateForm = () => {
                                     placeholder="Director"
                                 />
                             </Form.Group>
+                            {errors?.director?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                             <Form.Group controlId="genre">
                                 <Form.Label>Genre</Form.Label>
                                 <Form.Control 
@@ -254,6 +305,11 @@ const MovieCreateForm = () => {
                                     placeholder="Genre"
                                 />
                             </Form.Group>
+                            {errors?.genre?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                         </Col>
                         <Col sm={12} md={6}>
                             <Form.Group controlId="distribution">
@@ -266,6 +322,11 @@ const MovieCreateForm = () => {
                                     placeholder="Distribution"
                                 />
                             </Form.Group>
+                            {errors?.distribution?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                             <Form.Group controlId="actors">
                                 <Form.Label>Actors</Form.Label>
                                 <Form.Control 
@@ -276,6 +337,11 @@ const MovieCreateForm = () => {
                                     placeholder="Actors"
                                 />
                             </Form.Group>
+                            {errors?.actors?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                         </Col>
 
                     </Form.Row>
@@ -292,6 +358,11 @@ const MovieCreateForm = () => {
                                     onChange={handleChange}
                                     />
                             </Form.Group>
+                            {errors?.discreption?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                         </Col>
                     </Form.Row>
 
@@ -309,6 +380,11 @@ const MovieCreateForm = () => {
                                 <option value = {1}>Published</option>
                                 </Form.Control>
                             </Form.Group>
+                            {errors?.status?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
                         </Col>
                     </Form.Row>
                 </Col>
@@ -339,6 +415,11 @@ const MovieCreateForm = () => {
                   />
                 </Form.Label>
               )}
+              {errors?.poster?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                             ))}
 
               <Form.File 
                 className='hidden'
@@ -348,6 +429,7 @@ const MovieCreateForm = () => {
                 ref = {posterInput}
               />
             </Form.Group>
+            
                 </Col>
             </Form.Row>
             <Form.Row className={`${styles.buttons_container}`}>

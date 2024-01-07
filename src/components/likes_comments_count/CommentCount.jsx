@@ -1,11 +1,14 @@
 import React from 'react'
 import styles from './styles/LikeCommentCount.module.css'
+import {Link} from 'react-router-dom'
 
-const CommentCount = () => {
+const CommentCount = ({id, comments_count}) => {
   return (
     <div className={`${styles.main_container} ${styles.comment} flex-container`}>
-        <i className={`fa-regular fa-comments`}></i>
-        <p className={` ${styles.number}`}>20</p>
+        <Link className={`${styles.icon}`} to={`/movies/${id}`}>
+          <i className={`fa-regular fa-comments`}/>
+        </Link>
+        <span className={` ${styles.number}`}>{comments_count}</span>
     </div>
   )
 }

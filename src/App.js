@@ -16,6 +16,7 @@ import DataContext, { DataProvider} from './context/DataContext';
 import { axiosReq, axiosRes } from "./api/axiosDefaults";
 
 import './api/axiosDefaults'
+import MovieDetail from './components/movie_create_form/MovieDetail';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route exact path = '/about' render = {()=> <About/>}/>
           <Route exact path = '/contact' render = {()=> <Contact/>}/>
           <Route exact path = '/movies/add-movie' render = {()=> <MovieCreateForm/>}/>
+          <Route exact path = '/movies/:id' render = {()=> <MovieDetail/>}/>
         </Switch>
       </DataProvider>
       

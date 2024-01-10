@@ -20,7 +20,7 @@
 .width_100 {
     width: 100%;
 }
-.display_non{
+.display_non {
     display: none;
 }
 .play_text {
@@ -31,4 +31,9 @@
 }
 .play_button:hover {
     background-color: #cc0000;
+}
+
+.under_title {
+    font-size: 18px;
+    margin-top: 16px;
 }

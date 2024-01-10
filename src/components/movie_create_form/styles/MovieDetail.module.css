@@ -1,0 +1,159 @@
+.main_container {
+    margin-top: 64px;
+    max-width: 1400px;
+    align-items: flex-start;
+}
+
+.right_container {
+    align-items: flex-start;
+}
+
+/* poster section ----------------------------------- */
+.poster_section {
+    position: sticky;
+    top: 123px;
+    /* display: none; */
+}
+
+/* Info section ----------------------------------- */
+.movie_title_container {
+    justify-content: flex-start;
+}
+.movie_like_container {
+    margin-left: auto;
+}
+.movie_title {
+    margin-bottom: 16px;
+}
+.info_main_container {
+    padding: 0 40px;
+    overflow: auto;
+}
+.info_container {
+    margin-bottom: 32px;
+}
+.info_item {
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0 0 6px 0;
+}
+.info_name {
+    min-width: 180px;
+}
+.info_value {
+    color: #a0a0b1;
+}
+
+.movie_discreption {
+    font-size: 18px;
+    margin-bottom: 64px;
+}
+/* comment section ----------------------------------- */
+.comments_main_container {
+    margin-bottom: 64px;
+    /* display: none; */
+}
+.comments_header,
+.movies_watch_header {
+    font-size: 24px;
+    margin-bottom: 24px;
+}
+.comment_container {
+    padding: 16px;
+    background-color: #2a2727;
+    border-radius: 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+.comment_avatar_container {
+    width: 20%;
+}
+.comment_user_name {
+    font-size: 16px;
+    margin: 0;
+}
+.comment_date {
+    font-size: 14px;
+}
+.comment_text_container {
+    align-items: flex-start;
+}
+.comment_text_main_container {
+    padding-left: 24px;
+    align-items: flex-start;
+}
+.comment_delete_button,
+.comment_edit_button {
+    font-size: 14px;
+    padding: 2px 6px;
+}
+.comment_edit_button {
+    background-color: #a0a0b1cc;
+    margin-right: 8px;
+}
+.comment_edit_button:hover {
+    background-color: #65646c;
+}
+.comment_button_container {
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+/* Movies to watch section ----------------------------------- */
+.movies_watch_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* display: none; */
+}
+
+/* Avaliable seats section ----------------------------------- */
+.seats_section {
+    position: sticky;
+    top: 123px;
+    /* display: none; */
+}
+.seats_main_container {
+    width: 400px;
+    border-radius: 10px;
+    padding-bottom: 32px;
+
+    background-color: #2a2727;
+}
+
+.seats_container {
+    padding: 24px 24px;
+    margin: 32px 0 32px 0;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+.seats_header_container {
+    border-radius: 10px 10px 0 0;
+    padding: 16px 0 12px 0;
+    background-color: #a0a0b11a;
+}
+.seats_screen {
+    margin: 64px 0 -88px 0;
+    width: 400px;
+    height: 100px;
+    border: solid 3px #f1f1f1;
+    border-color: #f1f1f1 transparent transparent transparent;
+    border-radius: 50%/100px 100px 0 0;
+}
+.seats_screen_text {
+    font-size: 18px;
+}
+
+.seats_header {
+    margin: 0;
+    font-size: 24px;
+}
+.seat_item {
+    padding: 2px 4px;
+}
+.seat_icon_red {
+    color: #f50000;
+}
+
+.seat_icon_white {
+    color: #f1f1f1;
+}

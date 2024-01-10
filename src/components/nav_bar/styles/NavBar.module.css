@@ -1,26 +1,27 @@
 .header {
+    position: fixed;
+    z-index: 500;
     height: 59px;
     justify-content: left;
-    background-color: #221F1F;
+    background-color: #221f1f;
     /* border-bottom: 1px solid #a0a0b140; */
     border-bottom: 1px solid #393636;
 }
 .sign_in,
-.sign_in_user{
-    margin-left: auto; 
+.sign_in_user {
+    margin-left: auto;
     margin-right: 27px;
 }
-.bar_menu{
+.bar_menu {
     font-size: 32px;
     padding: 6px 27px;
     cursor: pointer;
 }
 
-.sign_in_icon{
+.sign_in_icon {
     margin-right: 8px;
 }
 .sign_in:hover .sign_in_icon,
-.sign_in_user:hover{
-    color: #F50000;
+.sign_in_user:hover {
+    color: #f50000;
 }
-

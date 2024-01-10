@@ -45,9 +45,12 @@ a:hover {
     align-items: center;
     justify-content: center;
 }
-
+.wrapper {
+    padding: 32px;
+}
 .main-container {
     width: 100%;
+    margin-top: 59px;
 }
 
 .image-container {

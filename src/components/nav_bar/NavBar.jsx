@@ -1,38 +1,36 @@
-import React from "react"
-import Logo from "../Logo"
-import styles from  "./styles/NavBar.module.css"
-import {NavLink} from 'react-router-dom'
-import { useContext } from "react"
-import DataContext from "../../context/DataContext"
+import React from "react";
+import Logo from "../Logo";
+import styles from "./styles/NavBar.module.css";
+import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import DataContext from "../../context/DataContext";
 
-import UserLogNotification from "./UserLogNotification"
+import UserLogNotification from "./UserLogNotification";
 
 const NavBar = () => {
-    const {handleToggleSideBar} = useContext(DataContext)
-    
-    
+    const { handleToggleSideBar } = useContext(DataContext);
 
     return (
-        <header className={`main-container flex-container ${styles.header}`}>
+        <header className={`flex-container ${styles.header}`}>
             <nav>
                 <ul>
                     <li className={`${styles.bar_menu}`}>
-                        <a 
+                        <a
                             aria-label="bar menu button"
-                            onClick ={handleToggleSideBar}
-                        ><i className={`fa-solid fa-bars`}></i></a>
+                            onClick={handleToggleSideBar}
+                        >
+                            <i className={`fa-solid fa-bars`}></i>
+                        </a>
                     </li>
                 </ul>
-                
             </nav>
-            <NavLink to='/'>
-                <Logo height = {45}/>
+            <NavLink to="/">
+                <Logo height={45} />
             </NavLink>
-            
-            <UserLogNotification/>
 
+            <UserLogNotification />
         </header>
-    )
-}
+    );
+};
 
-export default NavBar
+export default NavBar;

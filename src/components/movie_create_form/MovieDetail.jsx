@@ -24,6 +24,7 @@ const MovieDetail = () => {
                     axiosReq.get(`/movies/${id}`),
                 ]);
                 setCurrentMovie(movie);
+                // setCurrentMovie(movie);
                 console.log(movie);
             } catch (err) {
                 console.log(err);
@@ -84,9 +85,9 @@ const MovieDetail = () => {
                                     className={`${styles.movie_like_container}`}
                                 >
                                     <LikeCount
-                                        is_admin={false}
-                                        likes_count={25}
-                                        like_id={true}
+                                        id={id}
+                                        currentMovie={currentMovie}
+                                        setCurrentMovie={setCurrentMovie}
                                     />
                                 </div>
                             </div>

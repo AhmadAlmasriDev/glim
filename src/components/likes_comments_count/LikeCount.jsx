@@ -5,7 +5,6 @@ import DataContext from "../../context/DataContext";
 import { axiosRes } from "../../api/axiosDefaults";
 
 const Like = ({ id, setCurrentMovie, currentMovie }) => {
-
     const currentUser = useContext(DataContext);
     console.log(currentMovie);
 
@@ -16,6 +15,21 @@ const Like = ({ id, setCurrentMovie, currentMovie }) => {
                 ...currentMovie,
                 likes_count: currentMovie?.likes_count + 1,
                 like_id: data.id,
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleUnLike = async () => {
+        try {
+            const { data } = await axiosRes.delete(
+                `/likes/${currentMovie?.like_id}`
+            );
+            setCurrentMovie({
+                ...currentMovie,
+                likes_count: currentMovie?.likes_count - 1,
+                like_id: null,
             });
         } catch (err) {
             console.log(err);
@@ -34,12 +48,7 @@ const Like = ({ id, setCurrentMovie, currentMovie }) => {
                     <i className={`fa-regular fa-heart`} />
                 </OverlayTrigger>
             ) : currentMovie?.like_id ? (
-                <span
-                    className={`${styles.icon}`}
-                    onClick={() => {
-                        console.log("unlike clicked");
-                    }}
-                >
+                <span className={`${styles.icon}`} onClick={handleUnLike}>
                     <i className={`fa-solid fa-heart`} />
                 </span>
             ) : currentUser ? (
@@ -55,7 +64,9 @@ const Like = ({ id, setCurrentMovie, currentMovie }) => {
                 </OverlayTrigger>
             )}
 
-            <span className={` ${styles.number}`}>{currentMovie?.likes_count}</span>
+            <span className={` ${styles.number}`}>
+                {currentMovie?.likes_count}
+            </span>
         </div>
     );
 };

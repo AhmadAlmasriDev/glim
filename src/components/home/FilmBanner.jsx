@@ -6,14 +6,12 @@ import CommentCount from "../likes_comments_count/CommentCount";
 import TrailerButton from "./TrailerButton";
 import TicketForm from "./TicketForm";
 
-const FilmBanner = () => {
-    const liked = false;
-    const type = "";
+const FilmBanner = ({ movies, setMovies, currentMovie }) => {
     return (
         <div
             className={`${styles.film_background} flex-container`}
             style={{
-                backgroundImage: ` linear-gradient(to bottom, rgba(0,0,0,0)50%, rgba(0,0,0,.9)90%, rgba(0,0,0,1)), url(${image})`,
+                backgroundImage: ` linear-gradient(to bottom, rgba(0,0,0,0)50%, rgba(0,0,0,.9)90%, rgba(0,0,0,1)), url(${currentMovie?.poster})`,
             }}
         >
             <div className={`${styles.content_background} v-flex-container`}>
@@ -22,11 +20,16 @@ const FilmBanner = () => {
                         <section className={`v-flex-container`}>
                             <div className={`flex-container`}>
                                 <LikeCount
-                                    is_admin={false}
-                                    likes_count={25}
-                                    like_id={true}
+                                    movies={movies}
+                                    movie={currentMovie}
+                                    setMovie={setMovies}
                                 />
-                                <CommentCount id={5} comments_count={50} />
+                                <CommentCount
+                                    id={currentMovie?.id}
+                                    comments_count={
+                                        currentMovie?.comments_count
+                                    }
+                                />
                             </div>
                             <TrailerButton type={75} />
                         </section>
@@ -38,7 +41,7 @@ const FilmBanner = () => {
                     </div>
                 </div>
                 <div className={`${styles.film_title} flex-container`}>
-                    <a>Film Title</a>
+                    <a>{currentMovie?.title}</a>
                 </div>
             </div>
         </div>

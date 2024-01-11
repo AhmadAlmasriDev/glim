@@ -1,14 +1,11 @@
-
-.film_background{
+.film_background {
     position: relative;
     background-size: cover;
     width: 380px;
     flex: 0 0 auto;
-    
-    
 }
 
-.content_background{
+.content_background {
     position: absolute;
     top: 0;
     left: 0;
@@ -16,30 +13,29 @@
     height: 100%;
     transition: 0.2s;
     justify-content: flex-start;
-    padding: 32px 48px ;
+    padding: 32px 48px;
 }
 
-.content_background:hover{
-    background-color: #2A2727bf;
+.content_background:hover {
+    background-color: #2a2727bf;
     backdrop-filter: blur(10px);
-    
 }
 
-.content_background:hover .content_container{
-    display:block;  
+.content_background:hover .content_container {
+    display: block;
 }
 
-.content_container{
-    /* display: none; */
+.content_container {
+    display: none;
     width: 100%;
     transition: 0.2s;
 }
-.film_title{
+.film_title {
     margin-top: auto;
     width: 100%;
     padding: 64px 0;
     font-size: 27px;
 }
-.form_section{
-    margin-top: 160px 
+.form_section {
+    margin-top: 160px;
 }

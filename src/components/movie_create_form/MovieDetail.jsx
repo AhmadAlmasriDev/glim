@@ -4,8 +4,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 import React, { useEffect, useState, useContext } from "react";
 import MoviePoster from "./MoviePoster";
-import MovieDetailInfoItem from "./MovieDetailInfoItem";
-import MovieDetailSeatItem from "./MovieDetailSeatItem";
+
 import LikeCount from "../likes_comments_count/LikeCount";
 import DataContext from "../../context/DataContext";
 import MovieDetailComment from "./MovieDetailComment";
@@ -15,7 +14,7 @@ import MovieDetailWatchItem from "./MovieDetailWatchItem";
 
 const MovieDetail = () => {
     const { id } = useParams();
-    const [currentMovie, setCurrentMovie] = useState({});
+    const [currentMovie, setCurrentMovie] = useState([]);
     const { currentUser } = useContext(DataContext);
     useEffect(() => {
         const handleMount = async () => {
@@ -23,9 +22,7 @@ const MovieDetail = () => {
                 const [{ data: movie }] = await Promise.all([
                     axiosReq.get(`/movies/${id}`),
                 ]);
-                setCurrentMovie(movie);
-                // setCurrentMovie(movie);
-                console.log(movie);
+                setCurrentMovie([movie]);
             } catch (err) {
                 console.log(err);
             }
@@ -33,39 +30,39 @@ const MovieDetail = () => {
         handleMount();
     }, [id]);
 
-    const {
-        actors,
-        comments_count,
-        created_at,
-        director,
-        discreption,
-        distribution,
-        end_date,
-        genre,
-        is_admin,
-        like_id,
-        likes_count,
-        manager,
-        manager_name,
-        poster,
-        price,
-        rated,
-        session_time,
-        start_date,
-        status,
-        title,
-        trailer,
-        updated_at,
-        year,
-    } = currentMovie;
+    // const {
+    //     actors,
+    //     comments_count,
+    //     created_at,
+    //     director,
+    //     discreption,
+    //     distribution,
+    //     end_date,
+    //     genre,
+    //     is_admin,
+    //     like_id,
+    //     likes_count,
+    //     manager,
+    //     manager_name,
+    //     poster,
+    //     price,
+    //     rated,
+    //     session_time,
+    //     start_date,
+    //     status,
+    //     title,
+    //     trailer,
+    //     updated_at,
+    //     year,
+    // } = currentMovie;
 
     return (
         <article className={`flex-container wrapper`}>
             <div className={`${styles.main_container} flex-container`}>
                 <section className={`${styles.poster_section}`}>
                     <MoviePoster
-                        title={title}
-                        poster={poster}
+                        title={currentMovie[0]?.title}
+                        poster={currentMovie[0]?.poster}
                         width={250}
                         buttonType={100}
                     />
@@ -79,28 +76,28 @@ const MovieDetail = () => {
                                 className={`${styles.movie_title_container} flex-container`}
                             >
                                 <h1 className={`${styles.movie_title}`}>
-                                    {title}
+                                    {currentMovie[0]?.title}
                                 </h1>
                                 <div
                                     className={`${styles.movie_like_container}`}
                                 >
                                     <LikeCount
-                                        id={id}
-                                        currentMovie={currentMovie}
-                                        setCurrentMovie={setCurrentMovie}
+                                        movies={currentMovie}
+                                        movie={currentMovie[0]}
+                                        setMovie={setCurrentMovie}
                                     />
                                 </div>
                             </div>
                             <MovieDetailInfo
-                                rated={rated}
-                                year={year}
-                                director={director}
-                                distribution={distribution}
-                                actors={actors}
-                                genre={genre}
-                                start_date={start_date}
-                                end_date={end_date}
-                                discreption={discreption}
+                                rated={currentMovie[0]?.rated}
+                                year={currentMovie[0]?.year}
+                                director={currentMovie[0]?.director}
+                                distribution={currentMovie[0]?.distribution}
+                                actors={currentMovie[0]?.actors}
+                                genre={currentMovie[0]?.genre}
+                                start_date={currentMovie[0]?.start_date}
+                                end_date={currentMovie[0]?.end_date}
+                                discreption={currentMovie[0]?.discreption}
                             />
                         </div>
                         <div className={`${styles.comments_main_container}`}>
@@ -119,12 +116,24 @@ const MovieDetail = () => {
                                 Movies to watch
                             </h3>
                             <ul className={`${styles.movies_watch_container}`}>
-                                <MovieDetailWatchItem poster={poster} />
-                                <MovieDetailWatchItem poster={poster} />
-                                <MovieDetailWatchItem poster={poster} />
-                                <MovieDetailWatchItem poster={poster} />
-                                <MovieDetailWatchItem poster={poster} />
-                                <MovieDetailWatchItem poster={poster} />
+                                <MovieDetailWatchItem
+                                    poster={currentMovie[0]?.poster}
+                                />
+                                <MovieDetailWatchItem
+                                    poster={currentMovie[0]?.poster}
+                                />
+                                <MovieDetailWatchItem
+                                    poster={currentMovie[0]?.poster}
+                                />
+                                <MovieDetailWatchItem
+                                    poster={currentMovie[0]?.poster}
+                                />
+                                <MovieDetailWatchItem
+                                    poster={currentMovie[0]?.poster}
+                                />
+                                <MovieDetailWatchItem
+                                    poster={currentMovie[0]?.poster}
+                                />
                             </ul>
                         </div>
                     </section>

@@ -46,7 +46,7 @@ const FilmCarousel = () => {
                         )}
                     </>
                 ) : (
-                    <div>
+                    <div className={`flex-container`}>
                         <Asset spinner />
                     </div>
                 )}

@@ -46,7 +46,8 @@ a:hover {
     justify-content: center;
 }
 .wrapper {
-    padding: 32px;
+    min-height: calc(100vh - 60px);
+    padding: 0 32px;
 }
 .main-container {
     width: 100%;

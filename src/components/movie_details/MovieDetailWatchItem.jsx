@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles/MovieDetail.module.css";
-import MoviePoster from "./MoviePoster";
 import { NavLink } from "react-router-dom";
+import MoviePoster from "../movie_poster/MoviePoster";
 
 const MovieDetailWatchItem = ({ poster }) => {
     return (

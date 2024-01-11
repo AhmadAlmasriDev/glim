@@ -3,7 +3,6 @@ import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../asset/Asset";
 import React, { useEffect, useState, useContext } from "react";
-import MoviePoster from "./MoviePoster";
 
 import LikeCount from "../likes_comments_count/LikeCount";
 import DataContext from "../../context/DataContext";
@@ -11,6 +10,7 @@ import MovieDetailComment from "./MovieDetailComment";
 import MovieDetailSeats from "./MovieDetailSeats";
 import MovieDetailInfo from "./MovieDetailInfo";
 import MovieDetailWatchItem from "./MovieDetailWatchItem";
+import MoviePoster from "../movie_poster/MoviePoster";
 
 const MovieDetail = () => {
     const { id } = useParams();

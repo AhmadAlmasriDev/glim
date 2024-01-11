@@ -1,6 +1,7 @@
 .film_background {
     position: relative;
     background-size: cover;
+    background-position: center;
     width: 380px;
     flex: 0 0 auto;
 }

@@ -5,6 +5,7 @@ import LikeCount from "../likes_comments_count/LikeCount";
 import CommentCount from "../likes_comments_count/CommentCount";
 import TrailerButton from "./TrailerButton";
 import TicketForm from "./TicketForm";
+import { Link } from "react-router-dom";
 
 const FilmBanner = ({ movies, setMovies, currentMovie }) => {
     return (
@@ -36,12 +37,18 @@ const FilmBanner = ({ movies, setMovies, currentMovie }) => {
                         <section
                             className={`${styles.form_section} flex-container`}
                         >
-                            <TicketForm />
+                            <TicketForm
+                                session_time={currentMovie?.session_time}
+                                start_date={currentMovie?.start_date}
+                                end_date={currentMovie?.end_date}
+                            />
                         </section>
                     </div>
                 </div>
                 <div className={`${styles.film_title} flex-container`}>
-                    <a>{currentMovie?.title}</a>
+                    <Link to={`/movies/${currentMovie?.id}`}>
+                        {currentMovie?.title}
+                    </Link>
                 </div>
             </div>
         </div>

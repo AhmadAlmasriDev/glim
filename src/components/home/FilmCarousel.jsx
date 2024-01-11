@@ -31,14 +31,16 @@ const FilmCarousel = () => {
                 {hasLoaded ? (
                     <>
                         {movies.length ? (
-                            movies.map((movie) => (
-                                <FilmBanner
-                                    key={movie.id}
-                                    movies={movies}
-                                    setMovies={setMovies}
-                                    currentMovie={movie}
-                                />
-                            ))
+                            movies.map((movie) =>
+                                movie.status ? (
+                                    <FilmBanner
+                                        key={movie.id}
+                                        movies={movies}
+                                        setMovies={setMovies}
+                                        currentMovie={movie}
+                                    />
+                                ) : null
+                            )
                         ) : (
                             <div>
                                 <Asset message={"test message"} />

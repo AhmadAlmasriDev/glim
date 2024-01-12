@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles/TrailerButton.module.css";
 
-const TrailerButton = ({ type, title }) => {
+const TrailerButton = ({ type, title, on_click_function }) => {
     const handleType = (param) => {
         switch (param) {
             case 100:
@@ -23,7 +23,10 @@ const TrailerButton = ({ type, title }) => {
                 </div>
             ) : (
                 <div className={`flex-container ${handleType(type)}`}>
-                    <button className={`${styles.play_button} flex-container`}>
+                    <button
+                        onClick={() => on_click_function(true)}
+                        className={`${styles.play_button} flex-container`}
+                    >
                         <i
                             className={`${styles.play_icon} fa-solid fa-play`}
                         ></i>

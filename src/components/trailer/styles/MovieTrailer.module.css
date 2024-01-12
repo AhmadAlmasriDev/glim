@@ -1,0 +1,6 @@
+.slider_button_container {
+    padding: 16px 0;
+    justify-content: flex-start;
+    margin-right: -150px;
+    margin-left: 75px;
+}

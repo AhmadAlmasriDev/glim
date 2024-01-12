@@ -27,7 +27,7 @@
 }
 
 .content_container {
-    display: none;
+    /* display: none; */
     width: 100%;
     transition: 0.2s;
 }

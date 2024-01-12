@@ -11,11 +11,13 @@ import MovieDetailSeats from "./MovieDetailSeats";
 import MovieDetailInfo from "./MovieDetailInfo";
 import MovieDetailWatchItem from "./MovieDetailWatchItem";
 import MoviePoster from "../movie_poster/MoviePoster";
+import MovieTrailer from "../trailer/MovieTrailer";
 
 const MovieDetail = () => {
     const { id } = useParams();
     const [currentMovie, setCurrentMovie] = useState([]);
     const [hasLoaded, setHasLoaded] = useState(false);
+    const [showTrailer, setShowTrailer] = useState(false);
     const { currentUser } = useContext(DataContext);
     useEffect(() => {
         const handleMount = async () => {
@@ -36,6 +38,7 @@ const MovieDetail = () => {
         <div className={`${styles.main_container} flex-container`}>
             <section className={`${styles.poster_section}`}>
                 <MoviePoster
+                    on_click_function={setShowTrailer}
                     title={currentMovie[0]?.title}
                     poster={currentMovie[0]?.poster}
                     width={250}
@@ -120,7 +123,13 @@ const MovieDetail = () => {
 
     return (
         <article className={`flex-container wrapper`}>
-            {hasLoaded ? (
+            {showTrailer ? (
+                <MovieTrailer
+                    trailer_link={currentMovie[0].trailer}
+                    setShowTrailer={setShowTrailer}
+                    title={currentMovie[0].title}
+                />
+            ) : hasLoaded ? (
                 <>
                     {currentMovie.length ? (
                         main

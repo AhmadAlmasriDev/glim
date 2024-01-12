@@ -23,7 +23,7 @@ const FilmCarousel = () => {
 
         setHasLoaded(false);
         fetchmovies();
-    }, []);
+    }, [currentUser]);
 
     return (
         <article className={`${styles.main_container} flex-container`}>

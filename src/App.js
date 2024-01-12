@@ -17,6 +17,7 @@ import { axiosReq, axiosRes } from "./api/axiosDefaults";
 
 import "./api/axiosDefaults";
 import MovieDetail from "./components/movie_details/MovieDetail";
+// import MovieTrailer from "./components/trailer/MovieTrailer";
 
 function App() {
     return (

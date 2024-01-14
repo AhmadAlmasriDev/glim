@@ -1,17 +1,19 @@
 import React from "react";
 import styles from "./styles/FilmDate.module.css";
 
-const TicketDate = ({ day }) => {
+const TicketDate = ({ month, day, on_change_function }) => {
     return (
         <li className={`${styles.list_item}`}>
             <input
                 className={`${styles.list_item_input}`}
                 type="radio"
-                id="date1"
-                name="film_date"
-                value="12"
+                id="day"
+                name="day"
+                data-month={month}
+                value={day}
+                onChange={on_change_function}
             />
-            <label className={`${styles.list_item_label}`} htmlFor="date1">
+            <label className={`${styles.list_item_label}`} htmlFor="day">
                 {day}
             </label>
         </li>

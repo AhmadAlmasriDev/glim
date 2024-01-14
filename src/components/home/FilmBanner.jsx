@@ -38,6 +38,8 @@ const FilmBanner = ({ movies, setMovies, currentMovie }) => {
                             className={`${styles.form_section} flex-container`}
                         >
                             <TicketForm
+                                title={currentMovie?.title}
+                                price={currentMovie?.price}
                                 session_time={currentMovie?.session_time}
                                 start_date={currentMovie?.start_date}
                                 end_date={currentMovie?.end_date}

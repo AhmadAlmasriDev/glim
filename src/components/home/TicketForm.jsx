@@ -1,10 +1,43 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styles from "./styles/TicketForm.module.css";
 import Moment from "moment";
+import { Link, useHistory } from "react-router-dom";
+
+import { Tooltip, OverlayTrigger } from "react-bootstrap";
+
+import DataContext from "../../context/DataContext";
 import TicketCalendar from "./TicketCalendar";
 
-const TicketForm = ({ start_date, end_date, session_time }) => {
+const TicketForm = ({ title, price, start_date, end_date, session_time }) => {
     const time = Moment(session_time, "HH:mm:ss").format("HH:mm");
+    const year = Moment(start_date, "MM/DD/YYYY").format("YYYY");
+    const { currentUser, currentTicket, setCurrentTicket } =
+        useContext(DataContext);
+    const [ticketData, setTicketData] = useState({
+        title: title,
+        time: time,
+        year: year,
+        price: price,
+        day: "",
+        month: "",
+    });
+
+    const history = useHistory();
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setCurrentTicket({ ...ticketData });
+
+        history.push("/tickets");
+    };
+
+    const handleChange = (event) => {
+        setTicketData({
+            ...ticketData,
+            [event.target.name]: event.target.value,
+            month: event.target.dataset.month,
+        });
+    };
 
     const days = (start, end) => {
         const startD = Moment(start, "MM/DD/YYYY");
@@ -58,12 +91,33 @@ const TicketForm = ({ start_date, end_date, session_time }) => {
         <form className={`${styles.main_container}`}>
             <div className={`${styles.button_container} flex-container`}>
                 <h3 className={`${styles.time_label}`}>{time}</h3>
-                <button className={`${styles.buy_button} button`} type="submit">
-                    Buy a ticket
-                </button>
+                {currentUser ? (
+                    <button
+                        className={`${styles.buy_button} button`}
+                        onClick={handleSubmit}
+                    >
+                        Buy a ticket
+                    </button>
+                ) : (
+                    <OverlayTrigger
+                        placement="top"
+                        overlay={<Tooltip>Sign in to Buy a ticket!</Tooltip>}
+                    >
+                        <Link
+                            className={`${styles.buy_button} button`}
+                            to="/signin"
+                        >
+                            Buy a ticket
+                        </Link>
+                    </OverlayTrigger>
+                )}
             </div>
-            {days(start_date, end_date).map((period) => (
-                <TicketCalendar period={period} />
+            {days(start_date, end_date).map((period, idx) => (
+                <TicketCalendar
+                    key={idx}
+                    period={period}
+                    on_change_function={handleChange}
+                />
             ))}
         </form>
     );

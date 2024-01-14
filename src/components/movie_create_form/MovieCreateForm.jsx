@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import Moment from "moment";
 import DataContext from "../../context/DataContext";
 import {
@@ -19,10 +19,12 @@ import Asset from "../asset/Asset";
 
 const MovieCreateForm = () => {
     const [errors, setErrors] = useState({});
+    const [ratings, setRatings] = useState([]);
+    const {currentUser} = useContext(DataContext);
     const posterInput = useRef(null);
+    
     const history = useHistory();
 
-    const RATING = ["G", "PG", "PG-13", "NC-17", "R"];
 
     const years = () => {
         let yearsArr = [];
@@ -72,6 +74,27 @@ const MovieCreateForm = () => {
         price,
         status,
     } = postData;
+    
+
+
+    useEffect(() => {
+        const fetchRatings = async () => {
+            try {
+                const { data } = await axiosReq.get(`/movies/service`);
+                setRatings(data[0]?.service.ratings);
+                
+            } catch (err) {
+                console.log(err);
+            }
+            
+        };
+
+        
+        fetchRatings();
+    }, []); 
+
+
+
 
     const handleChange = (event) => {
         setPostData({
@@ -230,7 +253,7 @@ const MovieCreateForm = () => {
                                         name="rated"
                                         onChange={handleChange}
                                     >
-                                        {RATING.map((rating, idx) => (
+                                        {ratings.map((rating, idx) => (
                                             <option key={rating} value={idx}>
                                                 {rating}
                                             </option>

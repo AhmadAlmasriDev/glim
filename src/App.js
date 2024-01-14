@@ -11,12 +11,13 @@ import MovieCreateForm from "./components/movie_create_form/MovieCreateForm";
 
 import { useContext, useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
-import DataContext, { DataProvider } from "./context/DataContext";
+import { DataProvider } from "./context/DataContext";
 
 import { axiosReq, axiosRes } from "./api/axiosDefaults";
 
 import "./api/axiosDefaults";
 import MovieDetail from "./components/movie_details/MovieDetail";
+import Tickets from "./components/tickets/Tickets";
 // import MovieTrailer from "./components/trailer/MovieTrailer";
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
                         path="/movies/:id"
                         render={() => <MovieDetail />}
                     />
+                    <Route exact path="/tickets" render={() => <Tickets />} />
                 </Switch>
             </DataProvider>
         </div>

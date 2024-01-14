@@ -8,7 +8,7 @@ import Asset from "../asset/Asset";
 const FilmCarousel = () => {
     const [movies, setMovies] = useState([]);
     const [hasLoaded, setHasLoaded] = useState(false);
-    const { currentUser } = useContext(DataContext);
+    const { currentUser} = useContext(DataContext);
 
     useEffect(() => {
         const fetchmovies = async () => {
@@ -19,6 +19,17 @@ const FilmCarousel = () => {
             } catch (err) {
                 console.log(err);
             }
+            // try {
+            //     const [{ data: movies }, { data: ratings }] = await Promise.all([
+            //       axiosReq.get(`/movies`),
+            //       axiosReq.get(`/movies/service`),
+            //     ]);
+            //     setMovies(movies);
+            //     setRatings(ratings[0]?.service.ratings);
+            //     setHasLoaded(true);
+            //   } catch (err) {
+            //     console.log(err);
+            //   }
         };
 
         setHasLoaded(false);
@@ -27,6 +38,7 @@ const FilmCarousel = () => {
 
     return (
         <article className={`${styles.main_container} flex-container`}>
+           
             <div className={`${styles.carousel_container} flex-container`}>
                 {hasLoaded ? (
                     <>

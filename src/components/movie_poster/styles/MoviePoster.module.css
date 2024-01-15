@@ -1,0 +1,15 @@
+.image_container{
+    position: relative;
+}
+.poster_shade{
+    position:absolute;
+    
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.poster_shade:hover{
+    background-color: #2A272780;
+}

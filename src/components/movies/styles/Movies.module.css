@@ -1,0 +1,49 @@
+.movies_wrapper{
+    align-items: flex-start;
+}
+.movies_page_container{
+    padding-top: 64px;
+    max-width: 1400px;
+    justify-content: flex-start;
+}
+
+.movies_main_container{
+    align-items: flex-start;
+    padding: 32px;
+    background-color: #2A2727;
+    border-radius: 15px;
+}
+
+.movies_container{
+     
+}
+.movies_page_title_container{
+    justify-content: flex-start;
+}
+
+.movies_page_title{
+    font-size: 40px;
+    align-self: flex-start;
+}
+
+.movies_add_button{
+    margin-left: 16px;
+    background-color: #a0a0b1cc;
+}
+
+.movies_add_button:hover{
+    background-color: #65646c;
+}
+
+.section_title{
+    font-size: 24px;
+    margin-bottom: 32px;
+}
+.movies_container{
+    justify-content: flex-start;
+}
+
+.movie_item_container{
+    /* align-items: flex-start; */
+
+}

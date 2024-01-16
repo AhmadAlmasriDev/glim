@@ -7,7 +7,7 @@ import SignUp from "./components/sign/SignUp";
 import Movies from "./components/movies/Movies";
 import About from "./components/about/About";
 import Contact from "./components/contact/Contact";
-import MovieCreateForm from "./components/movie_create_form/MovieCreateForm";
+import MovieCreateForm from "./components/movie_edit_add_form/MovieCreateForm";
 
 import { useContext, useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
@@ -18,8 +18,7 @@ import { axiosReq, axiosRes } from "./api/axiosDefaults";
 import "./api/axiosDefaults";
 import MovieDetail from "./components/movie_details/MovieDetail";
 import Tickets from "./components/tickets/Tickets";
-// import MovieTrailer from "./components/trailer/MovieTrailer";
-
+import MovieEditForm from "./components/movie_edit_add_form/MovieEditForm"
 function App() {
     return (
         <div className={styles.App}>
@@ -42,6 +41,11 @@ function App() {
                         exact
                         path="/movies/:id"
                         render={() => <MovieDetail />}
+                    />
+                    <Route
+                        exact
+                        path="/movies/:id/edit"
+                        render={() => <MovieEditForm />}
                     />
                     <Route exact path="/tickets" render={() => <Tickets />} />
                 </Switch>

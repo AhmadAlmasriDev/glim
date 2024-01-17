@@ -9,12 +9,39 @@
 .carousel_container{
     position: absolute;
     
+    
     height: 100%;
     justify-content: flex-start;
     align-items: stretch;
     flex-grow: 1;
     flex-wrap: nowrap;
-    overflow: hidden;
+    overflow-x:scroll;
+    
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    
 
 }
 
+.carousel_container::-webkit-scrollbar {
+    display: none;
+}
+
+
+.left_slider_button,
+.right_slider_button{
+    position: absolute;
+    z-index: 500;
+    
+    /* top:calc(100vh / 2.5); */
+    top: 375px;
+}
+
+.left_slider_button{
+    left: 20px;
+
+}
+
+.right_slider_button{
+    right: 20px;
+}

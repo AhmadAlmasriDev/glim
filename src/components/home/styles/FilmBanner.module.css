@@ -2,7 +2,7 @@
     position: relative;
     background-size: cover;
     background-position: center;
-    width: 380px;
+    width: 384px;
     flex: 0 0 auto;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .content_container {
-    /* display: none; */
+    display: none;
     width: 100%;
     transition: 0.2s;
 }

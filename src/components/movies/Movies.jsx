@@ -12,7 +12,8 @@ const Movies = () => {
     const [hasLoaded, setHasLoaded] = useState(false)
     const [movies, setMovies] = useState ([])
     const {currentUser}= useContext(DataContext)
-    const currentDate = Moment()
+    const momentObj = Moment().format("MM/DD/YYYY")
+    const currentDate = Moment(momentObj,"MM/DD/YYYY")
     
 
     useEffect(() => {
@@ -42,6 +43,7 @@ const Movies = () => {
                 <h1 className={`${styles.movies_page_title}`}>Movies</h1>
                 {movies[0]?.is_admin && <Link className={`${styles.movies_add_button} button`} to="movies/add-movie">Add +</Link>}
                 </div>
+                
                 <section className={`${styles.movies_main_container} v-flex-container`}>
                     <h3 className={`${styles.section_title}`}>In theatres now</h3>
                     <div className={`${styles.movies_container} flex-container`}>

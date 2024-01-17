@@ -3,14 +3,14 @@
     height: 75px;
     background-color: #2a2727;
     border-radius: 50%;
-    border: solid 5px #cc0000;
-    color: #f1f1f1;
+    border: solid 5px #f1f1f1;
+    color: #cc0000;
     font-size: 32px;
     text-align: center;
     cursor: pointer;
 }
 
 .button_container:hover {
-    border: solid 5px #a0a0b1;
-    color: #cc0000;
+    border: solid 5px #cc0000;
+    color: #f1f1f1;
 }

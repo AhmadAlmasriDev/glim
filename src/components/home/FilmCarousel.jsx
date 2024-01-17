@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import styles from "./styles/FilmCarousel.module.css";
 import FilmBanner from "./FilmBanner";
-
+import Moment from "moment";
 import DataContext from "../../context/DataContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../asset/Asset";
@@ -11,6 +11,21 @@ const FilmCarousel = () => {
     const [movies, setMovies] = useState([]);
     const [hasLoaded, setHasLoaded] = useState(false);
     const { currentUser} = useContext(DataContext);
+    
+    
+    
+
+    const checkDate = (date)=>{
+        const momentObj = Moment().format("MM/DD/YYYY")
+        const currentDate = Moment(momentObj,"MM/DD/YYYY")
+        // const currentDate = Moment("01/24/2024","MM/DD/YYYY")
+        const endD = Moment(date, "MM/DD/YYYY");
+        console.log(endD)
+        console.log(currentDate)
+        console.log(Moment(endD).isSameOrAfter(currentDate))
+        return Moment(endD).isSameOrAfter(currentDate)
+
+    }
 
     useEffect(() => {
         const fetchmovies = async () => {
@@ -49,7 +64,8 @@ const FilmCarousel = () => {
                         {movies.length ? (
                             movies.map((movie) =>
                                 movie.status ? (
-                                    <FilmBanner
+                                    
+                                    checkDate(movie?.end_date) && <FilmBanner
                                         key={movie.id}
                                         movies={movies}
                                         setMovies={setMovies}

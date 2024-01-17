@@ -83,8 +83,7 @@ const Movies = () => {
                                         <h3 className={`${styles.movie_item_title}`}>{movie?.title} </h3>
                                     </div>
                                 </Link>
-                                {/* { movie?.is_admin && <MoviesButtons id ={movie?.id} />} */}
-                                {console.log(currentUser)}
+                                {movie?.is_admin && <MoviesButtons id={movie?.id}/>}
                                 
                             </div>
                         )}    

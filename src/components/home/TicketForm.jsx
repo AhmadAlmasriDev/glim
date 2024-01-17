@@ -44,6 +44,9 @@ const TicketForm = ({ title, price, start_date, end_date, session_time }) => {
         const endD = Moment(end, "MM/DD/YYYY");
         const startD_month = Moment(start, "MM/DD/YYYY").format("MMMM");
         const endD_month = Moment(end, "MM/DD/YYYY").format("MMMM");
+        // const currentDate = Moment()
+        const currentDate = Moment("01/30/2024","MM/DD/YYYY")
+        const currentmonth = currentDate.format("MMMM")
 
         if (startD_month === endD_month) {
             const date = [];
@@ -52,8 +55,10 @@ const TicketForm = ({ title, price, start_date, end_date, session_time }) => {
                 m.isSameOrBefore(endD);
                 m.add(1, "days")
             ) {
-                date.push(m.format("DD"));
+                m.isSameOrAfter(currentDate) && date.push(m.format("DD"));
             }
+
+            // Moment(movie?.end_date,"MM/DD/YYYY").isSameOrAfter(currentDate)
             return [
                 {
                     month: startD_month,
@@ -68,15 +73,17 @@ const TicketForm = ({ title, price, start_date, end_date, session_time }) => {
                 m.isSameOrBefore(endD);
                 m.add(1, "days")
             ) {
-                if (m.format("MMMM") === startD_month) {
+                if (m.format("MMMM") === startD_month & m.isSameOrAfter(currentDate)) {
                     date1.push(m.format("DD"));
                 } else {
-                    date2.push(m.format("DD"));
+                    m.isSameOrAfter(currentDate) && date2.push(m.format("DD"));
                 }
             }
+            console.log(startD_month)
+            console.log(currentmonth)
             return [
                 {
-                    month: startD_month,
+                    month: startD_month === currentmonth ? startD_month : null,
                     days: date1,
                 },
                 {
@@ -113,7 +120,7 @@ const TicketForm = ({ title, price, start_date, end_date, session_time }) => {
                 )}
             </div>
             {days(start_date, end_date).map((period, idx) => (
-                <TicketCalendar
+                period?.month &&<TicketCalendar
                     key={idx}
                     period={period}
                     on_change_function={handleChange}

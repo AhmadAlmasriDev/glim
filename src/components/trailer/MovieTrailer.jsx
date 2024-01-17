@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Container } from "react-bootstrap";
-import CloseButton from "../side_nav/CloseButton";
 import SliderButton from "../slider_button/SliderButton";
+import {useHistory} from "react-router-dom"
+import DataContext from "../../context/DataContext";
 import styles from "./styles/MovieTrailer.module.css";
 
-const MovieTrailer = ({ trailer_link, setShowTrailer, title }) => {
+const MovieTrailer = ({ trailer_link, title}) => {
+    const history = useHistory()
+    const {setShowTrailer, mainPage, setMainPage} = useContext(DataContext)
+    
+    const handleBack = ()=>{
+        setShowTrailer(false)
+        setMainPage(false)
+        history.goBack()
+    }
+    
+
     return (
         <section className={`flex-container`}>
             <div className={`${styles.slider_button_container}`}>
                 <SliderButton
-                    on_click_function={setShowTrailer}
+                    on_click_function={mainPage ? handleBack : ()=>setShowTrailer(false)}
                     direction={"left"}
                 />
                 {/* <CloseButton on_click_function={setShowTrailer} /> */}

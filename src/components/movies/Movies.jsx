@@ -35,10 +35,12 @@ const Movies = () => {
     
     const main = (
         <div className={`${styles.movies_wrapper} wrapper flex-container`}>
+            
+            
             <div className={`${styles.movies_page_container} v-flex-container`}>
                 <div className={`${styles.movies_page_title_container} flex-container`}>
                 <h1 className={`${styles.movies_page_title}`}>Movies</h1>
-                <Link className={`${styles.movies_add_button} button`} to="movies/add-movie">Add +</Link>
+                {movies[0]?.is_admin && <Link className={`${styles.movies_add_button} button`} to="movies/add-movie">Add +</Link>}
                 </div>
                 <section className={`${styles.movies_main_container} v-flex-container`}>
                     <h3 className={`${styles.section_title}`}>In theatres now</h3>
@@ -58,7 +60,7 @@ const Movies = () => {
                                         <h3 className={`${styles.movie_item_title}`}>{movie?.title} </h3>
                                     </div>
                                 </Link>
-                                <MoviesButtons id={movie?.id}/>
+                               {movie?.is_admin && <MoviesButtons id={movie?.id}/>}
                             </div>
                         )}    
                     </div>
@@ -81,7 +83,9 @@ const Movies = () => {
                                         <h3 className={`${styles.movie_item_title}`}>{movie?.title} </h3>
                                     </div>
                                 </Link>
-                                <MoviesButtons edit_link={null} delete_link={null}/>
+                                {/* { movie?.is_admin && <MoviesButtons id ={movie?.id} />} */}
+                                {console.log(currentUser)}
+                                
                             </div>
                         )}    
                     </div>

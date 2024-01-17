@@ -17,8 +17,11 @@ const MovieDetail = () => {
     const { id } = useParams();
     const [currentMovie, setCurrentMovie] = useState([]);
     const [hasLoaded, setHasLoaded] = useState(false);
-    const [showTrailer, setShowTrailer] = useState(false);
-    const { currentUser } = useContext(DataContext);
+    
+    const { currentUser, showTrailer, setShowTrailer } = useContext(DataContext);
+
+
+
     useEffect(() => {
         const handleMount = async () => {
             try {
@@ -34,10 +37,13 @@ const MovieDetail = () => {
         setHasLoaded(false);
         handleMount();
     }, [id]);
+
     const main = (
         <div className={`${styles.main_container} flex-container`}>
+            
             <section className={`${styles.poster_section}`}>
                 <MoviePoster
+                    
                     on_click_function={setShowTrailer}
                     title={currentMovie[0]?.title}
                     poster={currentMovie[0]?.poster}
@@ -46,6 +52,7 @@ const MovieDetail = () => {
                 />
             </section>
             {/* The right side container used later to reverse the flex container */}
+
             <div className={`${styles.right_container} flex-container`}>
                 {/* info section */}
                 <section className={`${styles.info_main_container}`}>
@@ -125,9 +132,10 @@ const MovieDetail = () => {
         <article className={`flex-container wrapper`}>
             {showTrailer ? (
                 <MovieTrailer
-                    trailer_link={currentMovie[0].trailer}
-                    setShowTrailer={setShowTrailer}
-                    title={currentMovie[0].title}
+                    trailer_link={currentMovie[0]?.trailer}
+                    title={currentMovie[0]?.title}
+                    
+                    
                 />
             ) : hasLoaded ? (
                 <>

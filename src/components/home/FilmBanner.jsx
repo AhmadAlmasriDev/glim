@@ -1,13 +1,24 @@
-import React from "react";
+import React,{useContext} from "react";
 import styles from "./styles/FilmBanner.module.css";
 import image from "../../assets/test.jpg";
 import LikeCount from "../likes_comments_count/LikeCount";
 import CommentCount from "../likes_comments_count/CommentCount";
 import TrailerButton from "./TrailerButton";
 import TicketForm from "./TicketForm";
-import { Link } from "react-router-dom";
+import DataContext from "../../context/DataContext";
+import { Link ,useHistory} from "react-router-dom";
 
 const FilmBanner = ({ movies, setMovies, currentMovie }) => {
+    const {setMainPage, setShowTrailer} = useContext(DataContext);
+    const history = useHistory()
+    
+    const handlTrailer = (id)=>{
+        history.push(`/movies/${id}`)
+        setMainPage(true)
+        setShowTrailer(true)
+    }
+
+    
     return (
         <div
             className={`${styles.film_background} flex-container`}
@@ -32,7 +43,7 @@ const FilmBanner = ({ movies, setMovies, currentMovie }) => {
                                     }
                                 />
                             </div>
-                            <TrailerButton type={75} />
+                            <TrailerButton id={currentMovie?.id} type={75} on_click_function={handlTrailer}/>
                         </section>
                         <section
                             className={`${styles.form_section} flex-container`}

@@ -5,6 +5,8 @@ import FilmBanner from "./FilmBanner";
 import DataContext from "../../context/DataContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../asset/Asset";
+
+
 const FilmCarousel = () => {
     const [movies, setMovies] = useState([]);
     const [hasLoaded, setHasLoaded] = useState(false);
@@ -35,6 +37,8 @@ const FilmCarousel = () => {
         setHasLoaded(false);
         fetchmovies();
     }, [currentUser]);
+
+
 
     return (
         <article className={`${styles.main_container} flex-container`}>

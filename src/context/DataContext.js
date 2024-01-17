@@ -13,6 +13,8 @@ export const DataProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const history = useHistory();
     const [currentTicket, setCurrentTicket] = useState({});
+    const [showTrailer, setShowTrailer] = useState(false);
+    const [mainPage, setMainPage] = useState(false);
     
     const handleToggleSideBar = () => setViewSideNav(!viewSideNav);
 
@@ -92,6 +94,10 @@ export const DataProvider = ({ children }) => {
                 setCurrentUser,
                 currentTicket,
                 setCurrentTicket,
+                showTrailer, 
+                setShowTrailer,
+                mainPage, 
+                setMainPage
                 
             }}
         >

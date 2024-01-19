@@ -49,6 +49,7 @@
     margin-bottom: 64px;
 }
 /* comment section ----------------------------------- */
+
 .comments_main_container {
     margin-bottom: 64px;
     /* display: none; */
@@ -99,6 +100,50 @@
     justify-content: flex-end;
     margin-top: 24px;
 }
+
+.comment_form_container,
+.comment_text_form_container {
+    padding: 16px;
+    background-color: #65646c;
+    border-radius: 10px;
+
+    margin-bottom: 16px;
+}
+.comment_text_form_container {
+    border: #2a2727 0;
+    color: #f1f1f1;
+    background-color: #2a2727;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-height: 100px;
+}
+
+.comment_text_form_container:focus {
+    border: 0 #2a2727;
+    color: #f1f1f1;
+    background-color: #2a2727;
+}
+
+.comment_form_container {
+    margin-bottom: 64px;
+}
+
+.comment_form_header {
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.disabled_button {
+    background-color: #a0a0b1;
+    color: #2a2727;
+}
+.disabled_button:hover {
+    background-color: #a0a0b1;
+    color: #2a2727;
+
+}
+
 /* Movies to watch section ----------------------------------- */
 .movies_watch_container {
     display: grid;

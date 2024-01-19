@@ -12,23 +12,28 @@ import MovieDetailInfo from "./MovieDetailInfo";
 import MovieDetailWatchItem from "./MovieDetailWatchItem";
 import MoviePoster from "../movie_poster/MoviePoster";
 import MovieTrailer from "../trailer/MovieTrailer";
+import MovieDetailcommentForm from "./MovieDetailcommentForm";
 
 const MovieDetail = () => {
     const { id } = useParams();
     const [currentMovie, setCurrentMovie] = useState([]);
     const [hasLoaded, setHasLoaded] = useState(false);
-    
-    const { currentUser, showTrailer, setShowTrailer } = useContext(DataContext);
+    const [comments, setComments] = useState({ results: [] });
 
-
+    const { currentUser, showTrailer, setShowTrailer } =
+        useContext(DataContext);
 
     useEffect(() => {
         const handleMount = async () => {
             try {
-                const [{ data: movie }] = await Promise.all([
-                    axiosReq.get(`/movies/${id}`),
-                ]);
+                const [{ data: movie }, { data: comments }] = await Promise.all(
+                    [
+                        axiosReq.get(`/movies/${id}`),
+                        axiosReq.get(`/comments/?movie=${id}`),
+                    ]
+                );
                 setCurrentMovie([movie]);
+                setComments(comments);
                 setHasLoaded(true);
             } catch (err) {
                 console.log(err);
@@ -38,12 +43,18 @@ const MovieDetail = () => {
         handleMount();
     }, [id]);
 
+    const notApproved = () => {
+        let flag = false;
+        comments?.results?.map((comment) => {
+            if (comment.is_owner & (comment.approved == false)) flag = true;
+        });
+        return flag;
+    };
+
     const main = (
         <div className={`${styles.main_container} flex-container`}>
-            
             <section className={`${styles.poster_section}`}>
                 <MoviePoster
-                    
                     on_click_function={setShowTrailer}
                     title={currentMovie[0]?.title}
                     poster={currentMovie[0]?.poster}
@@ -83,10 +94,20 @@ const MovieDetail = () => {
                             discreption={currentMovie[0]?.discreption}
                         />
                     </div>
+
+                    {/* Comments */}
                     <div className={`${styles.comments_main_container}`}>
                         <h3 className={`${styles.comments_header}`}>
                             Comments
                         </h3>
+
+                        <MovieDetailcommentForm
+                            currentUser={currentUser}
+                            setCurrentMovie={setCurrentMovie}
+                            currentMovie={currentMovie}
+                            setComments={setComments}
+                            notApproved={notApproved()}
+                        />
 
                         <MovieDetailComment currentUser={currentUser} />
                         <MovieDetailComment currentUser={currentUser} />
@@ -134,8 +155,6 @@ const MovieDetail = () => {
                 <MovieTrailer
                     trailer_link={currentMovie[0]?.trailer}
                     title={currentMovie[0]?.title}
-                    
-                    
                 />
             ) : hasLoaded ? (
                 <>

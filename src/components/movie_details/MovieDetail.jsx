@@ -110,13 +110,19 @@ const MovieDetail = () => {
                         />
 
                         {comments?.results?.length ? (
-                            comments?.results?.map((comment) => (
-                                <MovieDetailComment comment={comment} />
-                            ))
+                            comments?.results?.map(
+                                (comment) =>
+                                    comment?.approved && (
+                                        <MovieDetailComment
+                                            key={comment?.id}
+                                            comment={comment}
+                                            setComments={setComments}
+                                            setCurrentMovie={setCurrentMovie}
+                                        />
+                                    )
+                            )
                         ) : (
-                            <div
-                                className={`flex-container`}
-                            >
+                            <div className={`flex-container`}>
                                 <h4>No comments available</h4>
                             </div>
                         )}

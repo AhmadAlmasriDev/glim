@@ -59,13 +59,19 @@
     font-size: 24px;
     margin-bottom: 24px;
 }
-.comment_container {
+.comment_container,
+.comment_confirm_main_container {
     padding: 16px;
     background-color: #2a2727;
     border-radius: 10px;
     justify-content: flex-start;
     align-items: flex-start;
     margin-bottom: 16px;
+}
+
+.comment_confirm_main_container {
+    justify-content: center;
+    align-items: center;
 }
 .comment_avatar_container {
     width: 20%;
@@ -80,6 +86,13 @@
 }
 .comment_text_container {
     align-items: flex-start;
+}
+.comment_confirm_container {
+    padding: 16px 0;
+}
+
+.comment_confirm_text {
+    margin-bottom: 16px;
 }
 
 .comment_text {

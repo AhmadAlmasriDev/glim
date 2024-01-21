@@ -13,6 +13,8 @@ import MovieDetailWatchItem from "./MovieDetailWatchItem";
 import MoviePoster from "../movie_poster/MoviePoster";
 import MovieTrailer from "../trailer/MovieTrailer";
 import MovieDetailcommentForm from "./MovieDetailcommentForm";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 const MovieDetail = () => {
     const { id } = useParams();
@@ -108,24 +110,33 @@ const MovieDetail = () => {
                             setComments={setComments}
                             notApproved={notApproved()}
                         />
-
-                        {comments?.results?.length ? (
-                            comments?.results?.map(
-                                (comment) =>
-                                    comment?.approved && (
-                                        <MovieDetailComment
-                                            key={comment?.id}
-                                            comment={comment}
-                                            setComments={setComments}
-                                            setCurrentMovie={setCurrentMovie}
-                                        />
+                        <InfiniteScroll
+                            children={
+                                comments?.results?.length ? (
+                                    comments?.results?.map(
+                                        (comment) =>
+                                            comment?.approved && (
+                                                <MovieDetailComment
+                                                    key={comment?.id}
+                                                    comment={comment}
+                                                    setComments={setComments}
+                                                    setCurrentMovie={
+                                                        setCurrentMovie
+                                                    }
+                                                />
+                                            )
                                     )
-                            )
-                        ) : (
-                            <div className={`flex-container`}>
-                                <h4>No comments available</h4>
-                            </div>
-                        )}
+                                ) : (
+                                    <div className={`flex-container`}>
+                                        <h4>No comments available</h4>
+                                    </div>
+                                )
+                            }
+                            dataLength={comments.results.length}
+                            loader={<Asset spinner />}
+                            hasMore={!!comments.next}
+                            next={() => fetchMoreData(comments, setComments)}
+                        />
                     </div>
                     {/* Other movies to watch */}
                     <div>

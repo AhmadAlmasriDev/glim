@@ -109,10 +109,17 @@ const MovieDetail = () => {
                             notApproved={notApproved()}
                         />
 
-                        <MovieDetailComment currentUser={currentUser} />
-                        <MovieDetailComment currentUser={currentUser} />
-                        <MovieDetailComment currentUser={currentUser} />
-                        <MovieDetailComment currentUser={currentUser} />
+                        {comments?.results?.length ? (
+                            comments?.results?.map((comment) => (
+                                <MovieDetailComment comment={comment} />
+                            ))
+                        ) : (
+                            <div
+                                className={`flex-container`}
+                            >
+                                <h4>No comments available</h4>
+                            </div>
+                        )}
                     </div>
                     {/* Other movies to watch */}
                     <div>

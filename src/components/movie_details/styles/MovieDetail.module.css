@@ -51,7 +51,7 @@
 /* comment section ----------------------------------- */
 
 .comments_main_container {
-    margin-bottom: 64px;
+    margin-bottom: 128px;
     /* display: none; */
 }
 .comments_header,
@@ -75,11 +75,17 @@
     margin: 0;
 }
 .comment_date {
+    margin-bottom: 16px;
     font-size: 14px;
 }
 .comment_text_container {
     align-items: flex-start;
 }
+
+.comment_text {
+    margin-bottom: 8px;
+}
+
 .comment_text_main_container {
     padding-left: 24px;
     align-items: flex-start;
@@ -141,7 +147,6 @@
 .disabled_button:hover {
     background-color: #a0a0b1;
     color: #2a2727;
-
 }
 
 /* Movies to watch section ----------------------------------- */

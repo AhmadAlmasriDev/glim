@@ -75,7 +75,6 @@ const MovieDetailcommentForm = ({
                             name="comment_body"
                             onChange={handleChange}
                         />
-                        {console.log(notApproved)}
                     </Form.Group>
                     <div className={`flex-container`}>
                         <button className={`button`}>Submit</button>

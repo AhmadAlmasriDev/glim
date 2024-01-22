@@ -164,30 +164,32 @@
 
 /* Movies to watch section ----------------------------------- */
 .movies_watch_container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+/* .movies_watch_container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* display: none; */
-}
+} */
 
 /* Avaliable seats section ----------------------------------- */
-.seats_section {
+.tickets_section {
     position: sticky;
     top: 123px;
     /* display: none; */
 }
-.seats_main_container {
-    width: 400px;
+.tickets_main_container {
+    width: 350px;
     border-radius: 10px;
-    padding-bottom: 32px;
 
     background-color: #2a2727;
 }
 
-.seats_container {
-    padding: 24px 24px;
+.tickets_container {
+    padding: 32px 32px;
     margin: 32px 0 32px 0;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
 }
 .seats_header_container {
     border-radius: 10px 10px 0 0;

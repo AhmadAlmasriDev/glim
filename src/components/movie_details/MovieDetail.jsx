@@ -15,6 +15,7 @@ import MovieTrailer from "../trailer/MovieTrailer";
 import MovieDetailcommentForm from "./MovieDetailcommentForm";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import TicketForm from "../home/TicketForm";
 
 const MovieDetail = () => {
     const { id } = useParams();
@@ -139,7 +140,7 @@ const MovieDetail = () => {
                         />
                     </div>
                     {/* Other movies to watch */}
-                    <div>
+                    {/* <div>
                         <h3 className={`${styles.movies_watch_header}`}>
                             Movies to watch
                         </h3>
@@ -163,11 +164,24 @@ const MovieDetail = () => {
                                 poster={currentMovie[0]?.poster}
                             />
                         </ul>
-                    </div>
+                    </div> */}
                 </section>
                 {/* seats section */}
-                <section className={`${styles.seats_section}`}>
-                    <MovieDetailSeats seats={null} />
+                <section className={`${styles.tickets_section}`}>
+                    {/* <MovieDetailSeats seats={null} /> */}
+                    <div className={`${styles.tickets_main_container}`}>
+                        <div
+                            className={`${styles.tickets_container} flex-container`}
+                        >
+                            <TicketForm
+                                title={currentMovie[0]?.title}
+                                price={currentMovie[0]?.price}
+                                session_time={currentMovie[0]?.session_time}
+                                start_date={currentMovie[0]?.start_date}
+                                end_date={currentMovie[0]?.end_date}
+                            />
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>

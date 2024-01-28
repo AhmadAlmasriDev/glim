@@ -2,7 +2,7 @@ import React from "react";
 import TicketDate from "./TicketDate";
 import styles from "./styles/TicketForm.module.css";
 
-const TicketCalendar = ({ period, on_change_function }) => {
+const TicketCalendar = ({ title, period, on_change_function }) => {
     return (
         <div>
             <h3 className={`${styles.month}`}>{period.month}</h3>
@@ -10,6 +10,7 @@ const TicketCalendar = ({ period, on_change_function }) => {
                 {period.days.map((day, idx) => (
                     <TicketDate
                         key={idx}
+                        title={title}
                         month={period.month}
                         day={day}
                         on_change_function={on_change_function}

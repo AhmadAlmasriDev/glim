@@ -12,10 +12,10 @@ export const DataProvider = ({ children }) => {
     const [viewSideNav, setViewSideNav] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
     const history = useHistory();
-    const [currentTicket, setCurrentTicket] = useState({});
+    const [currentBook, setCurrentBook] = useState({});
     const [showTrailer, setShowTrailer] = useState(false);
     const [mainPage, setMainPage] = useState(false);
-    
+
     const handleToggleSideBar = () => setViewSideNav(!viewSideNav);
 
     const handleMount = async () => {
@@ -39,7 +39,6 @@ export const DataProvider = ({ children }) => {
 
     useEffect(() => {
         handleMount();
-        
     }, []);
 
     useMemo(() => {
@@ -92,13 +91,12 @@ export const DataProvider = ({ children }) => {
                 handleToggleSideBar,
                 currentUser,
                 setCurrentUser,
-                currentTicket,
-                setCurrentTicket,
-                showTrailer, 
+                currentBook,
+                setCurrentBook,
+                showTrailer,
                 setShowTrailer,
-                mainPage, 
-                setMainPage
-                
+                mainPage,
+                setMainPage,
             }}
         >
             {children}

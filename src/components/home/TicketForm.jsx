@@ -8,14 +8,22 @@ import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import DataContext from "../../context/DataContext";
 import TicketCalendar from "./TicketCalendar";
 
-const TicketForm = ({ title, price, start_date, end_date, session_time }) => {
+const TicketForm = ({
+    id,
+    title,
+    price,
+    start_date,
+    end_date,
+    session_time,
+}) => {
     const time = Moment(session_time, "HH:mm:ss").format("HH:mm");
     const year = Moment(start_date, "MM/DD/YYYY").format("YYYY");
-    const { currentUser, currentTicket, setCurrentTicket } =
+    const { currentUser, currentBook, setCurrentBook } =
         useContext(DataContext);
     const [ticketData, setTicketData] = useState({
+        id: id,
         title: title,
-        time: time,
+        show_time: time,
         year: year,
         price: price,
         day: "",
@@ -26,9 +34,11 @@ const TicketForm = ({ title, price, start_date, end_date, session_time }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setCurrentTicket({ ...ticketData });
-
-        history.push("/tickets");
+        if (ticketData?.day) {
+            const period = days(start_date, end_date);
+            setCurrentBook({ ...ticketData, period });
+            history.push("/tickets");
+        }
     };
 
     const handleChange = (event) => {
@@ -44,10 +54,10 @@ const TicketForm = ({ title, price, start_date, end_date, session_time }) => {
         const endD = Moment(end, "MM/DD/YYYY");
         const startD_month = Moment(start, "MM/DD/YYYY").format("MMMM");
         const endD_month = Moment(end, "MM/DD/YYYY").format("MMMM");
-        const momentObj = Moment().format("MM/DD/YYYY")
+        const momentObj = Moment().format("MM/DD/YYYY");
         // const currentDate = Moment("01/17/2024","MM/DD/YYYY")
-        const currentDate = Moment(momentObj,"MM/DD/YYYY")
-        const currentmonth = currentDate.format("MMMM")
+        const currentDate = Moment(momentObj, "MM/DD/YYYY");
+        const currentmonth = currentDate.format("MMMM");
 
         if (startD_month === endD_month) {
             const date = [];
@@ -57,7 +67,6 @@ const TicketForm = ({ title, price, start_date, end_date, session_time }) => {
                 m.add(1, "days")
             ) {
                 m.isSameOrAfter(currentDate) && date.push(m.format("DD"));
-                
             }
 
             // Moment(movie?.end_date,"MM/DD/YYYY").isSameOrAfter(currentDate)
@@ -75,7 +84,10 @@ const TicketForm = ({ title, price, start_date, end_date, session_time }) => {
                 m.isSameOrBefore(endD);
                 m.add(1, "days")
             ) {
-                if (m.format("MMMM") === startD_month & m.isSameOrAfter(currentDate)) {
+                if (
+                    (m.format("MMMM") === startD_month) &
+                    m.isSameOrAfter(currentDate)
+                ) {
                     date1.push(m.format("DD"));
                 } else {
                     m.isSameOrAfter(currentDate) && date2.push(m.format("DD"));
@@ -120,13 +132,17 @@ const TicketForm = ({ title, price, start_date, end_date, session_time }) => {
                     </OverlayTrigger>
                 )}
             </div>
-            {days(start_date, end_date).map((period, idx) => (
-                period?.month &&<TicketCalendar
-                    key={idx}
-                    period={period}
-                    on_change_function={handleChange}
-                />
-            ))}
+            {days(start_date, end_date).map(
+                (period, idx) =>
+                    period?.month && (
+                        <TicketCalendar
+                            key={idx}
+                            title={title}
+                            period={period}
+                            on_change_function={handleChange}
+                        />
+                    )
+            )}
         </form>
     );
 };

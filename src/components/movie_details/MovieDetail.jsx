@@ -7,7 +7,7 @@ import React, { useEffect, useState, useContext } from "react";
 import LikeCount from "../likes_comments_count/LikeCount";
 import DataContext from "../../context/DataContext";
 import MovieDetailComment from "./MovieDetailComment";
-import MovieDetailSeats from "./MovieDetailSeats";
+import MovieDetailSeats from "../seats/Seats";
 import MovieDetailInfo from "./MovieDetailInfo";
 import MovieDetailWatchItem from "./MovieDetailWatchItem";
 import MoviePoster from "../movie_poster/MoviePoster";
@@ -174,6 +174,7 @@ const MovieDetail = () => {
                             className={`${styles.tickets_container} flex-container`}
                         >
                             <TicketForm
+                                id={currentMovie[0]?.id}
                                 title={currentMovie[0]?.title}
                                 price={currentMovie[0]?.price}
                                 session_time={currentMovie[0]?.session_time}

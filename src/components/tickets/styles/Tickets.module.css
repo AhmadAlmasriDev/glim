@@ -1,0 +1,72 @@
+.content_main_container {
+    max-width: 1400px;
+    /* margin-top: 64px; */
+}
+
+.seat_section,
+.tickets_section,
+.content_main_container {
+    align-items: stretch;
+    flex-grow: 1;
+    justify-content: flex-start;
+}
+
+/* seat section ---------------- */
+.seat_section {
+    width: 60%;
+}
+
+.tickets_movie_info_container {
+    margin-bottom: 32px;
+}
+
+/* tickets section -------------------- */
+.tickets_section {
+    width: 40%;
+}
+.main_order_container {
+    margin-left: 32px;
+    width: 100%;
+
+    border-radius: 10px;
+
+    background-color: #2a2727;
+    justify-content: flex-start;
+}
+.main_order_container_header {
+    border-radius: 10px 10px 0 0;
+    padding: 16px 32px 12px 32px;
+    background-color: #a0a0b11a;
+    justify-content: flex-start;
+}
+.main_order_header_title,
+.main_order_sum {
+    font-size: 24px;
+    margin: 0;
+}
+.order_ticket_container {
+    padding: 32px;
+}
+.order_ticket {
+    background-color: #a0a0b11a;
+    border-radius: 10px;
+    padding: 8px 8px 8px 16px;
+}
+.main_order_sum {
+    margin-left: auto;
+}
+.main_order_sum span {
+    margin-left: 8px;
+}
+
+.order_ticket_top {
+    font-size: 18px;
+    justify-content: flex-start;
+}
+.close_button_container {
+    margin-left: auto;
+}
+
+.order_ticket_date span {
+    margin-right: 16px;
+}

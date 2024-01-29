@@ -4,19 +4,25 @@ import DataContext from "../../context/DataContext";
 import Seats from "../seats/Seats";
 import { axiosReq } from "../../api/axiosDefaults";
 import Moment from "moment";
+import MoviePoster from "../movie_poster/MoviePoster";
+import styles from "./styles/Tickets.module.css";
+import CloseButton from "../CloseButton/CloseButton";
 
 const Tickets = () => {
     const SEATS = 84;
     const history = useHistory();
     const [hasLoaded, setHasLoaded] = useState(false);
     const [seatToggle, setSeatToggle] = useState(false);
-    // const [currentSeat, setCurrentSeat] = useState(null);
     const [seatsPH, setSeatsPH] = useState([]);
     const { currentBook, currentUser } = useContext(DataContext);
     const currentShowDate = Moment(
         `${currentBook?.month}/${currentBook?.day}/${currentBook?.year}`,
         "MMMM/DD/YYYY"
     ).format("MM/DD/YYYY");
+    const currentDay = Moment(
+        `${currentBook?.month}/${currentBook?.day}/${currentBook?.year}`,
+        "MMMM/DD/YYYY"
+    ).format("dddd");
 
     const [currentTickets, setCurrentTickets] = useState({
         movie: currentBook?.id,
@@ -68,10 +74,6 @@ const Tickets = () => {
                 `/tickets/?movie=${currentBook?.id}&show_date=${currentShowDate}`
             );
 
-            // setTickets(data);
-            // setPH(data);
-
-            // setHasLoaded(true);
             return data;
         } catch (err) {
             console.log(err);
@@ -105,43 +107,107 @@ const Tickets = () => {
         };
     };
     return (
-        <div>
-            {/* {console.log(currentTickets)}
-            {console.log(currentBook)}
-            <div>
-                <div>
-                    <Seats
-                        seatInfo={seatInfo}
-                        setSeatToggle={setSeatToggle}
-                        fetchTickets={fetchTickets}
-                        currentShowDate={currentShowDate}
-                        seatsPH={seatsPH}
-                        currentTickets={currentTickets}
-                        setCurrentTickets={setCurrentTickets}
-                        hasLoaded={hasLoaded}
-                    />
-                </div>
-            </div> */}
-
-            {/* IMPORTANT DONT DELETE!!!! */}
-
+        <article className={`flex-container wrapper`}>
             {currentBook?.day ? (
-                <div>
-                    <Seats
-                        seatInfo={seatInfo}
-                        setSeatToggle={setSeatToggle}
-                        fetchTickets={fetchTickets}
-                        currentShowDate={currentShowDate}
-                        seatsPH={seatsPH}
-                        currentTickets={currentTickets}
-                        setCurrentTickets={setCurrentTickets}
-                        hasLoaded={hasLoaded}
-                    />
+                <div
+                    className={`${styles.content_main_container} flex-container`}
+                >
+                    <section
+                        className={`${styles.seat_section} v-flex-container`}
+                    >
+                        <div
+                            className={`${styles.tickets_movie_info_container} flex-container`}
+                        >
+                            <MoviePoster
+                                title={currentBook?.title}
+                                poster={currentBook?.poster}
+                                width={150}
+                                buttonType={0}
+                            />
+                            <div
+                                className={`${styles.tickets_movie_info} v-flex-container`}
+                            >
+                                <h4>{currentBook?.title}</h4>
+
+                                <h5>
+                                    <span>{currentDay}</span>
+                                    <span>{currentShowDate}</span>
+                                </h5>
+                                <h5>{currentBook?.show_time}</h5>
+                            </div>
+                        </div>
+                        <Seats
+                            seatInfo={seatInfo}
+                            setSeatToggle={setSeatToggle}
+                            fetchTickets={fetchTickets}
+                            currentShowDate={currentShowDate}
+                            seatsPH={seatsPH}
+                            currentTickets={currentTickets}
+                            setCurrentTickets={setCurrentTickets}
+                            hasLoaded={hasLoaded}
+                        />
+                    </section>
+
+                    <section
+                        className={`${styles.tickets_section} flex-container`}
+                    >
+                        <div
+                            className={`${styles.main_order_container} v-flex-container`}
+                        >
+                            <div
+                                className={`${styles.main_order_container_header} flex-container`}
+                            >
+                                <h3
+                                    className={`${styles.main_order_header_title}`}
+                                >
+                                    Tickets
+                                </h3>
+                                <div className={`${styles.main_order_sum}`}>
+                                    <span>SUM:</span>
+                                    <span>111$</span>
+                                </div>
+                            </div>
+                            <div
+                                className={`${styles.order_ticket_container} v-flex-container`}
+                            >
+                                <div
+                                    className={`${styles.order_ticket} v-flex-container`}
+                                >
+                                    <div
+                                        className={`${styles.order_ticket_top} flex-container`}
+                                    >
+                                        <div
+                                            className={`${styles.order_ticket_date}`}
+                                        >
+                                            <span>{currentShowDate}</span>
+                                            <span>
+                                                {currentBook?.show_time}
+                                            </span>
+                                        </div>
+                                        <div
+                                            className={`${styles.close_button_container}`}
+                                        >
+                                            <CloseButton
+                                                on_click_function={null}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        className={`${styles.order_ticket_bottom} flex-container`}
+                                    >
+                                        <span>30$</span> <span>VIP</span>
+                                        <span>0row 00seat</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             ) : (
                 history.push("/")
             )}
-        </div>
+        </article>
     );
 };
 

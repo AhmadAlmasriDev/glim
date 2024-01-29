@@ -10,6 +10,7 @@ import TicketCalendar from "./TicketCalendar";
 
 const TicketForm = ({
     id,
+    poster,
     title,
     price,
     start_date,
@@ -22,6 +23,7 @@ const TicketForm = ({
         useContext(DataContext);
     const [ticketData, setTicketData] = useState({
         id: id,
+        poster: poster,
         title: title,
         show_time: time,
         year: year,

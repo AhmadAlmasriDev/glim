@@ -53,6 +53,7 @@ const FilmBanner = ({ movies, setMovies, currentMovie }) => {
                         >
                             <TicketForm
                                 id={currentMovie?.id}
+                                poster={currentMovie?.poster}
                                 title={currentMovie?.title}
                                 price={currentMovie?.price}
                                 session_time={currentMovie?.session_time}

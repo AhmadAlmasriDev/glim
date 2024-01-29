@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./styles/SideNav.module.css";
+import styles from "./styles/CloseButton.module.css";
 
 const CloseButton = ({ on_click_function }) => {
     return (

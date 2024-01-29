@@ -131,7 +131,7 @@ const Seats = ({
     };
 
     return (
-        <div className={`${styles.seats_main_container}`}>
+        <div className={`${styles.seats_main_container} v-flex-container`}>
             <div className={`${styles.seats_header_container} flex-container`}>
                 <h3 className={`${styles.seats_header}`}>Available seats</h3>
             </div>

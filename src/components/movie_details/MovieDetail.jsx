@@ -175,6 +175,7 @@ const MovieDetail = () => {
                         >
                             <TicketForm
                                 id={currentMovie[0]?.id}
+                                poster={currentMovie[0]?.poster}
                                 title={currentMovie[0]?.title}
                                 price={currentMovie[0]?.price}
                                 session_time={currentMovie[0]?.session_time}

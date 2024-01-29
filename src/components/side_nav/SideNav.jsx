@@ -9,7 +9,7 @@ import SideNavSignButton from "./SideNavSignButton";
 import { useContext, useRef, useEffect } from "react";
 import DataContext from "../../context/DataContext";
 import axios from "axios";
-import CloseButton from "./CloseButton";
+import CloseButton from "../CloseButton/CloseButton";
 
 const SideNav = () => {
     const { viewSideNav, setViewSideNav, currentUser, setCurrentUser } =
@@ -72,7 +72,6 @@ const SideNav = () => {
                     className={`flex-container ${styles.close_button_container}`}
                 >
                     <CloseButton on_click_function={setViewSideNav} />
-                
                 </div>
                 <div className={`${styles.side_menu} v-flex-container`}>
                     <NavLink to="/">

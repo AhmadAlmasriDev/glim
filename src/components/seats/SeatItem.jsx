@@ -10,7 +10,7 @@ const SeatItem = ({
     is_owner,
     on_change_function,
     seatInfo,
-    resetTickets,
+    // resetTickets,
 }) => {
     const seatdetails = seatInfo(seat, price);
     const grayed = (

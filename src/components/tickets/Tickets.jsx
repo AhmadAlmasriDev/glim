@@ -2,11 +2,12 @@ import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import DataContext from "../../context/DataContext";
 import Seats from "../seats/Seats";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import Moment from "moment";
 import MoviePoster from "../movie_poster/MoviePoster";
 import styles from "./styles/Tickets.module.css";
 import CloseButton from "../CloseButton/CloseButton";
+import TicketsOrder from "./TicketsOrder";
 
 const Tickets = () => {
     const SEATS = 84;
@@ -14,7 +15,8 @@ const Tickets = () => {
     const [hasLoaded, setHasLoaded] = useState(false);
     const [seatToggle, setSeatToggle] = useState(false);
     const [seatsPH, setSeatsPH] = useState([]);
-    const { currentBook, currentUser } = useContext(DataContext);
+    const [sum, setSum] = useState("00");
+    const { currentBook } = useContext(DataContext);
     const currentShowDate = Moment(
         `${currentBook?.month}/${currentBook?.day}/${currentBook?.year}`,
         "MMMM/DD/YYYY"
@@ -24,18 +26,52 @@ const Tickets = () => {
         "MMMM/DD/YYYY"
     ).format("dddd");
 
-    const [currentTickets, setCurrentTickets] = useState({
-        movie: currentBook?.id,
-        title: currentBook?.title,
-        show_time: currentBook?.show_time,
-        price: currentBook?.price,
-        tickets: [],
-    });
+    // const [currentTickets, setCurrentTickets] = useState({
+    //     movie: currentBook?.id,
+    //     title: currentBook?.title,
+    //     show_time: currentBook?.show_time,
+    //     price: currentBook?.price,
+    //     tickets: [],
+    // });
+
+    const deleteTicket = async (seat, ticketId) => {
+        try {
+            await axiosRes.delete(`/tickets/${ticketId}`);
+            setSeatToggle((prevSeatToggle) => !prevSeatToggle);
+            // resetTickets(seat);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    // const resetTickets = async (seat, ticketId) => {
+    //     console.log("resettickets id: " + ticketId);
+    //     setCurrentTickets((prevCurrentTickets) => ({
+    //         ...prevCurrentTickets,
+    //         tickets: prevCurrentTickets.tickets.filter(
+    //             (ticket) => ticket.seat === parseInt(seat)
+    //         ).length
+    //             ? [
+    //                   ...prevCurrentTickets.tickets.filter(
+    //                       (ticket) => ticket.seat != seat
+    //                   ),
+    //               ]
+    //             : [
+    //                   ...prevCurrentTickets.tickets,
+    //                   {
+    //                       ticketId: ticketId,
+    //                       seat: parseInt(seat),
+    //                       reserve: true,
+    //                       purchased: false,
+    //                   },
+    //               ],
+    //     }));
+    // };
 
     const setPH = async () => {
         let seats_obj = [];
         const data = await fetchTickets();
-
+        orderSum(data);
         for (let i = 1; i <= SEATS; i++) {
             if (data?.length) {
                 const ticket = data?.filter((item) => item?.seat === i);
@@ -65,6 +101,7 @@ const Tickets = () => {
             }
         }
         setSeatsPH(seats_obj);
+        console.log(seats_obj);
         setHasLoaded(true);
     };
 
@@ -84,6 +121,7 @@ const Tickets = () => {
         setHasLoaded(false);
 
         setPH();
+
         return () => setSeatsPH([]);
     }, [seatToggle]);
 
@@ -106,6 +144,28 @@ const Tickets = () => {
             price: currentPrice,
         };
     };
+
+    const orderSum = (data) => {
+        const sum = data?.length
+            ? data?.reduce(
+                  (acc, cv) =>
+                      acc + seatInfo(cv?.seat, currentBook?.price).price,
+                  0
+              )
+            : "00";
+        // const sum = seatsPH?.filter((item) => item.id).length
+        //     ? seatsPH
+        //           ?.filter((item) => item.id)
+        //           .reduce(
+        //               (acc, cv) =>
+        //                   acc + seatInfo(cv?.seat, currentBook?.price).price,
+        //               0
+        //           )
+        //     : 10000;
+
+        setSum(sum);
+    };
+
     return (
         <article className={`flex-container wrapper`}>
             {currentBook?.day ? (
@@ -127,23 +187,29 @@ const Tickets = () => {
                             <div
                                 className={`${styles.tickets_movie_info} v-flex-container`}
                             >
-                                <h4>{currentBook?.title}</h4>
+                                <h4 className={`${styles.movie_info_title}`}>
+                                    {currentBook?.title}
+                                </h4>
 
-                                <h5>
+                                <h5 className={`${styles.movie_info_date}`}>
                                     <span>{currentDay}</span>
                                     <span>{currentShowDate}</span>
                                 </h5>
-                                <h5>{currentBook?.show_time}</h5>
+                                <h5 className={`${styles.movie_info_time}`}>
+                                    {currentBook?.show_time}
+                                </h5>
                             </div>
                         </div>
                         <Seats
+                            // resetTickets={resetTickets}
+                            deleteTicket={deleteTicket}
                             seatInfo={seatInfo}
                             setSeatToggle={setSeatToggle}
                             fetchTickets={fetchTickets}
                             currentShowDate={currentShowDate}
                             seatsPH={seatsPH}
-                            currentTickets={currentTickets}
-                            setCurrentTickets={setCurrentTickets}
+                            // currentTickets={currentTickets}
+                            // setCurrentTickets={setCurrentTickets}
                             hasLoaded={hasLoaded}
                         />
                     </section>
@@ -164,42 +230,35 @@ const Tickets = () => {
                                 </h3>
                                 <div className={`${styles.main_order_sum}`}>
                                     <span>SUM:</span>
-                                    <span>111$</span>
+                                    {/* <span>{hasLoaded ? orderSum() : sum}</span> */}
+                                    <span>{sum}</span>
                                 </div>
                             </div>
+                            {seatsPH.filter((item) => item.id).length ? (
+                                seatsPH
+                                    .filter((item) => item.id)
+                                    .map((ticket) => (
+                                        <TicketsOrder
+                                            key={ticket?.id}
+                                            seat={ticket?.seat}
+                                            currentBook={currentBook}
+                                            seatInfo={seatInfo}
+                                            ticketId={ticket?.id}
+                                            deleteTicket={deleteTicket}
+                                        />
+                                    ))
+                            ) : (
+                                <></>
+                            )}
+                            {/* {console.log(currentTickets)} */}
                             <div
-                                className={`${styles.order_ticket_container} v-flex-container`}
+                                className={`${styles.payment_container} v-flex-container`}
                             >
                                 <div
-                                    className={`${styles.order_ticket} v-flex-container`}
-                                >
-                                    <div
-                                        className={`${styles.order_ticket_top} flex-container`}
-                                    >
-                                        <div
-                                            className={`${styles.order_ticket_date}`}
-                                        >
-                                            <span>{currentShowDate}</span>
-                                            <span>
-                                                {currentBook?.show_time}
-                                            </span>
-                                        </div>
-                                        <div
-                                            className={`${styles.close_button_container}`}
-                                        >
-                                            <CloseButton
-                                                on_click_function={null}
-                                            />
-                                        </div>
-                                    </div>
+                                    className={`${styles.payment_ruler} `}
+                                ></div>
 
-                                    <div
-                                        className={`${styles.order_ticket_bottom} flex-container`}
-                                    >
-                                        <span>30$</span> <span>VIP</span>
-                                        <span>0row 00seat</span>
-                                    </div>
-                                </div>
+                                <button className={`button`}>Purchase</button>
                             </div>
                         </div>
                     </section>

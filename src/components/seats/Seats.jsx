@@ -9,6 +9,7 @@ import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 
 const Seats = ({
     seatsPH,
+
     hasLoaded,
     setSeatToggle,
     fetchTickets,
@@ -16,102 +17,106 @@ const Seats = ({
 
     setCurrentTickets,
     currentShowDate,
+    deleteTicket,
+    // resetTickets,
 }) => {
     const { currentBook } = useContext(DataContext);
 
-    useEffect(() => {
-        const initalizeTickets = async () => {
-            const data = await fetchTickets();
-            const iTickets = data.filter(
-                (item) => !item?.purchased & item?.is_owner
-            );
-            console.log(iTickets);
+    // useEffect(() => {
+    //     const initalizeTickets = async () => {
+    //         const data = await fetchTickets();
+    //         const iTickets = data.filter(
+    //             (item) => !item?.purchased & item?.is_owner
+    //         );
+    //         // console.log(iTickets);
 
-            const resTickets = iTickets.reduce(
-                (acc, ticket) => [
-                    ...acc,
-                    {
-                        seat: ticket.seat,
-                        purchased: false,
-                        reserve: true,
-                    },
-                ],
-                []
-            );
+    //         const resTickets = iTickets.reduce(
+    //             (acc, ticket) => [
+    //                 ...acc,
+    //                 {
+    //                     // ticketId: ticket.id,
+    //                     seat: ticket.seat,
+    //                     purchased: false,
+    //                     reserve: true,
+    //                 },
+    //             ],
+    //             []
+    //         );
 
-            setCurrentTickets((prevCurrentTickets) => ({
-                ...prevCurrentTickets,
-                tickets: resTickets,
-            }));
-        };
-        initalizeTickets();
-    }, []);
+    //         setCurrentTickets((prevCurrentTickets) => ({
+    //             ...prevCurrentTickets,
+    //             tickets: resTickets,
+    //         }));
+    //     };
+    //     initalizeTickets();
+    // }, []);
 
-    const resetTickets = (seat) => {
-        setCurrentTickets((prevCurrentTickets) => ({
-            ...prevCurrentTickets,
-            tickets: prevCurrentTickets.tickets.filter(
-                (ticket) => ticket.seat === seat
-            ).length
-                ? [
-                      ...prevCurrentTickets.tickets.filter(
-                          (ticket) => ticket.seat != seat
-                      ),
-                  ]
-                : [
-                      ...prevCurrentTickets.tickets,
-                      {
-                          seat: parseInt(seat),
-                          reserve: true,
-                          purchased: false,
-                      },
-                  ],
-        }));
-    };
+    // const resetTickets = (seat) => {
+    //     setCurrentTickets((prevCurrentTickets) => ({
+    //         ...prevCurrentTickets,
+    //         tickets: prevCurrentTickets.tickets.filter(
+    //             (ticket) => ticket.seat === seat
+    //         ).length
+    //             ? [
+    //                   ...prevCurrentTickets.tickets.filter(
+    //                       (ticket) => ticket.seat != seat
+    //                   ),
+    //               ]
+    //             : [
+    //                   ...prevCurrentTickets.tickets,
+    //                   {
+    //                       seat: parseInt(seat),
+    //                       reserve: true,
+    //                       purchased: false,
+    //                   },
+    //               ],
+    //     }));
+    // };
+
+    // const deleteTicket = async (seat, ticketId) => {
+    //     try {
+    //         await axiosRes.delete(`/tickets/${ticketId}`);
+    //         setSeatToggle((prevSeatToggle) => !prevSeatToggle);
+    //         resetTickets(seat);
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
 
     const createTicket = async (obj) => {
         try {
             const { data } = await axiosRes.post("/tickets/", obj);
             setSeatToggle((prevSeatToggle) => !prevSeatToggle);
-            resetTickets(obj.seat);
+            console.log(data.id);
+            // resetTickets(obj.seat, data.Id);
         } catch (err) {
             console.log(err);
         }
     };
 
-    const deleteTicket = async (seat, ticketId) => {
-        try {
-            await axiosRes.delete(`/tickets/${ticketId}`);
-            setSeatToggle((prevSeatToggle) => !prevSeatToggle);
-            resetTickets(seat);
-        } catch (err) {
-            console.log(err);
-        }
+    const checkSeat = (event) => {
+        const currentSeat = seatsPH[event.target.value - 1];
+        const currentTicketId = seatsPH[event.target.value - 1]?.id;
+
+        if (!currentSeat.purchased & !currentSeat.reserve) {
+            const postObj = {
+                movie: currentBook?.id,
+                seat: event.target.value,
+                reserve: true,
+                show_date: Moment(currentShowDate, "MM/DD/YYYY").format(
+                    "YYYY-MM-DD"
+                ),
+            };
+            createTicket(postObj);
+        } else if (currentSeat.reserve & currentSeat.is_owner)
+            deleteTicket(event.target.value, currentTicketId);
     };
 
-    const handleChange = async (event) => {
+    const handleChange = (event) => {
         console.log("handlechange fired");
 
-        const checkSeat = () => {
-            const currentSeat = seatsPH[event.target.value - 1];
-            const currentTicketId = seatsPH[event.target.value - 1]?.id;
-
-            if (!currentSeat.purchased & !currentSeat.reserve) {
-                const postObj = {
-                    movie: currentBook?.id,
-                    seat: event.target.value,
-                    reserve: true,
-                    show_date: Moment(currentShowDate, "MM/DD/YYYY").format(
-                        "YYYY-MM-DD"
-                    ),
-                };
-                createTicket(postObj);
-            } else if (currentSeat.reserve & currentSeat.is_owner)
-                deleteTicket(event.target.value, currentTicketId);
-        };
-
         try {
-            checkSeat();
+            checkSeat(event);
         } catch (err) {
             console.log(err);
         }
@@ -147,7 +152,7 @@ const Seats = ({
                                 key={seatPH?.seat}
                                 price={currentBook?.price}
                                 seatInfo={seatInfo}
-                                resetTickets={resetTickets}
+                                // resetTickets={resetTickets}
                                 purchased={seatPH?.purchased}
                                 seat={seatPH?.seat}
                                 reserve={seatPH?.reserve}

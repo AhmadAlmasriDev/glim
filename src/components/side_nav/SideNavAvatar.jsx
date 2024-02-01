@@ -19,7 +19,7 @@ const SideNavAvatar = ({
                 alt="User Avatar"
             />
             <h3 className={`${styles.avatar_name}`}>
-                {greating && "Hello,"} {user ? user?.username : owner_name}{" "}
+                {greating && "Hello,"} {user ? user?.username : owner_name}
             </h3>
         </div>
     );

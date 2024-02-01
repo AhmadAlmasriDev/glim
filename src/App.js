@@ -18,7 +18,8 @@ import { axiosReq, axiosRes } from "./api/axiosDefaults";
 import "./api/axiosDefaults";
 import MovieDetail from "./components/movie_details/MovieDetail";
 import Tickets from "./components/tickets/Tickets";
-import MovieEditForm from "./components/movie_edit_add_form/MovieEditForm"
+import MovieEditForm from "./components/movie_edit_add_form/MovieEditForm";
+import Profile from "./components/Profile/Profile";
 function App() {
     return (
         <div className={styles.App}>
@@ -48,6 +49,12 @@ function App() {
                         render={() => <MovieEditForm />}
                     />
                     <Route exact path="/tickets" render={() => <Tickets />} />
+                    <Route
+                        exact
+                        path="/profile/:id"
+                        render={() => <Profile />}
+                    />
+                    {/* <Route exact path="/profile/:id/edit" render={() => <ProfileEditForm />} /> */}
                 </Switch>
             </DataProvider>
         </div>

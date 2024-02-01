@@ -51,6 +51,9 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
     justify-content: flex-start;
+    /* 
+    align-items: stretch;
+    flex-grow: 1; */
 }
 .order_ticket {
     background-color: #a0a0b11a;

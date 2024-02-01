@@ -45,7 +45,12 @@
     margin: 0;
 }
 .order_ticket_container {
-    padding: 24px 32px 0 32px;
+    padding: 24px 32px 24px 32px;
+    max-height: 500px;
+    overflow: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    justify-content: flex-start;
 }
 .order_ticket {
     background-color: #a0a0b11a;
@@ -53,7 +58,9 @@
     padding: 8px 8px 8px 24px;
     justify-content: flex-start;
     align-items: flex-start;
+    margin-bottom: 24px;
 }
+
 .ticket_seat_container {
     align-items: flex-start;
 }

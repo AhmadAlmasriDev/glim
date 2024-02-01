@@ -11,12 +11,13 @@ const TicketsOrder = ({
 }) => {
     const { price, type, row, number } = seatInfo(seat, currentBook.price);
     return (
-        <div className={`${styles.order_ticket_container} v-flex-container`}>
+        // <div className={`${styles.order_ticket_container} v-flex-container`}>
             <div className={`${styles.order_ticket} flex-container`}>
                 <div
                     className={`${styles.ticket_seat_container} v-flex-container`}
                 >
                     <div className={`${styles.order_ticket_type}`}>{type}</div>
+
                     <div className={`${styles.order_ticket_seat}`}>
                         <span>{row} row</span>
                         <span>{number} seat</span>
@@ -29,11 +30,11 @@ const TicketsOrder = ({
 
                 <div className={`${styles.close_button_container} `}>
                     <CloseButton
-                        on_click_function={() => deleteTicket(seat, ticketId)}
+                        on_click_function={() => deleteTicket(ticketId)}
                     />
                 </div>
             </div>
-        </div>
+        // </div>
     );
 };
 

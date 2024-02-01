@@ -15,7 +15,7 @@ const Tickets = () => {
     const [hasLoaded, setHasLoaded] = useState(false);
     const [seatToggle, setSeatToggle] = useState(false);
     const [seatsPH, setSeatsPH] = useState([]);
-    const [sum, setSum] = useState("00");
+    const [sum, setSum] = useState(0);
     const { currentBook } = useContext(DataContext);
     const currentShowDate = Moment(
         `${currentBook?.month}/${currentBook?.day}/${currentBook?.year}`,
@@ -34,7 +34,49 @@ const Tickets = () => {
     //     tickets: [],
     // });
 
-    const deleteTicket = async (seat, ticketId) => {
+    // const delItemRefresh = async () => {
+    //     const data = await fetchTickets();
+    //     data?.filter((seat) => !seat?.purchased && seat?.is_owner).map((item) =>
+    //         deleteTicket(item?.id)
+    //     );
+    // };
+
+    // useEffect(() => {
+    //     const delItemRefresh = async () => {
+    //         const data = await fetchTickets();
+    //         data?.filter((seat) => !seat?.purchased && seat?.is_owner).map(
+    //             (item) => deleteTicket(item?.id)
+    //         );
+    //     };
+    //     delItemRefresh();
+    // }, []);
+
+    // useEffect(() => {
+    //     const handleUnload = async () => {
+    //         // event.preventDefault();
+    //         const data = await fetchTickets();
+    //         data
+    //             // ?.filter((seat) => !seat?.purchased && seat?.is_owner)
+    //             ?.filter((seat) => seat?.is_owner)
+    //             .map((item) => deleteTicket(item?.id));
+
+    //         // Custom logic to handle the refresh
+    //         // Display a confirmation message or perform necessary actions
+    //     };
+    //     const alertUser = (e) => {
+    //         e.preventDefault();
+    //         e.returnValue = "";
+    //     };
+    //     window.addEventListener("beforeunload", alertUser);
+    //     window.addEventListener("unload", handleUnload);
+    //     return () => {
+    //         window.removeEventListener("unload", handleUnload);
+    //         window.removeEventListener("beforeunload", alertUser);
+    //         handleUnload();
+    //     };
+    // }, []);
+
+    const deleteTicket = async (ticketId) => {
         try {
             await axiosRes.delete(`/tickets/${ticketId}`);
             setSeatToggle((prevSeatToggle) => !prevSeatToggle);
@@ -68,7 +110,7 @@ const Tickets = () => {
     //     }));
     // };
 
-    const setPH = async () => {
+    const generatePH = async () => {
         let seats_obj = [];
         const data = await fetchTickets();
         orderSum(data);
@@ -120,9 +162,11 @@ const Tickets = () => {
     useEffect(() => {
         setHasLoaded(false);
 
-        setPH();
+        generatePH();
 
-        return () => setSeatsPH([]);
+        return () => {
+            setSeatsPH([]);
+        };
     }, [seatToggle]);
 
     const seatInfo = (currentSeat, currentPrice) => {
@@ -134,7 +178,7 @@ const Tickets = () => {
             seat_per_row * (-Math.floor(currentSeat / -seat_per_row) - 1);
         let type = "Standard";
         if (row === "G") {
-            let type = "Plus";
+            type = "VIP";
             currentPrice += 10;
         }
         return {
@@ -147,12 +191,15 @@ const Tickets = () => {
 
     const orderSum = (data) => {
         const sum = data?.length
-            ? data?.reduce(
-                  (acc, cv) =>
-                      acc + seatInfo(cv?.seat, currentBook?.price).price,
-                  0
-              )
-            : "00";
+            ? data
+                  .filter((item) => !item.purchased && item.is_owner)
+                  .reduce(
+                      (acc, cv) =>
+                          acc + seatInfo(cv?.seat, currentBook?.price).price,
+                      0
+                  )
+            : 0;
+
         // const sum = seatsPH?.filter((item) => item.id).length
         //     ? seatsPH
         //           ?.filter((item) => item.id)
@@ -234,22 +281,30 @@ const Tickets = () => {
                                     <span>{sum}</span>
                                 </div>
                             </div>
-                            {seatsPH.filter((item) => item.id).length ? (
-                                seatsPH
-                                    .filter((item) => item.id)
-                                    .map((ticket) => (
-                                        <TicketsOrder
-                                            key={ticket?.id}
-                                            seat={ticket?.seat}
-                                            currentBook={currentBook}
-                                            seatInfo={seatInfo}
-                                            ticketId={ticket?.id}
-                                            deleteTicket={deleteTicket}
-                                        />
-                                    ))
-                            ) : (
-                                <></>
-                            )}
+                            <div
+                                className={`${styles.order_ticket_container} v-flex-container`}
+                            >
+                                {seatsPH.filter((item) => item?.id).length ? (
+                                    seatsPH
+                                        ?.filter(
+                                            (item) =>
+                                                !item?.purchased &&
+                                                item?.is_owner
+                                        )
+                                        .map((ticket) => (
+                                            <TicketsOrder
+                                                key={ticket?.id}
+                                                seat={ticket?.seat}
+                                                currentBook={currentBook}
+                                                seatInfo={seatInfo}
+                                                ticketId={ticket?.id}
+                                                deleteTicket={deleteTicket}
+                                            />
+                                        ))
+                                ) : (
+                                    <></>
+                                )}
+                            </div>
                             {/* {console.log(currentTickets)} */}
                             <div
                                 className={`${styles.payment_container} v-flex-container`}

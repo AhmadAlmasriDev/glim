@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import styles from "./styles/Seats.module.css";
 import Asset from "../asset/Asset";
 import DataContext from "../../context/DataContext";
@@ -21,6 +21,8 @@ const Seats = ({
     // resetTickets,
 }) => {
     const { currentBook } = useContext(DataContext);
+    const [toDelTicketId, setToDelTicketId] = useState(null);
+    const timerRef = useRef();
 
     // useEffect(() => {
     //     const initalizeTickets = async () => {
@@ -83,12 +85,26 @@ const Seats = ({
     //     }
     // };
 
+    useEffect(() => {
+        const timer = () => {
+            setTimeout(() => {
+                deleteTicket(toDelTicketId);
+            }, 1 * 30 * 1000); // This will delete the ticket after
+
+            return () => {
+                clearTimeout(timerRef.current);
+            };
+        };
+        toDelTicketId && timer();
+        setToDelTicketId(null);
+    }, [toDelTicketId]);
+
     const createTicket = async (obj) => {
         try {
             const { data } = await axiosRes.post("/tickets/", obj);
             setSeatToggle((prevSeatToggle) => !prevSeatToggle);
             console.log(data.id);
-            // resetTickets(obj.seat, data.Id);
+            setToDelTicketId(data.id);
         } catch (err) {
             console.log(err);
         }
@@ -108,8 +124,9 @@ const Seats = ({
                 ),
             };
             createTicket(postObj);
+            console.log("ticket id: " + currentTicketId);
         } else if (currentSeat.reserve & currentSeat.is_owner)
-            deleteTicket(event.target.value, currentTicketId);
+            deleteTicket(currentTicketId);
     };
 
     const handleChange = (event) => {

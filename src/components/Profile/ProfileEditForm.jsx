@@ -72,137 +72,138 @@ const ProfileEditForm = () => {
     };
 
     return (
-        <Container className={`${styles.header}`}>
-           
-            <h1 className={`${styles.header}`}>Edit Profile</h1>
-            <Form onSubmit={handleSubmit}>
-                <Form.Row>
-                    <Col md={12} lg={8}>
-                        <Form.Row>
-                            <Col sm={12} md={6}>
-                                <Form.Group controlId="name">
-                                    <Form.Label>name</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        value={name}
-                                        name="name"
-                                        onChange={handleChange}
-                                        placeholder="Your name"
-                                    />
-                                </Form.Group>
-                                {errors?.name?.map((message, idx) => (
-                                    <Alert variant="warning" key={idx}>
-                                        {message}
-                                    </Alert>
-                                ))}
-                            </Col>
-                            <Col sm={12} md={6}>
-                                <Form.Group controlId="email">
-                                    <Form.Label>Trailer link</Form.Label>
-                                    <Form.Control
-                                        type="email"
-                                        value={email}
-                                        name="email"
-                                        onChange={handleChange}
-                                        placeholder="Your email"
-                                    />
-                                </Form.Group>
-                                {errors?.email?.map((message, idx) => (
-                                    <Alert variant="warning" key={idx}>
-                                        {message}
-                                    </Alert>
-                                ))}
-                            </Col>
-                        </Form.Row>
-
-                        <Form.Row>
-                            <Col>
-                                <Form.Group controlId="about">
-                                    <Form.Label>About</Form.Label>
-                                    <Form.Control
-                                        as="textarea"
-                                        rows={6}
-                                        value={about}
-                                        name="about"
-                                        onChange={handleChange}
-                                    />
-                                </Form.Group>
-                                {errors?.about?.map((message, idx) => (
-                                    <Alert variant="warning" key={idx}>
-                                        {message}
-                                    </Alert>
-                                ))}
-                            </Col>
-                        </Form.Row>
-                    </Col>
-                    <Col className="flex-container">
-                        <Form.Group
-                            className={`${styles.poster_main_container} text-center`}
-                        >
-                            {avatar ? (
-                                <>
-                                    <div
-                                        className={`${styles.poster_container} image-container`}
-                                    >
-                                        <Image
-                                            className={`image`}
-                                            src={avatar}
+        <div className={`flex-container wrapper`}>
+            <Container>
+                <h1 className={`${styles.header}`}>Edit Profile</h1>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Row>
+                        <Col md={12} lg={8}>
+                            <Form.Row>
+                                <Col sm={12} md={6}>
+                                    <Form.Group controlId="name">
+                                        <Form.Label>name</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            value={name}
+                                            name="name"
+                                            onChange={handleChange}
+                                            placeholder="Your name"
                                         />
-                                    </div>
-                                    <div>
-                                        <Form.Label
-                                            className={`button`}
-                                            htmlFor="image-upload"
-                                        >
-                                            Change the image
-                                        </Form.Label>
-                                    </div>
-                                </>
-                            ) : (
-                                <Form.Label
-                                    className="d-flex justify-content-center"
-                                    htmlFor="image-upload"
-                                >
-                                    <Asset
-                                        upload={true}
-                                        message="Click or tap to upload an image"
-                                    />
-                                </Form.Label>
-                            )}
-                            {errors?.avatar?.map((message, idx) => (
-                                <Alert variant="warning" key={idx}>
-                                    {message}
-                                </Alert>
-                            ))}
+                                    </Form.Group>
+                                    {errors?.name?.map((message, idx) => (
+                                        <Alert variant="warning" key={idx}>
+                                            {message}
+                                        </Alert>
+                                    ))}
+                                </Col>
+                                <Col sm={12} md={6}>
+                                    <Form.Group controlId="email">
+                                        <Form.Label>Trailer link</Form.Label>
+                                        <Form.Control
+                                            type="email"
+                                            value={email}
+                                            name="email"
+                                            onChange={handleChange}
+                                            placeholder="Your email"
+                                        />
+                                    </Form.Group>
+                                    {errors?.email?.map((message, idx) => (
+                                        <Alert variant="warning" key={idx}>
+                                            {message}
+                                        </Alert>
+                                    ))}
+                                </Col>
+                            </Form.Row>
 
-                            <Form.File
-                                className="hidden"
-                                id="image-upload"
-                                accept="image/*"
-                                onChange={handleChangeImage}
-                                ref={avatarInput}
-                            />
-                        </Form.Group>
-                    </Col>
-                </Form.Row>
-                <Form.Row className={`${styles.buttons_container}`}>
-                    <Col className={`flex-container`}>
-                        <Button
-                            className={`${styles.save_button} button`}
-                            type="submit"
-                        >
-                            Save
-                        </Button>
-                        <Button
-                            className={`${styles.cancel_button} button`}
-                            onClick={() => history.goBack()}
-                        >
-                            Cancel
-                        </Button>
-                    </Col>
-                </Form.Row>
-            </Form>
-        </Container>
+                            <Form.Row>
+                                <Col>
+                                    <Form.Group controlId="about">
+                                        <Form.Label>About</Form.Label>
+                                        <Form.Control
+                                            as="textarea"
+                                            rows={6}
+                                            value={about}
+                                            name="about"
+                                            onChange={handleChange}
+                                        />
+                                    </Form.Group>
+                                    {errors?.about?.map((message, idx) => (
+                                        <Alert variant="warning" key={idx}>
+                                            {message}
+                                        </Alert>
+                                    ))}
+                                </Col>
+                            </Form.Row>
+                        </Col>
+                        <Col className="flex-container">
+                            <Form.Group
+                                className={`${styles.avatar_main_container} text-center`}
+                            >
+                                {avatar ? (
+                                    <>
+                                        <div
+                                            className={`${styles.avatar_container} image-container`}
+                                        >
+                                            <Image
+                                                className={`image`}
+                                                src={avatar}
+                                            />
+                                        </div>
+                                        <div>
+                                            <Form.Label
+                                                className={`button`}
+                                                htmlFor="image-upload"
+                                            >
+                                                Change the image
+                                            </Form.Label>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <Form.Label
+                                        className="d-flex justify-content-center"
+                                        htmlFor="image-upload"
+                                    >
+                                        <Asset
+                                            upload={true}
+                                            message="Click or tap to upload an image"
+                                        />
+                                    </Form.Label>
+                                )}
+                                {errors?.avatar?.map((message, idx) => (
+                                    <Alert variant="warning" key={idx}>
+                                        {message}
+                                    </Alert>
+                                ))}
+
+                                <Form.File
+                                    className="hidden"
+                                    id="image-upload"
+                                    accept="image/*"
+                                    onChange={handleChangeImage}
+                                    ref={avatarInput}
+                                />
+                            </Form.Group>
+                        </Col>
+                    </Form.Row>
+                    <Form.Row className={`${styles.buttons_container}`}>
+                        <Col className={`flex-container`}>
+                            <Button
+                                className={`${styles.save_button} button`}
+                                type="submit"
+                            >
+                                Save
+                            </Button>
+                            <Button
+                                className={`${styles.cancel_button} button`}
+                                onClick={() => history.goBack()}
+                            >
+                                Cancel
+                            </Button>
+                        </Col>
+                    </Form.Row>
+                </Form>
+            </Container>
+        </div>
     );
 };
 

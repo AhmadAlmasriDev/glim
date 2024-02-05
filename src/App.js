@@ -20,6 +20,7 @@ import MovieDetail from "./components/movie_details/MovieDetail";
 import Tickets from "./components/tickets/Tickets";
 import MovieEditForm from "./components/movie_edit_add_form/MovieEditForm";
 import Profile from "./components/Profile/Profile";
+import ProfileEditForm from "./components/Profile/ProfileEditForm";
 function App() {
     return (
         <div className={styles.App}>
@@ -51,10 +52,14 @@ function App() {
                     <Route exact path="/tickets" render={() => <Tickets />} />
                     <Route
                         exact
-                        path="/profile/:id"
+                        path="/profiles/:id"
                         render={() => <Profile />}
                     />
-                    {/* <Route exact path="/profile/:id/edit" render={() => <ProfileEditForm />} /> */}
+                    <Route
+                        exact
+                        path="/profiles/:id/edit"
+                        render={() => <ProfileEditForm />}
+                    />
                 </Switch>
             </DataProvider>
         </div>

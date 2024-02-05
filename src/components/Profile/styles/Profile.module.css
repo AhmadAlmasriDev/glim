@@ -1,0 +1,155 @@
+.main_container {
+    position: relative;
+    padding: 64px;
+    max-width: 1400px;
+    /* margin-top: 123px; */
+    align-items: flex-start;
+    align-self: flex-start;
+}
+
+.profile_main_container {
+    position: sticky;
+    top: 123px;
+    padding: 32px;
+    max-width: 300px;
+    /* min-height: 500px; */
+    background-color: #2a2727;
+    border-radius: 10px;
+    justify-content: flex-start;
+}
+
+.profile_avatar_container {
+    /* width: 30%; */
+    margin: 16px 16px 24px 16px;
+    /* justify-content: flex-start; */
+}
+
+/* .info_left_container, */
+.info_main_container,
+.user_name_main_container,
+.user_email_main_container,
+.user_about_main_container {
+    align-items: flex-start;
+    /* margin-bottom: 16px; */
+}
+
+.info_main_container {
+    align-self: flex-start;
+    /* padding: 16px 16px 16px 32px; */
+}
+.profile_header {
+    margin: 0 0 6px 0;
+    color: #65646c;
+    font-size: 16px;
+}
+
+.user_name,
+.user_email,
+.user_about {
+    font-size: 18px;
+    width: 100%;
+    /* margin: 0 0 0 16px; */
+}
+
+/* tickets section------------------ */
+
+.tickets_section {
+    width: 100%;
+    margin-left: 32px;
+}
+
+.tickets_header {
+    text-align: center;
+}
+
+.tickets_main_container {
+    padding: 32px;
+}
+
+.ticket_container,
+.comment_container,
+.ticket_message_container {
+    padding: 32px;
+    max-width: 700px;
+    background-color: #2a2727;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    /* align-items: flex-start; */
+}
+.poster_container {
+    margin-right: 32px;
+}
+
+.left_info_container {
+    align-items: flex-start;
+    margin-left: 16px;
+}
+.right_info_container {
+    align-items: center;
+    margin: 0 16px;
+}
+.ticket_seat_info {
+    background-color: #221f1f;
+    padding: 16px;
+    width: 170px;
+    border-radius: 10px;
+}
+.info_film {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+.left_info_container p,
+.right_info_container p {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+.info_price {
+    margin-left: 8px;
+}
+.ticket_message_container {
+    align-items: center;
+    justify-content: center;
+}
+
+.profile_edit_button_container {
+    justify-content: flex-end;
+}
+
+.profile_edit_button {
+    font-size: 14px;
+    padding: 2px 8px;
+    margin-bottom: -16px;
+}
+.profile_buttons_container {
+    margin-top: 16px;
+}
+.profile_tickets_button,
+.profile_comments_button {
+    margin-top: 16px;
+    width: 150px;
+}
+.profile_button_active {
+    background-color: #cc0000;
+}
+
+.profile_tickets_button:active,
+.profile_comments_button :active {
+    background-color: #cc0000;
+}
+.info_main_comment_container {
+    align-items: flex-start;
+    align-self: flex-start;
+}
+.info_comment_container {
+    justify-content: flex-start;
+}
+.info_comments_film {
+    font-size: 24px;
+}
+.info_comments_date {
+    margin: 0;
+    margin-left: auto;
+}
+.info_comments_body {
+    margin-top: 8px;
+}

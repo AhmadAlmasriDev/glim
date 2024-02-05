@@ -89,14 +89,14 @@ const Seats = ({
         const timer = () => {
             setTimeout(() => {
                 deleteTicket(toDelTicketId);
-            }, 1 * 30 * 1000); // This will delete the ticket after
+            }, 1 * 10 * 1000); // This will delete the ticket after
 
             return () => {
                 clearTimeout(timerRef.current);
             };
         };
         toDelTicketId && timer();
-        setToDelTicketId(null);
+        // setToDelTicketId(null);
     }, [toDelTicketId]);
 
     const createTicket = async (obj) => {

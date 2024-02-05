@@ -8,19 +8,25 @@ const SideNavAvatar = ({
     greating,
     profile_avatar,
     owner_name,
+    show_name,
 }) => {
     return (
-        <div className={`v-flex-container`}>
+        <div className={`${styles.avatar_container} v-flex-container`}>
             <img
-                src={user ? user?.profile_avatar : profile_avatar}
+                // src={user ? user?.profile_avatar : profile_avatar}
+                src={profile_avatar ? profile_avatar : user?.profile_avatar}
                 width={width}
                 height={width}
                 className={`${styles.avatar_image}`}
                 alt="User Avatar"
             />
-            <h3 className={`${styles.avatar_name}`}>
-                {greating && "Hello,"} {user ? user?.username : owner_name}
-            </h3>
+            {show_name && (
+                <h3 className={`${styles.avatar_name}`}>
+                    {/* {greating && "Hello,"} {user ? user?.username : owner_name} */}
+                    {greating && "Hello,"}
+                    {owner_name ? owner_name : user?.username}
+                </h3>
+            )}
         </div>
     );
 };

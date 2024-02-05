@@ -3,76 +3,158 @@ import DataContext from "../../context/DataContext";
 import SideNavAvatar from "../side_nav/SideNavAvatar";
 import styles from "./styles/Profile.module.css";
 import MoviePoster from "../movie_poster/MoviePoster";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { useParams } from "react-router";
+import ProfileTicket from "./ProfileTicket";
+import ProfileInfo from "./ProfileInfo";
+import Asset from "../asset/Asset";
+import ProfileComment from "./ProfileComment";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
+import { useHistory } from "react-router-dom";
+
 const Profile = () => {
+    const history = useHistory();
+    const { id } = useParams();
     const { currentUser } = useContext(DataContext);
+    const [hasLoaded, setHasLoaded] = useState(false);
+    const [userTickets, setUserTickets] = useState([]);
+    const [userComments, setUserComments] = useState([]);
+    const [movies, setMovies] = useState([]);
+    const [userProfile, setUserProfile] = useState({});
+    const [infoToggle, setInfoToggle] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [
+                    { data: profile },
+                    { data: movies },
+                    { data: tickets },
+                    { data: comments },
+                ] = await Promise.all([
+                    axiosReq.get(`/profiles/${id}`),
+                    axiosReq.get(`/movies`),
+                    axiosReq.get(`/tickets/?owner=${id}`),
+                    axiosReq.get(`/comments/?owner=${id}`),
+                ]);
+                setUserProfile(profile);
+                setMovies(movies);
+                setUserTickets(tickets);
+                setUserComments(comments);
+
+                console.log(profile);
+
+                setHasLoaded(true);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        setHasLoaded(false);
+        fetchData();
+    }, [id]);
+
+    const message = (message) => (
+        <div className={`${styles.ticket_message_container} flex-container`}>
+            <h3 className={`${styles.tickets_message}`}>{message}</h3>
+        </div>
+    );
 
     return (
         <article className={`flex-container wrapper`}>
-            <section
-                className={`${styles.profile_main_container} flex-container`}
-            >
-                <div
-                    className={`${styles.profile_avatar_container} flex-container`}
-                >
-                    <SideNavAvatar />
-                </div>
-                <div
-                    className={`${styles.profile_info_container} v-flex-container`}
-                >
+            {console.log(currentUser)}
+            {hasLoaded ? (
+                userProfile?.is_owner ? (
                     <div
-                        className={`${styles.user_name_main_container} flex-container`}
+                        className={`${styles.main_container} flex-container wrapper`}
                     >
-                        <h4 className={`${styles.profile_header}`}>Name:</h4>
-                        <div>
-                            <p className={`${styles.user_name} flex-container`}>
-                                name
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        className={`${styles.user_email_main_container} flex-container`}
-                    >
-                        <h4 className={`${styles.profile_header}`}>e-mail:</h4>
-                        <div>
-                            <p
-                                className={`${styles.user_email} flex-container`}
+                        <ProfileInfo
+                            profile={userProfile}
+                            currentUser={currentUser}
+                            infoToggle={infoToggle}
+                            setInfoToggle={setInfoToggle}
+                        />
+
+                        <section
+                            className={`${styles.tickets_section} v-flex-container`}
+                        >
+                            <div>
+                                <h2 className={`${styles.tickets_header}`}>
+                                    {infoToggle ? "Tickets" : "Comments"}
+                                </h2>
+                            </div>
+                            <div
+                                className={`${styles.tickets_main_container} v-flex-container`}
                             >
-                                name
-                            </p>
-                        </div>
+                                {infoToggle ? (
+                                    userTickets.length ? (
+                                        userTickets
+                                            .filter(
+                                                (ticket) => ticket?.purchased
+                                            )
+                                            .map((ticket) => (
+                                                <ProfileTicket
+                                                    key={ticket?.id}
+                                                    currentMovie={
+                                                        movies?.filter(
+                                                            (movie) =>
+                                                                movie?.id ==
+                                                                ticket?.movie
+                                                        )[0]
+                                                    }
+                                                    seat={ticket?.seat}
+                                                    date={ticket?.show_date}
+                                                />
+                                            ))
+                                    ) : (
+                                        message("No Tickets To Display")
+                                    )
+                                ) : (
+                                    <InfiniteScroll
+                                        children={
+                                            userComments?.results?.length
+                                                ? userComments?.results
+                                                      .filter(
+                                                          (comment) =>
+                                                              comment?.approved
+                                                      )
+                                                      .map((comment) => (
+                                                          <ProfileComment
+                                                              key={comment?.id}
+                                                              currentMovie={
+                                                                  movies?.filter(
+                                                                      (movie) =>
+                                                                          movie?.id ==
+                                                                          comment?.movie
+                                                                  )[0]
+                                                              }
+                                                              comment={comment}
+                                                          />
+                                                      ))
+                                                : message(
+                                                      "No Comments To Display"
+                                                  )
+                                        }
+                                        dataLength={userComments.results.length}
+                                        loader={<Asset spinner />}
+                                        hasMore={!!userComments.next}
+                                        next={() =>
+                                            fetchMoreData(
+                                                userComments,
+                                                setUserComments
+                                            )
+                                        }
+                                    />
+                                )}
+                            </div>
+                        </section>
                     </div>
-                    <div
-                        className={`${styles.user_about_main_container} flex-container`}
-                    >
-                        <h4 className={`${styles.profile_header}`}>About:</h4>
-                        <div>
-                            <p
-                                className={`${styles.user_about} flex-container`}
-                            >
-                                name
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div>
-                <div>
-                    <div>
-                        <MoviePoster />
-                    </div>
-                    <div>
-                        <h3>film</h3>
-                        <p>date</p>
-                        <p>time</p>
-                    </div>
-                    <div>
-                        <p>{`Row: `}</p>
-                        <p>{`Seat: `}</p>
-                        <p>standard</p>
-                    </div>
-                </div>
-            </div>
-            <section></section>
+                ) : (
+                    history.push("/")
+                )
+            ) : (
+                <Asset spinner />
+            )}
         </article>
     );
 };

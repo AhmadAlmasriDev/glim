@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useEffect} from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import Moment from "moment";
 import DataContext from "../../context/DataContext";
 import {
@@ -10,23 +10,20 @@ import {
     Container,
     Image,
 } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import styles from "./styles/MovieCreateForm.module.css";
 import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults";
 
 import Asset from "../asset/Asset";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const MovieEditForm = () => {
-
     const [errors, setErrors] = useState({});
     const [ratings, setRatings] = useState([]);
-    const {currentUser} = useContext(DataContext);
+    const { currentUser } = useContext(DataContext);
     const posterInput = useRef(null);
-    
-    const history = useHistory();
 
+    const history = useHistory();
 
     const years = () => {
         let yearsArr = [];
@@ -43,7 +40,6 @@ const MovieEditForm = () => {
         // title: "",
         // trailer: "",
         // manager: "",
-
         // start_date: currentDate,
         // end_date: currentDate,
         // session_time: "00:00:00",
@@ -76,50 +72,48 @@ const MovieEditForm = () => {
         price,
         status,
     } = postData;
-    
-    const {id} = useParams()
+
+    const { id } = useParams();
 
     useEffect(() => {
         const fetchAll = async () => {
             try {
-                const [{ data:ratings}, {data:prev_data}] = await Promise.all([
-
-                    axiosReq.get(`/movies/service`),
-                    axiosReq.get(`/movies/${id}`),
-                ]
-                ) 
+                const [{ data: ratings }, { data: prev_data }] =
+                    await Promise.all([
+                        axiosReq.get(`/movies/service`),
+                        axiosReq.get(`/movies/${id}`),
+                    ]);
                 setRatings(ratings[0]?.service.ratings);
 
-                prev_data?.is_admin ? setPostData({
-                    ...prev_data, 
-                    start_date: Moment(prev_data?.start_date).format("YYYY-MM-DD") ,
-                    end_date: Moment(prev_data?.end_date).format("YYYY-MM-DD"), 
-                }) : history.push("/");
+                prev_data?.is_admin
+                    ? setPostData({
+                          ...prev_data,
+                          start_date: Moment(prev_data?.start_date).format(
+                              "YYYY-MM-DD"
+                          ),
+                          end_date: Moment(prev_data?.end_date).format(
+                              "YYYY-MM-DD"
+                          ),
+                      })
+                    : history.push("/");
                 // setPostData({test: "test"})
-
-                
             } catch (err) {
                 console.log(err);
             }
-            
         };
         // const fetchRatings = async () => {
         //     try {
         //         const { data } = await axiosReq.get(`/movies/service`);
         //         setRatings(data[0]?.service.ratings);
-                
+
         //     } catch (err) {
         //         console.log(err);
         //     }
-            
+
         // };
 
-        
         fetchAll();
-    }, [history, id]); 
-
-
-
+    }, [history, id]);
 
     const handleChange = (event) => {
         setPostData({
@@ -146,7 +140,7 @@ const MovieEditForm = () => {
         formData.append("title", title);
         formData.append("trailer", trailer);
         posterInput.current.files[0] &&
-        formData.append("poster", posterInput.current.files[0]);
+            formData.append("poster", posterInput.current.files[0]);
         formData.append("start_date", start_date);
         formData.append("end_date", end_date);
         formData.append("session_time", session_time);
@@ -175,7 +169,7 @@ const MovieEditForm = () => {
 
     return (
         <Container>
-            {console.log(postData)}
+            
             <h1 className={`${styles.header}`}>Edit a movie</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Row>

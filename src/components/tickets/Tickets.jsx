@@ -8,6 +8,7 @@ import MoviePoster from "../movie_poster/MoviePoster";
 import styles from "./styles/Tickets.module.css";
 import CloseButton from "../CloseButton/CloseButton";
 import TicketsOrder from "./TicketsOrder";
+import { seatInfo } from "../../utils/utils";
 
 const Tickets = () => {
     const SEATS = 84;
@@ -169,25 +170,25 @@ const Tickets = () => {
         };
     }, [seatToggle]);
 
-    const seatInfo = (currentSeat, currentPrice) => {
-        const rows = ["A", "B", "C", "D", "E", "F", "G"];
-        const seat_per_row = 12;
-        let row = rows[-Math.floor(currentSeat / -seat_per_row) - 1];
-        let number =
-            currentSeat -
-            seat_per_row * (-Math.floor(currentSeat / -seat_per_row) - 1);
-        let type = "Standard";
-        if (row === "G") {
-            type = "VIP";
-            currentPrice += 10;
-        }
-        return {
-            row: row,
-            number: number,
-            type: type,
-            price: currentPrice,
-        };
-    };
+    // const seatInfo = (currentSeat, currentPrice) => {
+    //     const rows = ["A", "B", "C", "D", "E", "F", "G"];
+    //     const seat_per_row = 12;
+    //     let row = rows[-Math.floor(currentSeat / -seat_per_row) - 1];
+    //     let number =
+    //         currentSeat -
+    //         seat_per_row * (-Math.floor(currentSeat / -seat_per_row) - 1);
+    //     let type = "Standard";
+    //     if (row === "G") {
+    //         type = "VIP";
+    //         currentPrice += 10;
+    //     }
+    //     return {
+    //         row: row,
+    //         number: number,
+    //         type: type,
+    //         price: currentPrice,
+    //     };
+    // };
 
     const orderSum = (data) => {
         const sum = data?.length

@@ -46,11 +46,14 @@ const SideNav = () => {
     );
     const loggedInUser = (
         <div className={`v-flex-container`}>
-            <NavLink to={`/profiles/${currentUser?.profile_id}`}>
-                <SideNavAvatar user={currentUser} width={100} />
-            </NavLink>
+            {/* <NavLink to={`/profiles/${currentUser?.profile_id}`}> */}
+            <SideNavAvatar user={currentUser} width={100} show_name={true} />
+            {/* </NavLink> */}
 
-            <NavLink className={`${styles.my_cabinet_link}`} to="/">
+            <NavLink
+                className={`${styles.my_cabinet_link}`}
+                to={`/profiles/${currentUser?.profile_id}`}
+            >
                 My cabinet
             </NavLink>
         </div>

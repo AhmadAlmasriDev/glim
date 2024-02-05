@@ -106,7 +106,9 @@ div.blur {
 .sign_icon {
     margin-right: 8px;
 }
-
+.avatar_container {
+    width: unset;
+}
 .avatar_image {
     border-radius: 50%;
     object-fit: cover;

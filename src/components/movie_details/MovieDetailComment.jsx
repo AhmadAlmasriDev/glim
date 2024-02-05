@@ -28,11 +28,15 @@ const MovieDetailComment = ({ comment, setComments, setCurrentMovie }) => {
     };
 
     return delConfirm ? (
-        <div className={`${styles.comment_confirm_main_container} flex-container`}>
+        <div
+            className={`${styles.comment_confirm_main_container} flex-container`}
+        >
             <div
                 className={`${styles.comment_confirm_container} v-flex-container`}
             >
-                <h4 className={`${styles.comment_confirm_text}`}>Delete this comment!</h4>
+                <h4 className={`${styles.comment_confirm_text}`}>
+                    Delete this comment!
+                </h4>
                 <button
                     className={`${styles.comment_delete_button} button`}
                     onClick={handleDelete}
@@ -51,6 +55,7 @@ const MovieDetailComment = ({ comment, setComments, setCurrentMovie }) => {
                     owner_name={comment?.owner_name}
                     width={70}
                     greeting={null}
+                    show_name={true}
                 />
             </div>
             <div

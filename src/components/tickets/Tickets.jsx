@@ -9,6 +9,7 @@ import styles from "./styles/Tickets.module.css";
 import CloseButton from "../CloseButton/CloseButton";
 import TicketsOrder from "./TicketsOrder";
 import { seatInfo } from "../../utils/utils";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const Tickets = () => {
     const SEATS = 84;
@@ -17,7 +18,8 @@ const Tickets = () => {
     const [seatToggle, setSeatToggle] = useState(false);
     const [seatsPH, setSeatsPH] = useState([]);
     const [sum, setSum] = useState(0);
-    const { currentBook } = useContext(DataContext);
+
+    const [currentBook, setCurrentBook] = useLocalStorage("currentBook", {});
     const currentShowDate = Moment(
         `${currentBook?.month}/${currentBook?.day}/${currentBook?.year}`,
         "MMMM/DD/YYYY"
@@ -42,39 +44,31 @@ const Tickets = () => {
     //     );
     // };
 
-    // useEffect(() => {
-    //     const delItemRefresh = async () => {
-    //         const data = await fetchTickets();
-    //         data?.filter((seat) => !seat?.purchased && seat?.is_owner).map(
-    //             (item) => deleteTicket(item?.id)
-    //         );
-    //     };
-    //     delItemRefresh();
-    // }, []);
+    useEffect(() => {
+        const delItemRefresh = async () => {
+            const data = await fetchTickets();
+            data?.filter((seat) => !seat?.purchased && seat?.is_owner).map(
+                (item) => deleteTicket(item?.id)
+            );
+        };
+        delItemRefresh();
+    }, []);
 
     // useEffect(() => {
     //     const handleUnload = async () => {
     //         // event.preventDefault();
     //         const data = await fetchTickets();
-    //         data
-    //             // ?.filter((seat) => !seat?.purchased && seat?.is_owner)
-    //             ?.filter((seat) => seat?.is_owner)
+    //         data?.filter((seat) => !seat?.purchased && seat?.is_owner)
+    //             // ?.filter((seat) => seat?.is_owner)
     //             .map((item) => deleteTicket(item?.id));
+    //     };
 
-    //         // Custom logic to handle the refresh
-    //         // Display a confirmation message or perform necessary actions
-    //     };
-    //     const alertUser = (e) => {
-    //         e.preventDefault();
-    //         e.returnValue = "";
-    //     };
-    //     window.addEventListener("beforeunload", alertUser);
     //     window.addEventListener("unload", handleUnload);
     //     return () => {
     //         window.removeEventListener("unload", handleUnload);
-    //         window.removeEventListener("beforeunload", alertUser);
-    //         handleUnload();
+    //         // setCurrentBook({})
     //     };
+    //     handleUnload();
     // }, []);
 
     const deleteTicket = async (ticketId) => {
@@ -321,6 +315,7 @@ const Tickets = () => {
                 </div>
             ) : (
                 history.push("/")
+                // console.log("test")
             )}
         </article>
     );

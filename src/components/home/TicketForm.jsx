@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./styles/TicketForm.module.css";
 import Moment from "moment";
 import { Link, useHistory } from "react-router-dom";
@@ -7,6 +7,7 @@ import { Tooltip, OverlayTrigger } from "react-bootstrap";
 
 import DataContext from "../../context/DataContext";
 import TicketCalendar from "./TicketCalendar";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const TicketForm = ({
     id,
@@ -19,8 +20,9 @@ const TicketForm = ({
 }) => {
     const time = Moment(session_time, "HH:mm:ss").format("HH:mm");
     const year = Moment(start_date, "MM/DD/YYYY").format("YYYY");
-    const { currentUser, currentBook, setCurrentBook } =
-        useContext(DataContext);
+    const { currentUser } = useContext(DataContext);
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [currentBook, setCurrentBook] = useLocalStorage("currentBook", {});
     const [ticketData, setTicketData] = useState({
         id: id,
         poster: poster,
@@ -38,10 +40,16 @@ const TicketForm = ({
         event.preventDefault();
         if (ticketData?.day) {
             const period = days(start_date, end_date);
+            console.log("before " + currentBook);
             setCurrentBook({ ...ticketData, period });
-            history.push("/tickets");
+            console.log("after " + currentBook);
+            setHasSubmitted(true);
         }
     };
+
+    useEffect(() => {
+        hasSubmitted && history.push("/tickets");
+    }, [hasSubmitted]);
 
     const handleChange = (event) => {
         setTicketData({

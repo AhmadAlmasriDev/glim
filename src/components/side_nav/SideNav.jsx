@@ -111,14 +111,14 @@ const SideNav = () => {
                                     About
                                 </NavLink>
                             </li>
-                            <li>
+                            {/* <li>
                                 <NavLink
                                     className={`${styles.side_nav_link}`}
                                     to="/contact"
                                 >
                                     Contact us
                                 </NavLink>
-                            </li>
+                            </li> */}
                         </ul>
 
                         <ul className={`${styles.media_links_container}`}>

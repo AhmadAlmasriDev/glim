@@ -6,7 +6,6 @@ import SignIn from "./components/sign/SignIn";
 import SignUp from "./components/sign/SignUp";
 import Movies from "./components/movies/Movies";
 import About from "./components/about/About";
-import Contact from "./components/contact/Contact";
 import MovieCreateForm from "./components/movie_edit_add_form/MovieCreateForm";
 
 import { useContext, useState, useEffect } from "react";
@@ -21,6 +20,7 @@ import Tickets from "./components/tickets/Tickets";
 import MovieEditForm from "./components/movie_edit_add_form/MovieEditForm";
 import Profile from "./components/Profile/Profile";
 import ProfileEditForm from "./components/Profile/ProfileEditForm";
+
 function App() {
     return (
         <div className={styles.App}>
@@ -33,7 +33,7 @@ function App() {
                     <Route exact path="/signup" render={() => <SignUp />} />
                     <Route exact path="/movies" render={() => <Movies />} />
                     <Route exact path="/about" render={() => <About />} />
-                    <Route exact path="/contact" render={() => <Contact />} />
+
                     <Route
                         exact
                         path="/movies/add-movie"

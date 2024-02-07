@@ -4,6 +4,7 @@ import Asset from "../asset/Asset";
 import DataContext from "../../context/DataContext";
 import SeatItem from "./SeatItem";
 import Moment from "moment";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 
@@ -20,7 +21,7 @@ const Seats = ({
     deleteTicket,
     // resetTickets,
 }) => {
-    const { currentBook } = useContext(DataContext);
+    const [currentBook, setCurrentBook] = useLocalStorage("currentBook", {});
     const [toDelTicketId, setToDelTicketId] = useState(null);
     const timerRef = useRef();
 

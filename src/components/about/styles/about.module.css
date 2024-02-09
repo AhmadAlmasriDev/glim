@@ -1,0 +1,47 @@
+.about_main_container,
+.about_left_container,
+.about_right_container,
+.about_info_container {
+    position: relative;
+    align-items: stretch;
+
+    flex-grow: 1;
+}
+
+.about_image_container {
+    border-radius: 0;
+}
+.about_image {
+    object-fit: cover;
+    object-position: center;
+}
+.about_map_container {
+    width: 100%;
+    height: 300px;
+    border: solid 10px #2a2727;
+}
+
+.about_info_container {
+    background-color: #2a2727;
+    /* padding-top: 64px; */
+    align-items: center;
+    justify-content: flex-start;
+}
+.about_info_text_container {
+    padding: 48px;
+    justify-content: space-around;
+
+    height: 100%;
+}
+
+.about_info_text_container h4 {
+    color: #65646c;
+}
+.about_info_invitation {
+}
+.about_info_invitation h4 {
+    color: #f1f1f1;
+    text-align: center;
+    margin: 0;
+    /* margin-top: 24px; */
+}

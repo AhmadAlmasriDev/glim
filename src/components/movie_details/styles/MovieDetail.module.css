@@ -28,6 +28,7 @@
 .info_main_container {
     padding: 0 40px;
     overflow: auto;
+    width: 100%;
 }
 .info_container {
     margin-bottom: 32px;
@@ -191,4 +192,3 @@
     padding: 32px 32px;
     /* margin: 32px 0 32px 0; */
 }
-

@@ -69,7 +69,9 @@ const TicketForm = ({
         const currentDate = Moment(momentObj, "MM/DD/YYYY");
         const currentmonth = currentDate.format("MMMM");
 
-        if (startD_month === endD_month) {
+        if (currentDate.isAfter(Moment(endD))) {
+            return false;
+        } else if (startD_month === endD_month) {
             const date = [];
             for (
                 let m = Moment(startD);
@@ -119,39 +121,52 @@ const TicketForm = ({
 
     return (
         <form className={`${styles.main_container}`}>
-            <div className={`${styles.button_container} flex-container`}>
-                <h3 className={`${styles.time_label}`}>{time}</h3>
-                {currentUser ? (
-                    <button
-                        className={`${styles.buy_button} button`}
-                        onClick={handleSubmit}
+            {console.log(days(start_date, end_date))}
+            {days(start_date, end_date) ? (
+                <>
+                    <div
+                        className={`${styles.button_container} flex-container`}
                     >
-                        Buy a ticket
-                    </button>
-                ) : (
-                    <OverlayTrigger
-                        placement="top"
-                        overlay={<Tooltip>Sign in to Buy a ticket!</Tooltip>}
-                    >
-                        <Link
-                            className={`${styles.buy_button} button`}
-                            to="/signin"
-                        >
-                            Buy a ticket
-                        </Link>
-                    </OverlayTrigger>
-                )}
-            </div>
-            {days(start_date, end_date).map(
-                (period, idx) =>
-                    period?.month && (
-                        <TicketCalendar
-                            key={idx}
-                            title={title}
-                            period={period}
-                            on_change_function={handleChange}
-                        />
-                    )
+                        <h3 className={`${styles.time_label}`}>{time}</h3>
+                        {currentUser ? (
+                            <button
+                                className={`${styles.buy_button} button`}
+                                onClick={handleSubmit}
+                            >
+                                Buy a ticket
+                            </button>
+                        ) : (
+                            <OverlayTrigger
+                                placement="top"
+                                overlay={
+                                    <Tooltip>Sign in to Buy a ticket!</Tooltip>
+                                }
+                            >
+                                <Link
+                                    className={`${styles.buy_button} button`}
+                                    to="/signin"
+                                >
+                                    Buy a ticket
+                                </Link>
+                            </OverlayTrigger>
+                        )}
+                    </div>
+                    {days(start_date, end_date).map(
+                        (period, idx) =>
+                            period?.month && (
+                                <TicketCalendar
+                                    key={idx}
+                                    title={title}
+                                    period={period}
+                                    on_change_function={handleChange}
+                                />
+                            )
+                    )}
+                </>
+            ) : (
+                <div className={`flex-container`}>
+                    <h3 className={`${styles.not_in_message}`}>This movie is not currently in theatres</h3>
+                </div>
             )}
         </form>
     );

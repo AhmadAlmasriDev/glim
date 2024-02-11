@@ -86,8 +86,10 @@ const Profile = () => {
                             <div
                                 className={`${styles.tickets_main_container} v-flex-container`}
                             >
+                                {console.log(userTickets)}
                                 {infoToggle ? (
-                                    userTickets.length ? (
+                                    userTickets.filter((item) => item.purchased)
+                                        .length ? (
                                         userTickets
                                             .filter(
                                                 (ticket) => ticket?.purchased
@@ -112,7 +114,9 @@ const Profile = () => {
                                 ) : (
                                     <InfiniteScroll
                                         children={
-                                            userComments?.results?.length
+                                            userComments?.results?.filter(
+                                                (item) => item.approved
+                                            ).length
                                                 ? userComments?.results
                                                       .filter(
                                                           (comment) =>

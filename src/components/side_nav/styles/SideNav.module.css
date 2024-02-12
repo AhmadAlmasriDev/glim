@@ -142,3 +142,37 @@ div.blur {
 .logged_out_user_container {
     margin: 32px 0 24px 0;
 }
+
+/* ------------------- */
+
+@media screen and (max-width: 768px) {
+    .background {
+        background-color: #221f1f;
+        width: 100%;
+        height: 100%;
+        padding: 18px;
+        justify-content: left;
+        transition: 0.5s;
+        overflow: auto;
+        /* display: none; */
+    }
+
+    .background_hide {
+        position: absolute;
+        z-index: 2000;
+        /* width: 0; */
+        top: 0;
+
+        left: -100%;
+    }
+
+    .background_view {
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+    }
+    .side_menu {
+        justify-content: left;
+        align-items: center;
+    }
+}

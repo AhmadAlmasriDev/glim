@@ -90,7 +90,7 @@ const Seats = ({
         const timer = () => {
             setTimeout(() => {
                 deleteTicket(toDelTicketId);
-            }, 1 * 10 * 1000); // This will delete the ticket after
+            }, 2 * 60 * 1000); // This will delete the ticket after 2 min
 
             return () => {
                 clearTimeout(timerRef.current);

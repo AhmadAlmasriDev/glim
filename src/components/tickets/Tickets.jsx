@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import DataContext from "../../context/DataContext";
 import Seats from "../seats/Seats";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
@@ -18,7 +18,8 @@ const Tickets = () => {
     const [seatToggle, setSeatToggle] = useState(false);
     const [seatsPH, setSeatsPH] = useState([]);
     const [sum, setSum] = useState(0);
-
+    const [hasReserve, setHasReserve] = useState(false);
+    const { currentUser } = useContext(DataContext);
     const [currentBook, setCurrentBook] = useLocalStorage("currentBook", {});
     const currentShowDate = Moment(
         `${currentBook?.month}/${currentBook?.day}/${currentBook?.year}`,
@@ -208,111 +209,170 @@ const Tickets = () => {
         setSum(sum);
     };
 
+    const handleClose = () => {
+        history.push("/");
+    };
+
+    const ticketPurchase = async (ticketId) => {
+        try {
+            await axiosReq.patch(`/tickets/${ticketId}`, { purchased: true });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleReserve = () => {
+        if (
+            seatsPH.filter((item) => !item?.purchased && item?.is_owner).length
+        ) {
+            seatsPH
+                ?.filter((item) => !item?.purchased && item?.is_owner)
+                .map((ticket) => ticketPurchase(ticket.id));
+            setHasReserve(true);
+        }
+    };
+
     return (
         <article className={`flex-container wrapper`}>
             {currentBook?.day ? (
-                <div
-                    className={`${styles.content_main_container} flex-container`}
-                >
-                    <section
-                        className={`${styles.seat_section} v-flex-container`}
-                    >
+                hasReserve ? (
+                    <div>
                         <div
-                            className={`${styles.tickets_movie_info_container} flex-container`}
+                            className={`${styles.reserve_main_container} v-flex-container`}
                         >
-                            <MoviePoster
-                                title={currentBook?.title}
-                                poster={currentBook?.poster}
-                                width={150}
-                                buttonType={0}
-                            />
+                            {" "}
                             <div
-                                className={`${styles.tickets_movie_info} v-flex-container`}
+                                className={`${styles.reserve_close_button_container} flex-container`}
                             >
-                                <h4 className={`${styles.movie_info_title}`}>
-                                    {currentBook?.title}
-                                </h4>
-
-                                <h5 className={`${styles.movie_info_date}`}>
-                                    <span>{currentDay}</span>
-                                    <span>{currentShowDate}</span>
-                                </h5>
-                                <h5 className={`${styles.movie_info_time}`}>
-                                    {currentBook?.show_time}
-                                </h5>
+                                <CloseButton on_click_function={handleClose} />
+                            </div>
+                            <div className={`${styles.reserve_container}`}>
+                                <h3>You have successfuly made a reservation</h3>
+                                <p>
+                                    The tickets can be payed on the cinema's box
+                                    office
+                                </p>
+                                <NavLink
+                                    to={`/profiles/${currentUser?.profile_id}`}
+                                    className={`button`}
+                                >
+                                    Check Teckits
+                                </NavLink>
                             </div>
                         </div>
-                        <Seats
-                            // resetTickets={resetTickets}
-                            deleteTicket={deleteTicket}
-                            seatInfo={seatInfo}
-                            setSeatToggle={setSeatToggle}
-                            fetchTickets={fetchTickets}
-                            currentShowDate={currentShowDate}
-                            seatsPH={seatsPH}
-                            // currentTickets={currentTickets}
-                            // setCurrentTickets={setCurrentTickets}
-                            hasLoaded={hasLoaded}
-                        />
-                    </section>
-
-                    <section
-                        className={`${styles.tickets_section} flex-container`}
+                    </div>
+                ) : (
+                    <div
+                        className={`${styles.content_main_container} flex-container`}
                     >
-                        <div
-                            className={`${styles.main_order_container} v-flex-container`}
+                        <section
+                            className={`${styles.seat_section} v-flex-container`}
                         >
                             <div
-                                className={`${styles.main_order_container_header} flex-container`}
+                                className={`${styles.tickets_movie_info_container} flex-container`}
                             >
-                                <h3
-                                    className={`${styles.main_order_header_title}`}
+                                <MoviePoster
+                                    title={currentBook?.title}
+                                    poster={currentBook?.poster}
+                                    width={150}
+                                    buttonType={0}
+                                />
+                                <div
+                                    className={`${styles.tickets_movie_info} v-flex-container`}
                                 >
-                                    Tickets
-                                </h3>
-                                <div className={`${styles.main_order_sum}`}>
-                                    <span>SUM:</span>
-                                    {/* <span>{hasLoaded ? orderSum() : sum}</span> */}
-                                    <span>{sum}</span>
+                                    <h4
+                                        className={`${styles.movie_info_title}`}
+                                    >
+                                        {currentBook?.title}
+                                    </h4>
+
+                                    <h5 className={`${styles.movie_info_date}`}>
+                                        <span>{currentDay}</span>
+                                        <span>{currentShowDate}</span>
+                                    </h5>
+                                    <h5 className={`${styles.movie_info_time}`}>
+                                        {currentBook?.show_time}
+                                    </h5>
                                 </div>
                             </div>
+                            <Seats
+                                // resetTickets={resetTickets}
+                                deleteTicket={deleteTicket}
+                                seatInfo={seatInfo}
+                                setSeatToggle={setSeatToggle}
+                                fetchTickets={fetchTickets}
+                                currentShowDate={currentShowDate}
+                                seatsPH={seatsPH}
+                                // currentTickets={currentTickets}
+                                // setCurrentTickets={setCurrentTickets}
+                                hasLoaded={hasLoaded}
+                            />
+                        </section>
+
+                        <section
+                            className={`${styles.tickets_section} flex-container`}
+                        >
                             <div
-                                className={`${styles.order_ticket_container} v-flex-container`}
-                            >
-                                {seatsPH.filter((item) => item?.id).length ? (
-                                    seatsPH
-                                        ?.filter(
-                                            (item) =>
-                                                !item?.purchased &&
-                                                item?.is_owner
-                                        )
-                                        .map((ticket) => (
-                                            <TicketsOrder
-                                                key={ticket?.id}
-                                                seat={ticket?.seat}
-                                                currentBook={currentBook}
-                                                seatInfo={seatInfo}
-                                                ticketId={ticket?.id}
-                                                deleteTicket={deleteTicket}
-                                            />
-                                        ))
-                                ) : (
-                                    <></>
-                                )}
-                            </div>
-                            {/* {console.log(currentTickets)} */}
-                            <div
-                                className={`${styles.payment_container} v-flex-container`}
+                                className={`${styles.main_order_container} v-flex-container`}
                             >
                                 <div
-                                    className={`${styles.payment_ruler} `}
-                                ></div>
+                                    className={`${styles.main_order_container_header} flex-container`}
+                                >
+                                    <h3
+                                        className={`${styles.main_order_header_title}`}
+                                    >
+                                        Tickets
+                                    </h3>
+                                    <div className={`${styles.main_order_sum}`}>
+                                        <span>SUM:</span>
+                                        {/* <span>{hasLoaded ? orderSum() : sum}</span> */}
+                                        <span>{sum}</span>
+                                    </div>
+                                </div>
+                                <div
+                                    className={`${styles.order_ticket_container} v-flex-container`}
+                                >
+                                    {seatsPH.filter((item) => item?.id)
+                                        .length ? (
+                                        seatsPH
+                                            ?.filter(
+                                                (item) =>
+                                                    !item?.purchased &&
+                                                    item?.is_owner
+                                            )
+                                            .map((ticket) => (
+                                                <TicketsOrder
+                                                    key={ticket?.id}
+                                                    seat={ticket?.seat}
+                                                    currentBook={currentBook}
+                                                    seatInfo={seatInfo}
+                                                    ticketId={ticket?.id}
+                                                    deleteTicket={deleteTicket}
+                                                />
+                                            ))
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
+                                {/* {console.log(currentTickets)} */}
+                                <div
+                                    className={`${styles.payment_container} v-flex-container`}
+                                >
+                                    <div
+                                        className={`${styles.payment_ruler} `}
+                                    ></div>
 
-                                <button className={`button`}>Purchase</button>
+                                    <button
+                                        className={`button`}
+                                        onClick={handleReserve}
+                                    >
+                                        Reserve
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </section>
-                </div>
+                        </section>
+                    </div>
+                )
             ) : (
                 history.push("/")
                 // console.log("test")

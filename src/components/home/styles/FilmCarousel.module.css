@@ -6,7 +6,7 @@
 }
 .carousel_container {
     position: absolute;
-
+    scroll-behavior: smooth;
     height: 100%;
     justify-content: flex-start;
     align-items: stretch;
@@ -37,4 +37,33 @@
 
 .right_slider_button {
     right: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .main_container {
+        position: relative;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .carousel_container {
+        flex-direction: column;
+        position: relative;
+        scroll-behavior: smooth;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: unset;
+        overflow-x: unset;
+
+        -ms-overflow-style: unset; /* IE and Edge */
+        scrollbar-width: unset; /* Firefox */
+    }
+
+    .carousel_container::-webkit-scrollbar {
+        display: unset;
+    }
+
+    .left_slider_button,
+    .right_slider_button {
+        display: none;
+    }
 }

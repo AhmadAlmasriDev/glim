@@ -126,3 +126,26 @@
     width: 80%;
     margin-bottom: 32px;
 }
+
+/* reserve--------------------- */
+
+.reserve_main_container {
+    border-radius: 10px;
+    background-color: #2a2727;
+    padding: 16px;
+}
+
+.reserve_close_button_container {
+    justify-content: flex-end;
+}
+
+.reserve_container {
+    padding: 32px;
+    text-align: center;
+}
+.reserve_container h3 {
+    margin-bottom: 16px;
+}
+.reserve_container p {
+    margin-bottom: 32px;
+}

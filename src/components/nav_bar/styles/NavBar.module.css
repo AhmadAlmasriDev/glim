@@ -25,3 +25,11 @@
 .sign_in_user:hover {
     color: #f50000;
 }
+
+/* -------------------------- */
+
+@media screen and (max-width: 480px) {
+    .header_logo {
+        display: none;
+    }
+}

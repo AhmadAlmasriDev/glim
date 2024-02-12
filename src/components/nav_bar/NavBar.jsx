@@ -24,7 +24,7 @@ const NavBar = () => {
                     </li>
                 </ul>
             </nav>
-            <NavLink to="/">
+            <NavLink className={`${styles.header_logo}`} to="/">
                 <Logo height={45} />
             </NavLink>
 

@@ -1,14 +1,30 @@
-import React from 'react'
-import styles from "./styles/Movies.module.css"
-import {Link} from "react-router-dom"
+import React from "react";
+import styles from "./styles/Movies.module.css";
+import { Link } from "react-router-dom";
 
-const MoviesButtons = ({id}) => {
-  return (
-    <div>
-        <Link className={`${styles.edit_button} button`} to = {`/movies/${id}/edit`}>Edit</Link>
-        <Link className={`${styles.delete_button} button`} to ={`/`}>Delete</Link>
-    </div>
-  )
-}
+const MoviesButtons = ({ id, title, setMovieToDelete }) => {
+    const handelDelete = () => {
+        setMovieToDelete({
+            id: id,
+            title: title,
+        });
+    };
+    return (
+        <div>
+            <Link
+                className={`${styles.edit_button} button`}
+                to={`/movies/${id}/edit`}
+            >
+                Edit
+            </Link>
+            <button
+                className={`${styles.delete_button} button`}
+                onClick={handelDelete}
+            >
+                Delete
+            </button>
+        </div>
+    );
+};
 
-export default MoviesButtons
+export default MoviesButtons;

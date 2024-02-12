@@ -156,7 +156,7 @@ const MovieEditForm = () => {
         // formData.append("manager_name", currentUser?.username);
 
         try {
-            console.log(formData);
+        
             await axiosReq.put(`/movies/${id}`, formData);
             history.push(`/movies/${id}`);
         } catch (err) {

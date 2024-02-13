@@ -146,4 +146,10 @@
     .movie_item_container:last-child {
         margin-bottom: 0;
     }
+
+    /* ---------------- */
+
+    .movies_delete_message h3 {
+        font-size: 18px;
+    }
 }

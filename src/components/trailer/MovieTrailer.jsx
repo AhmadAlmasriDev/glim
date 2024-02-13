@@ -17,7 +17,7 @@ const MovieTrailer = ({ trailer_link, title}) => {
     
 
     return (
-        <section className={`flex-container`}>
+        <section className={`${styles.main_container} flex-container`}>
             <div className={`${styles.slider_button_container}`}>
                 <SliderButton
                     on_click_function={mainPage ? handleBack : ()=>setShowTrailer(false)}
@@ -25,8 +25,8 @@ const MovieTrailer = ({ trailer_link, title}) => {
                 />
                 {/* <CloseButton on_click_function={setShowTrailer} /> */}
             </div>
-            <Container>
-                <div className="embed-responsive embed-responsive-16by9">
+            <Container className={`${styles.frame_container} `}>
+                <div className={`embed-responsive embed-responsive-16by9`}>
                     <iframe
                         className="embed-responsive-item"
                         src={trailer_link}

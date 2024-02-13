@@ -162,6 +162,15 @@
     margin-left: 24;
 }
 
-.avatar_container{
+.avatar_container {
     margin-bottom: 16px;
+}
+
+@media screen and (max-width: 480px) {
+    .header {
+        font-size: 32px;
+    }
+    .profile_edit_container {
+        padding: 0;
+    }
 }

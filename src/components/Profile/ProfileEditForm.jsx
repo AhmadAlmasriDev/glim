@@ -73,7 +73,7 @@ const ProfileEditForm = () => {
 
     return (
         <div className={`flex-container wrapper`}>
-            <Container>
+            <Container className={`${styles.profile_edit_container}`}>
                 <h1 className={`${styles.header}`}>Edit Profile</h1>
                 <Form onSubmit={handleSubmit}>
                     <Form.Row>

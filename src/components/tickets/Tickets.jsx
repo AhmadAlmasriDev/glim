@@ -233,14 +233,13 @@ const Tickets = () => {
     };
 
     return (
-        <article className={`flex-container wrapper`}>
+        <article className={`${styles.article_wrapper} flex-container wrapper`}>
             {currentBook?.day ? (
                 hasReserve ? (
                     <div>
                         <div
                             className={`${styles.reserve_main_container} v-flex-container`}
                         >
-                            {" "}
                             <div
                                 className={`${styles.reserve_close_button_container} flex-container`}
                             >

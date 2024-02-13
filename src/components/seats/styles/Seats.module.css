@@ -102,3 +102,27 @@
     height: 314px;
     margin: 32px 0;
 }
+
+@media screen and (max-width: 600px) {
+    .seats_container {
+        padding: 24px 0;
+        width: 90%;
+    }
+    .seat_item {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .seat_item {
+        padding: 8px;
+        font-size: 10px;
+    }
+    .seats_container {
+        padding: 0;
+    }
+    .seats_screen {
+        margin: 32px 0 -88px 0;
+    }
+}

@@ -1,3 +1,7 @@
+.article_wrapper {
+    padding: 64px 32px;
+}
+
 .content_main_container {
     max-width: 1400px;
     /* margin-top: 64px; */
@@ -148,4 +152,49 @@
 }
 .reserve_container p {
     margin-bottom: 32px;
+}
+
+@media screen and (max-width: 1028px) {
+    .content_main_container {
+        flex-direction: column;
+    }
+    .seat_section {
+        width: 100%;
+        margin-bottom: 46px;
+    }
+    .tickets_section {
+        width: 100%;
+    }
+    .main_order_container {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .article_wrapper {
+        padding: 32px 16px;
+    }
+    .tickets_movie_info_container {
+        flex-direction: column;
+    }
+    .tickets_movie_info {
+        margin-top: 16px;
+        align-items: center;
+        padding: 0;
+    }
+    .tickets_movie_info h4 {
+        font-size: 32px;
+    }
+    .tickets_movie_info h5 {
+        font-size: 18px;
+    }
+
+    .order_ticket {
+        flex-direction: column-reverse;
+        padding: 8px;
+    }
+    .ticket_seat_container {
+        align-items: center;
+        margin-bottom: 16px;
+    }
 }

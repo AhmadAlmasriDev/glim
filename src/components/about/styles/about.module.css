@@ -45,3 +45,20 @@
     margin: 0;
     /* margin-top: 24px; */
 }
+
+@media screen and (max-width: 1200px) {
+    .about_info_text_container {
+        padding: 24px;
+    }
+}
+@media screen and (max-width: 992px) {
+    .about_left_container {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .about_info_text_container {
+        padding: 24px 16px;
+    }
+}

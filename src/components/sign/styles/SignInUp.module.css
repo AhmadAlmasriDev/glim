@@ -1,11 +1,11 @@
-.main_container{
+.main_container {
     position: relative;
     align-items: stretch;
-    
+
     flex-grow: 1;
 }
 
-.back_ground_container{
+.back_ground_container {
     /* align-items: stretch;
     flex-grow: 1;
     overflow: hidden;
@@ -16,67 +16,77 @@
     align-items: stretch;
     flex-grow: 1;
     width: 50%;
-   
-    
 }
 
-.image_container{
+.image_container {
     position: absolute;
-    
+
     height: 100%;
-    
+
     align-items: stretch;
     flex-grow: 1;
     overflow: hidden;
 }
 
-.back_ground_image{
+.back_ground_image {
     object-fit: cover;
     width: 100%;
     flex: 0 0 auto;
 
-
-    
     /* flex: 0 0 auto; */
     /* width: 100%; */
     /* height: 100%; */
-    
-   
 }
 
-.form_container{
+.form_container {
     width: 50%;
-    
 }
 
-.logo{
-   margin-bottom: 32px;
+.logo {
+    margin-bottom: 32px;
 }
-.form{
-    width:320px; 
+.form {
+    max-width: 320px;
 }
-.form_header{
+.form_header {
     margin-bottom: 16px;
 }
 
-.form_input_container{
+.form_input_container {
     width: 100%;
     margin-top: 8px;
 }
-.form_button{
+.form_button {
     margin: 18px 0;
     width: 50%;
 }
-.link_container{
+.link_container {
     width: 100%;
     justify-content: flex-end;
 }
-.signup_link{
-    
+.signup_link {
     text-align: right;
     font-size: 14px;
-    color: #65646C;
+    color: #65646c;
 }
-.signup_link:hover{
-    color: #F1F1F1;
+.signup_link:hover {
+    color: #f1f1f1;
+}
+
+@media screen and (max-width: 768px) {
+    .back_ground_container {
+        display: none;
+    }
+    .form_container {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .form {
+        width: 90%;
+    }
+    .link_container {
+        justify-content: center;
+    }
 }

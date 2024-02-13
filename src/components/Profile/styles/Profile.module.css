@@ -82,7 +82,7 @@
 
 .left_info_container {
     align-items: flex-start;
-    margin-left: 16px;
+    /* margin-left: 16px; */
 }
 .right_info_container {
     align-items: center;
@@ -128,6 +128,10 @@
     margin-top: 16px;
     width: 150px;
 }
+.profile_buttons_container:last-child {
+    margin-bottom: 24px;
+}
+
 .profile_button_active {
     background-color: #cc0000;
 }
@@ -165,6 +169,99 @@
 .avatar_container {
     margin-bottom: 16px;
 }
+@media screen and (max-width: 1200px) {
+    .info_container {
+        flex-direction: column;
+    }
+    .right_info_container,
+    .left_info_container {
+        align-items: flex-start;
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .main_container {
+        flex-direction: column;
+    }
+    .profile_avatar_upper_container {
+        flex-direction: row;
+    }
+    .profile_main_container {
+        position: relative;
+        top: 0;
+
+        max-width: 100%;
+        margin-bottom: 24px;
+    }
+
+    .profile_edit_button_container {
+        justify-content: flex-start;
+    }
+
+    .profile_edit_button {
+        font-size: 14px;
+        padding: 2px 8px;
+        margin-bottom: -16px;
+    }
+    .info_main_container {
+        align-self: center;
+        margin-left: 16px;
+    }
+    .tickets_section {
+        margin-left: 0;
+    }
+    .profile_buttons_container {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+@media screen and (max-width: 768px) {
+    .main_container {
+        flex-direction: column;
+    }
+    .info_main_container {
+        align-self: center;
+        margin: 0;
+    }
+    .profile_avatar_upper_container {
+        flex-direction: column;
+    }
+    .profile_buttons_container {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .main_container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .ticket_container {
+        flex-direction: column;
+    }
+    .poster_container {
+        margin: 0;
+        margin-bottom: 24px;
+    }
+    .right_info_container,
+    .left_info_container {
+        align-items: center;
+        width: 100%;
+    }
+
+    .comment_container {
+        flex-direction: column;
+    }
+    .info_main_comment_container {
+        align-items: center;
+    }
+    .info_comment_container {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .info_comments_date {
+        margin: 0;
+    }
+}
 
 @media screen and (max-width: 480px) {
     .header {
@@ -172,5 +269,11 @@
     }
     .profile_edit_container {
         padding: 0;
+    }
+    .tickets_main_container {
+        padding: 0;
+    }
+    .profile_wrapper {
+        padding: 16px;
     }
 }

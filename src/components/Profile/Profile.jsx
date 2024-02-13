@@ -61,7 +61,7 @@ const Profile = () => {
     );
 
     return (
-        <article className={`flex-container wrapper`}>
+        <article className={`${styles.profile_wrapper} flex-container wrapper`}>
             {console.log(currentUser)}
             {hasLoaded ? (
                 userProfile?.is_owner ? (

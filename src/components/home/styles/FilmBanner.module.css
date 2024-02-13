@@ -41,6 +41,8 @@
     margin-top: 160px;
 }
 
+/* Responsiveness------------------------- */
+
 @media screen and (max-width: 768px) {
     .film_background {
         width: 100%;

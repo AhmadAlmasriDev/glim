@@ -1,5 +1,4 @@
 import React from "react";
-import Logo from "../Logo";
 import Map from "../map/Map";
 import styles from "./styles/about.module.css";
 
@@ -23,9 +22,6 @@ const About = () => {
                 <section
                     className={`${styles.about_info_container} v-flex-container`}
                 >
-                    {/* <div>
-                        <Logo height={100} />
-                    </div> */}
                     <div
                         className={`${styles.about_info_text_container} v-flex-container`}
                     >

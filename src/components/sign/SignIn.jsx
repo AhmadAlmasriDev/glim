@@ -3,7 +3,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import styles from "./styles/SignInUp.module.css";
 import Logo from "../Logo";
-import backImage from "../../assets/signBackGround.jpg";
+
 import DataContext from "../../context/DataContext";
 import axios from "axios";
 
@@ -113,7 +113,7 @@ const SignIn = () => {
                 <div className={`${styles.image_container} flex-container`}>
                     <img
                         className={`${styles.back_ground_image} flex-container`}
-                        src={backImage}
+                        src={`https://res.cloudinary.com/ahmad-mas/image/upload/v1707847168/media/images/signBackGround_xwxmvd.jpg`}
                         alt="Red cinema seats"
                     />
                 </div>

@@ -1,6 +1,7 @@
 .main_container {
     width: 100%;
 }
+
 .time_list {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -9,6 +10,7 @@
     justify-items: center;
     align-items: center;
 }
+
 .button_container {
     width: 50%;
     justify-content: flex-end;
@@ -19,9 +21,11 @@
     border-radius: 10px;
     padding: 8px 8px;
 }
+
 .buy_button {
     padding: 8px 16px;
 }
+
 .time_label {
     width: 50%;
     margin: 0;
@@ -33,20 +37,25 @@
     margin-bottom: 16px;
     text-align: center;
 }
+
 .not_in_message {
     text-align: center;
     color: #65646c;
 }
+
+/* Responsiveness------------------------- */
 
 @media screen and (max-width: 480px) {
     .time_list {
         grid-template-columns: repeat(4, 1fr);
         column-gap: 8px;
     }
+
     .button_container {
         flex-direction: column;
         justify-content: center;
     }
+
     .time_label {
         margin-bottom: 12px;
     }

@@ -4,6 +4,7 @@
     align-items: stretch;
     flex-grow: 1;
 }
+
 .carousel_container {
     position: absolute;
     scroll-behavior: smooth;
@@ -26,8 +27,6 @@
 .right_slider_button {
     position: absolute;
     z-index: 500;
-
-    /* top:calc(100vh / 2.5); */
     top: 375px;
 }
 
@@ -38,6 +37,8 @@
 .right_slider_button {
     right: 20px;
 }
+
+/* Responsiveness------------------------- */
 
 @media screen and (max-width: 768px) {
     .main_container {

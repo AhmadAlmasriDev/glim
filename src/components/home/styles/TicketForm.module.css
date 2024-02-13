@@ -37,3 +37,17 @@
     text-align: center;
     color: #65646c;
 }
+
+@media screen and (max-width: 480px) {
+    .time_list {
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 8px;
+    }
+    .button_container {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .time_label {
+        margin-bottom: 12px;
+    }
+}

@@ -4,8 +4,12 @@ import SideNavAvatar from "../side_nav/SideNavAvatar";
 import { NavLink } from "react-router-dom";
 
 const ProfileInfo = ({ profile, currentUser, infoToggle, setInfoToggle }) => {
+    /* 
+    Set info toggle to switch between tickets and comments
+    */
     const handleTicketsClick = () => setInfoToggle(true);
     const handleCommentsClick = () => setInfoToggle(false);
+
     return (
         <section
             className={`${styles.profile_main_container} v-flex-container`}

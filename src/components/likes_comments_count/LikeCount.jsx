@@ -8,12 +8,14 @@ import { axiosRes } from "../../api/axiosDefaults";
 const Like = ({ movies, setMovie, movie }) => {
     const { currentUser } = useContext(DataContext);
 
+    /* 
+    Like handle
+    */
     const handleLike = async () => {
         try {
             const { data } = await axiosRes.post("/likes/", {
                 movie: movie.id,
             });
-
             setMovie(
                 movies.map((currentMovie) => {
                     if (currentMovie.id === movie.id) {
@@ -32,6 +34,9 @@ const Like = ({ movies, setMovie, movie }) => {
         }
     };
 
+    /* 
+    Unlike handle
+    */
     const handleUnLike = async () => {
         try {
             const { data } = await axiosRes.delete(`/likes/${movie?.like_id}`);

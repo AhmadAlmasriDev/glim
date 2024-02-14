@@ -1,15 +1,12 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
-import DataContext from "../../context/DataContext";
+import React, { useState, useRef, useEffect } from "react";
 import { Form, Button, Alert, Col, Container, Image } from "react-bootstrap";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import styles from "./styles/Profile.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
-
 import Asset from "../asset/Asset";
 
 const ProfileEditForm = () => {
     const [errors, setErrors] = useState({});
-    const { currentUser } = useContext(DataContext);
     const avatarInput = useRef(null);
 
     const history = useHistory();
@@ -18,12 +15,13 @@ const ProfileEditForm = () => {
     const { name, email, avatar, about } = postData;
 
     const { id } = useParams();
-
+    /*
+    Fetch profile by id
+    */
     useEffect(() => {
         const fetchAll = async () => {
             try {
                 const { data } = await axiosReq.get(`/profiles/${id}`);
-
                 data?.is_owner ? setPostData(data) : history.push("/");
             } catch (err) {
                 console.log(err);
@@ -31,14 +29,18 @@ const ProfileEditForm = () => {
         };
         fetchAll();
     }, [history, id]);
-
+    /*
+    Change handle function
+    */
     const handleChange = (event) => {
         setPostData({
             ...postData,
             [event.target.name]: event.target.value,
         });
     };
-
+    /*
+    Change image handle function
+    */
     const handleChangeImage = (event) => {
         if (event.target.files.length) {
             URL.revokeObjectURL(avatar);
@@ -48,7 +50,9 @@ const ProfileEditForm = () => {
             });
         }
     };
-
+    /*
+    Submit handle function
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
@@ -60,7 +64,6 @@ const ProfileEditForm = () => {
         formData.append("about", about);
 
         try {
-            console.log(formData);
             await axiosReq.put(`/profiles/${id}`, formData);
             history.push(`/profiles/${id}`);
         } catch (err) {

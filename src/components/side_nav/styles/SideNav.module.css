@@ -1,7 +1,4 @@
-div.main-container {
-    position: relative;
-}
-div.blur {
+.blur {
     position: fixed;
     z-index: 1000;
     top: 0;
@@ -24,7 +21,6 @@ div.blur {
 .background_hide {
     position: absolute;
     z-index: 2000;
-    /* width: 0; */
     top: 0;
     left: -322px;
 }
@@ -44,7 +40,6 @@ div.blur {
     width: 25px;
     color: #f1f1f1;
     background-color: #393636;
-    /* background-color: #ff0000; */
     border-radius: 50%;
     font-size: 18px;
     text-align: center;
@@ -54,11 +49,12 @@ div.blur {
 .close_button:hover {
     background-color: #ff0000;
 }
+
 .side_menu {
-    /* padding: 18px 32px; */
     justify-content: left;
     align-items: center;
 }
+
 .side_nav_container {
     margin-top: 24px;
     width: 100%;
@@ -69,11 +65,9 @@ div.blur {
     font-size: 22px;
     border: solid 2px #221f1f;
     margin-right: 5px;
-    /* padding: 6px 8px; */
     border-radius: 50%;
     height: 35px;
     width: 35px;
-    /* transition: .5s ease; */
 }
 
 .media_link {
@@ -85,9 +79,8 @@ div.blur {
 .media_link:hover {
     color: #a0a0b1;
 }
+
 .media_link:hover .media_logo {
-    /* box-shadow: inset 0px 0px 12px #FF0000;
-    color: #393636; */
     color: #f1f1f1;
     border: solid 2px #ff0000;
 }
@@ -99,6 +92,7 @@ div.blur {
 .media_links_container {
     margin-top: 64px;
 }
+
 .media_links_container li {
     padding: 3px 16px;
 }
@@ -106,21 +100,26 @@ div.blur {
 .sign_icon {
     margin-right: 8px;
 }
+
 .avatar_container {
     width: unset;
 }
+
 .avatar_image {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 16px;
 }
+
 .avatar_name {
     font-size: 18px;
     margin: 0;
 }
+
 .avatar_memo {
     font-size: 12px;
 }
+
 .sign_out_link_container {
     flex-grow: 1;
     align-items: flex-end;
@@ -129,8 +128,8 @@ div.blur {
 
 .my_cabinet_link {
     margin-top: 8px;
-    /* margin: 24px 0 32px 0; */
 }
+
 .my_cabinet_link:hover {
     color: #f50000;
 }
@@ -143,7 +142,7 @@ div.blur {
     margin: 32px 0 24px 0;
 }
 
-/* ------------------- */
+/* Responsiveness------------------------- */
 
 @media screen and (max-width: 768px) {
     .background {
@@ -154,15 +153,12 @@ div.blur {
         justify-content: left;
         transition: 0.5s;
         overflow: auto;
-        /* display: none; */
     }
 
     .background_hide {
         position: absolute;
         z-index: 2000;
-        /* width: 0; */
         top: 0;
-
         left: -100%;
     }
 

@@ -1,10 +1,6 @@
-import React,{useContext} from "react";
 import styles from "./styles/TrailerButton.module.css";
-import DataContext from "../../context/DataContext";
 
-const TrailerButton = ({id, type, title, on_click_function }) => {
-    const {setShowTrailer} = useContext(DataContext)
-
+const TrailerButton = ({ id, type, title, on_click_function }) => {
     const handleType = (param) => {
         switch (param) {
             case 100:
@@ -27,7 +23,11 @@ const TrailerButton = ({id, type, title, on_click_function }) => {
             ) : (
                 <div className={`flex-container ${handleType(type)}`}>
                     <button
-                        onClick={id ? ()=>on_click_function(id) :()=>on_click_function(true)}
+                        onClick={
+                            id
+                                ? () => on_click_function(id)
+                                : () => on_click_function(true)
+                        }
                         className={`${styles.play_button} flex-container`}
                     >
                         <i

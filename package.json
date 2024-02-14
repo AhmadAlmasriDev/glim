@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3",
+    "dotenv": "^16.4.4",
     "msw": "^0.35.0"
   },
   "engines": {

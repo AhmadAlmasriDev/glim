@@ -2,7 +2,6 @@
     position: relative;
     padding: 64px;
     max-width: 1400px;
-    /* margin-top: 123px; */
     align-items: flex-start;
     align-self: flex-start;
 }
@@ -12,31 +11,26 @@
     top: 123px;
     padding: 32px;
     max-width: 300px;
-    /* min-height: 500px; */
     background-color: #2a2727;
     border-radius: 10px;
     justify-content: flex-start;
 }
 
 .profile_avatar_container {
-    /* width: 30%; */
     margin: 16px 16px 24px 16px;
-    /* justify-content: flex-start; */
 }
 
-/* .info_left_container, */
 .info_main_container,
 .user_name_main_container,
 .user_email_main_container,
 .user_about_main_container {
     align-items: flex-start;
-    /* margin-bottom: 16px; */
 }
 
 .info_main_container {
     align-self: flex-start;
-    /* padding: 16px 16px 16px 32px; */
 }
+
 .profile_header {
     margin: 0 0 6px 0;
     color: #65646c;
@@ -48,10 +42,9 @@
 .user_about {
     font-size: 18px;
     width: 100%;
-    /* margin: 0 0 0 16px; */
 }
 
-/* tickets section------------------ */
+/* Tickets section------------------ */
 
 .tickets_section {
     width: 100%;
@@ -74,42 +67,49 @@
     background-color: #2a2727;
     border-radius: 10px;
     margin-bottom: 24px;
-    /* align-items: flex-start; */
 }
+
 .poster_container {
     margin-right: 32px;
 }
 
 .left_info_container {
     align-items: flex-start;
-    /* margin-left: 16px; */
 }
+
 .right_info_container {
     align-items: center;
     margin: 0 16px;
 }
+
 .ticket_seat_info {
     background-color: #221f1f;
     padding: 16px;
     width: 170px;
     border-radius: 10px;
 }
+
 .info_film {
     font-size: 28px;
     margin-bottom: 12px;
 }
+
 .left_info_container p,
 .right_info_container p {
     font-size: 18px;
     margin-bottom: 8px;
 }
+
 .info_price {
     margin-left: 8px;
 }
+
 .ticket_message_container {
     align-items: center;
     justify-content: center;
 }
+
+/* Profile info section------------------ */
 
 .profile_edit_button_container {
     justify-content: flex-end;
@@ -120,14 +120,17 @@
     padding: 2px 8px;
     margin-bottom: -16px;
 }
+
 .profile_buttons_container {
     margin-top: 16px;
 }
+
 .profile_tickets_button,
 .profile_comments_button {
     margin-top: 16px;
     width: 150px;
 }
+
 .profile_buttons_container:last-child {
     margin-bottom: 24px;
 }
@@ -140,20 +143,27 @@
 .profile_comments_button :active {
     background-color: #cc0000;
 }
+
+/* Comments section------------------ */
+
 .info_main_comment_container {
     align-items: flex-start;
     align-self: flex-start;
 }
+
 .info_comment_container {
     justify-content: flex-start;
 }
+
 .info_comments_film {
     font-size: 24px;
 }
+
 .info_comments_date {
     margin: 0;
     margin-left: auto;
 }
+
 .info_comments_body {
     margin-top: 8px;
 }
@@ -169,14 +179,23 @@
 .avatar_container {
     margin-bottom: 16px;
 }
+
+/* Responsiveness------------------------- */
+
 @media screen and (max-width: 1200px) {
     .info_container {
         flex-direction: column;
     }
+
     .right_info_container,
     .left_info_container {
         align-items: flex-start;
         width: 60%;
+    }
+    .right_info_container,
+    .left_info_container {
+        align-items: center;
+        width: 100%;
     }
 }
 
@@ -184,9 +203,11 @@
     .main_container {
         flex-direction: column;
     }
+
     .profile_avatar_upper_container {
         flex-direction: row;
     }
+
     .profile_main_container {
         position: relative;
         top: 0;
@@ -204,13 +225,16 @@
         padding: 2px 8px;
         margin-bottom: -16px;
     }
+
     .info_main_container {
         align-self: center;
         margin-left: 16px;
     }
+
     .tickets_section {
         margin-left: 0;
     }
+
     .profile_buttons_container {
         flex-direction: row;
         justify-content: space-around;
@@ -220,44 +244,48 @@
     .main_container {
         flex-direction: column;
     }
+
     .info_main_container {
         align-self: center;
         margin: 0;
     }
+
     .profile_avatar_upper_container {
         flex-direction: column;
     }
+
     .profile_buttons_container {
         flex-direction: column;
         justify-content: space-around;
     }
+
     .main_container {
         padding-left: 0;
         padding-right: 0;
     }
+
     .ticket_container {
         flex-direction: column;
     }
+
     .poster_container {
         margin: 0;
         margin-bottom: 24px;
-    }
-    .right_info_container,
-    .left_info_container {
-        align-items: center;
-        width: 100%;
     }
 
     .comment_container {
         flex-direction: column;
     }
+
     .info_main_comment_container {
         align-items: center;
     }
+
     .info_comment_container {
         flex-direction: column;
         justify-content: center;
     }
+
     .info_comments_date {
         margin: 0;
     }
@@ -267,12 +295,15 @@
     .header {
         font-size: 32px;
     }
+
     .profile_edit_container {
         padding: 0;
     }
+
     .tickets_main_container {
         padding: 0;
     }
+
     .profile_wrapper {
         padding: 16px;
     }

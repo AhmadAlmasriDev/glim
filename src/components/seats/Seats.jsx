@@ -1,91 +1,26 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./styles/Seats.module.css";
 import Asset from "../asset/Asset";
-import DataContext from "../../context/DataContext";
 import SeatItem from "./SeatItem";
 import Moment from "moment";
 import useLocalStorage from "../../hooks/useLocalStorage";
-
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Seats = ({
     seatsPH,
-
     hasLoaded,
     setSeatToggle,
-    fetchTickets,
     seatInfo,
-
-    setCurrentTickets,
     currentShowDate,
     deleteTicket,
-    // resetTickets,
 }) => {
     const [currentBook, setCurrentBook] = useLocalStorage("currentBook", {});
     const [toDelTicketId, setToDelTicketId] = useState(null);
     const timerRef = useRef();
 
-    // useEffect(() => {
-    //     const initalizeTickets = async () => {
-    //         const data = await fetchTickets();
-    //         const iTickets = data.filter(
-    //             (item) => !item?.purchased & item?.is_owner
-    //         );
-    //         // console.log(iTickets);
-
-    //         const resTickets = iTickets.reduce(
-    //             (acc, ticket) => [
-    //                 ...acc,
-    //                 {
-    //                     // ticketId: ticket.id,
-    //                     seat: ticket.seat,
-    //                     purchased: false,
-    //                     reserve: true,
-    //                 },
-    //             ],
-    //             []
-    //         );
-
-    //         setCurrentTickets((prevCurrentTickets) => ({
-    //             ...prevCurrentTickets,
-    //             tickets: resTickets,
-    //         }));
-    //     };
-    //     initalizeTickets();
-    // }, []);
-
-    // const resetTickets = (seat) => {
-    //     setCurrentTickets((prevCurrentTickets) => ({
-    //         ...prevCurrentTickets,
-    //         tickets: prevCurrentTickets.tickets.filter(
-    //             (ticket) => ticket.seat === seat
-    //         ).length
-    //             ? [
-    //                   ...prevCurrentTickets.tickets.filter(
-    //                       (ticket) => ticket.seat != seat
-    //                   ),
-    //               ]
-    //             : [
-    //                   ...prevCurrentTickets.tickets,
-    //                   {
-    //                       seat: parseInt(seat),
-    //                       reserve: true,
-    //                       purchased: false,
-    //                   },
-    //               ],
-    //     }));
-    // };
-
-    // const deleteTicket = async (seat, ticketId) => {
-    //     try {
-    //         await axiosRes.delete(`/tickets/${ticketId}`);
-    //         setSeatToggle((prevSeatToggle) => !prevSeatToggle);
-    //         resetTickets(seat);
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // };
-
+    /*
+    Delete reserved ticket after interval
+    */
     useEffect(() => {
         const timer = () => {
             setTimeout(() => {
@@ -97,20 +32,24 @@ const Seats = ({
             };
         };
         toDelTicketId && timer();
-        // setToDelTicketId(null);
     }, [toDelTicketId]);
 
+    /*
+    Create a ticket with reserve true flag
+    */
     const createTicket = async (obj) => {
         try {
             const { data } = await axiosRes.post("/tickets/", obj);
             setSeatToggle((prevSeatToggle) => !prevSeatToggle);
-            console.log(data.id);
             setToDelTicketId(data.id);
         } catch (err) {
             console.log(err);
         }
     };
 
+    /*
+    Check the selected seat if reserved  by other user or purchased
+    */
     const checkSeat = (event) => {
         const currentSeat = seatsPH[event.target.value - 1];
         const currentTicketId = seatsPH[event.target.value - 1]?.id;
@@ -125,32 +64,19 @@ const Seats = ({
                 ),
             };
             createTicket(postObj);
-            console.log("ticket id: " + currentTicketId);
         } else if (currentSeat.reserve & currentSeat.is_owner)
             deleteTicket(currentTicketId);
     };
-
+    /*
+    Change handle function
+    */
     const handleChange = (event) => {
-        console.log("handlechange fired");
 
         try {
             checkSeat(event);
         } catch (err) {
             console.log(err);
         }
-
-        // checkTicket(event.target.value);
-
-        // const getResult = async () => {
-        //     const res = await test;
-        //     console.log(res);
-        // };
-        // getResult();
-
-        // setTicketData({
-        //     ...ticketData,
-        //     [event.target.name]: event.target.value,
-        // });
     };
 
     return (
@@ -170,7 +96,6 @@ const Seats = ({
                                 key={seatPH?.seat}
                                 price={currentBook?.price}
                                 seatInfo={seatInfo}
-                                // resetTickets={resetTickets}
                                 purchased={seatPH?.purchased}
                                 seat={seatPH?.seat}
                                 reserve={seatPH?.reserve}
@@ -186,9 +111,6 @@ const Seats = ({
                         <Asset spinner />
                     </div>
                 )}
-                {/* <div className={`flex-container`}>
-                    <button className={`button`}>Book your ticket</button>
-                </div> */}
             </form>
         </div>
     );

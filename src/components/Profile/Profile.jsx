@@ -1,9 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import DataContext from "../../context/DataContext";
-import SideNavAvatar from "../side_nav/SideNavAvatar";
 import styles from "./styles/Profile.module.css";
-import MoviePoster from "../movie_poster/MoviePoster";
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import { useParams } from "react-router";
 import ProfileTicket from "./ProfileTicket";
 import ProfileInfo from "./ProfileInfo";
@@ -23,7 +21,9 @@ const Profile = () => {
     const [movies, setMovies] = useState([]);
     const [userProfile, setUserProfile] = useState({});
     const [infoToggle, setInfoToggle] = useState(true);
-
+    /*
+    Fetch profiles, movies, tickets, comments
+    */
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -42,9 +42,6 @@ const Profile = () => {
                 setMovies(movies);
                 setUserTickets(tickets);
                 setUserComments(comments);
-
-                console.log(profile);
-
                 setHasLoaded(true);
             } catch (err) {
                 console.log(err);
@@ -53,7 +50,9 @@ const Profile = () => {
         setHasLoaded(false);
         fetchData();
     }, [id]);
-
+    /*
+    Dispaly message 
+    */
     const message = (message) => (
         <div className={`${styles.ticket_message_container} flex-container`}>
             <h3 className={`${styles.tickets_message}`}>{message}</h3>
@@ -62,7 +61,6 @@ const Profile = () => {
 
     return (
         <article className={`${styles.profile_wrapper} flex-container wrapper`}>
-            {console.log(currentUser)}
             {hasLoaded ? (
                 userProfile?.is_owner ? (
                     <div
@@ -86,7 +84,6 @@ const Profile = () => {
                             <div
                                 className={`${styles.tickets_main_container} v-flex-container`}
                             >
-                                {console.log(userTickets)}
                                 {infoToggle ? (
                                     userTickets.filter((item) => item.purchased)
                                         .length ? (

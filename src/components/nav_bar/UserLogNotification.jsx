@@ -6,7 +6,6 @@ import DataContext from "../../context/DataContext";
 
 const UserLogNotification = () => {
     const { currentUser } = useContext(DataContext);
-
     const loggedIn = (
         <NavLink
             to={`/profiles/${currentUser?.profile_id}`}
@@ -15,7 +14,6 @@ const UserLogNotification = () => {
             Hello, {currentUser?.username}
         </NavLink>
     );
-
     const loggedOut = (
         <NavLink to="/signin" className={`${styles.sign_in} `}>
             <i className={`${styles.sign_in_icon} fa-regular fa-user`}></i>Sign

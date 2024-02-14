@@ -1,24 +1,23 @@
-.main_container{
+.main_container {
     font-size: 24px;
 }
-.like{
+
+.like {
     justify-content: flex-start;
 }
 
-.comment{
+.comment {
     justify-content: flex-end;
 }
 
-.number{
-    margin: 0 0 0 12px ;
-    
-    
+.number {
+    margin: 0 0 0 12px;
 }
 
-.icon{
+.icon {
     cursor: pointer;
 }
 
-.icon:hover{
-    color: #F50000;
+.icon:hover {
+    color: #f50000;
 }

@@ -15,18 +15,20 @@ const SignIn = () => {
     });
 
     const [errors, setErrors] = useState({});
-
     const history = useHistory();
-
     const { username, password } = signInData;
-
+    /*
+    Change handle function
+    */
     const handleChange = (event) => {
         setSignInData({
             ...signInData,
             [event.target.name]: event.target.value,
         });
     };
-
+    /*
+    Submit handle function
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -35,11 +37,9 @@ const SignIn = () => {
                 signInData
             );
             setCurrentUser(data.user);
-            console.log(signInData);
             history.push("/");
         } catch (err) {
             setErrors(err.response?.data);
-            console.log(signInData);
         }
     };
 

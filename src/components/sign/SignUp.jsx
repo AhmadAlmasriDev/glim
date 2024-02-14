@@ -11,20 +11,21 @@ const SignUp = () => {
         password1: "",
         password2: "",
     });
-
     const [errors, setErrors] = useState({});
-
     const history = useHistory();
-
     const { username, password1, password2 } = signUpData;
-
+    /*
+    Change handle function
+    */
     const handleChange = (event) => {
         setSignUpData({
             ...signUpData,
             [event.target.name]: event.target.value,
         });
     };
-
+    /*
+    Submit handle function
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {

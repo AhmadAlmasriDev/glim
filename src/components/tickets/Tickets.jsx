@@ -30,82 +30,34 @@ const Tickets = () => {
         "MMMM/DD/YYYY"
     ).format("dddd");
 
-    // const [currentTickets, setCurrentTickets] = useState({
-    //     movie: currentBook?.id,
-    //     title: currentBook?.title,
-    //     show_time: currentBook?.show_time,
-    //     price: currentBook?.price,
-    //     tickets: [],
-    // });
-
-    // const delItemRefresh = async () => {
-    //     const data = await fetchTickets();
-    //     data?.filter((seat) => !seat?.purchased && seat?.is_owner).map((item) =>
-    //         deleteTicket(item?.id)
-    //     );
-    // };
+    /*
+    Delete expired tickets (reserved flag is true but 3 minutes passed)
+    */
 
     useEffect(() => {
         const delItemRefresh = async () => {
             const data = await fetchTickets();
-            data?.filter((seat) => !seat?.purchased && seat?.is_owner).map(
+            data?.filter((seat) => !seat?.purchased && seat?.expired).map(
                 (item) => deleteTicket(item?.id)
             );
         };
         delItemRefresh();
     }, []);
 
-    // useEffect(() => {
-    //     const handleUnload = async () => {
-    //         // event.preventDefault();
-    //         const data = await fetchTickets();
-    //         data?.filter((seat) => !seat?.purchased && seat?.is_owner)
-    //             // ?.filter((seat) => seat?.is_owner)
-    //             .map((item) => deleteTicket(item?.id));
-    //     };
-
-    //     window.addEventListener("unload", handleUnload);
-    //     return () => {
-    //         window.removeEventListener("unload", handleUnload);
-    //         // setCurrentBook({})
-    //     };
-    //     handleUnload();
-    // }, []);
-
+    /*
+    Delete tickets by id
+    */
     const deleteTicket = async (ticketId) => {
         try {
             await axiosRes.delete(`/tickets/${ticketId}`);
             setSeatToggle((prevSeatToggle) => !prevSeatToggle);
-            // resetTickets(seat);
         } catch (err) {
             console.log(err);
         }
     };
-
-    // const resetTickets = async (seat, ticketId) => {
-    //     console.log("resettickets id: " + ticketId);
-    //     setCurrentTickets((prevCurrentTickets) => ({
-    //         ...prevCurrentTickets,
-    //         tickets: prevCurrentTickets.tickets.filter(
-    //             (ticket) => ticket.seat === parseInt(seat)
-    //         ).length
-    //             ? [
-    //                   ...prevCurrentTickets.tickets.filter(
-    //                       (ticket) => ticket.seat != seat
-    //                   ),
-    //               ]
-    //             : [
-    //                   ...prevCurrentTickets.tickets,
-    //                   {
-    //                       ticketId: ticketId,
-    //                       seat: parseInt(seat),
-    //                       reserve: true,
-    //                       purchased: false,
-    //                   },
-    //               ],
-    //     }));
-    // };
-
+    /*
+    Generate seats place holders from tickets
+    */
     const generatePH = async () => {
         let seats_obj = [];
         const data = await fetchTickets();
@@ -139,10 +91,11 @@ const Tickets = () => {
             }
         }
         setSeatsPH(seats_obj);
-        console.log(seats_obj);
         setHasLoaded(true);
     };
-
+    /*
+    Fetch tickets from API by movie and date
+    */
     const fetchTickets = async () => {
         try {
             const { data } = await axiosReq.get(
@@ -154,7 +107,9 @@ const Tickets = () => {
             console.log(err);
         }
     };
-
+    /*
+    Initiate seats place holders generating and save it to state
+    */
     useEffect(() => {
         setHasLoaded(false);
 
@@ -164,27 +119,9 @@ const Tickets = () => {
             setSeatsPH([]);
         };
     }, [seatToggle]);
-
-    // const seatInfo = (currentSeat, currentPrice) => {
-    //     const rows = ["A", "B", "C", "D", "E", "F", "G"];
-    //     const seat_per_row = 12;
-    //     let row = rows[-Math.floor(currentSeat / -seat_per_row) - 1];
-    //     let number =
-    //         currentSeat -
-    //         seat_per_row * (-Math.floor(currentSeat / -seat_per_row) - 1);
-    //     let type = "Standard";
-    //     if (row === "G") {
-    //         type = "VIP";
-    //         currentPrice += 10;
-    //     }
-    //     return {
-    //         row: row,
-    //         number: number,
-    //         type: type,
-    //         price: currentPrice,
-    //     };
-    // };
-
+    /*
+    Calculate the tickets price sum
+    */
     const orderSum = (data) => {
         const sum = data?.length
             ? data
@@ -195,24 +132,17 @@ const Tickets = () => {
                       0
                   )
             : 0;
-
-        // const sum = seatsPH?.filter((item) => item.id).length
-        //     ? seatsPH
-        //           ?.filter((item) => item.id)
-        //           .reduce(
-        //               (acc, cv) =>
-        //                   acc + seatInfo(cv?.seat, currentBook?.price).price,
-        //               0
-        //           )
-        //     : 10000;
-
         setSum(sum);
     };
-
+    /*
+    Close handle function
+    */
     const handleClose = () => {
         history.push("/");
     };
-
+    /*
+    Update ticket purchased flag to true
+    */
     const ticketPurchase = async (ticketId) => {
         try {
             await axiosReq.patch(`/tickets/${ticketId}`, { purchased: true });
@@ -220,7 +150,9 @@ const Tickets = () => {
             console.log(err);
         }
     };
-
+    /*
+    Update ticket reserved flag to true and change setHasReserve to true
+    */
     const handleReserve = () => {
         if (
             seatsPH.filter((item) => !item?.purchased && item?.is_owner).length
@@ -294,18 +226,17 @@ const Tickets = () => {
                                     </h5>
                                 </div>
                             </div>
-                            <Seats
-                                // resetTickets={resetTickets}
-                                deleteTicket={deleteTicket}
-                                seatInfo={seatInfo}
-                                setSeatToggle={setSeatToggle}
-                                fetchTickets={fetchTickets}
-                                currentShowDate={currentShowDate}
-                                seatsPH={seatsPH}
-                                // currentTickets={currentTickets}
-                                // setCurrentTickets={setCurrentTickets}
-                                hasLoaded={hasLoaded}
-                            />
+                            {
+                                <Seats
+                                    deleteTicket={deleteTicket}
+                                    seatInfo={seatInfo}
+                                    setSeatToggle={setSeatToggle}
+                                    fetchTickets={fetchTickets}
+                                    currentShowDate={currentShowDate}
+                                    seatsPH={seatsPH}
+                                    hasLoaded={hasLoaded}
+                                />
+                            }
                         </section>
 
                         <section
@@ -324,7 +255,6 @@ const Tickets = () => {
                                     </h3>
                                     <div className={`${styles.main_order_sum}`}>
                                         <span>SUM:</span>
-                                        {/* <span>{hasLoaded ? orderSum() : sum}</span> */}
                                         <span>{sum}</span>
                                     </div>
                                 </div>
@@ -353,7 +283,6 @@ const Tickets = () => {
                                         <></>
                                     )}
                                 </div>
-                                {/* {console.log(currentTickets)} */}
                                 <div
                                     className={`${styles.payment_container} v-flex-container`}
                                 >
@@ -374,7 +303,6 @@ const Tickets = () => {
                 )
             ) : (
                 history.push("/")
-                // console.log("test")
             )}
         </article>
     );

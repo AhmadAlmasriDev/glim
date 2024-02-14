@@ -2,9 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "./styles/TicketForm.module.css";
 import Moment from "moment";
 import { Link, useHistory } from "react-router-dom";
-
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
-
 import DataContext from "../../context/DataContext";
 import TicketCalendar from "./TicketCalendar";
 import useLocalStorage from "../../hooks/useLocalStorage";
@@ -33,24 +31,30 @@ const TicketForm = ({
         day: "",
         month: "",
     });
-
     const history = useHistory();
 
+    /* 
+    Handle submit function
+    */
     const handleSubmit = (event) => {
         event.preventDefault();
         if (ticketData?.day) {
             const period = days(start_date, end_date);
-            console.log("before " + currentBook);
             setCurrentBook({ ...ticketData, period });
-            console.log("after " + currentBook);
             setHasSubmitted(true);
         }
     };
 
+    /* 
+    Redirect to tickets page when submitted
+    */
     useEffect(() => {
         hasSubmitted && history.push("/tickets");
     }, [hasSubmitted]);
 
+    /* 
+    Handle change function
+    */
     const handleChange = (event) => {
         setTicketData({
             ...ticketData,
@@ -59,13 +63,15 @@ const TicketForm = ({
         });
     };
 
+    /* 
+    Calculate the show dates and period
+    */
     const days = (start, end) => {
         const startD = Moment(start, "MM/DD/YYYY");
         const endD = Moment(end, "MM/DD/YYYY");
         const startD_month = Moment(start, "MM/DD/YYYY").format("MMMM");
         const endD_month = Moment(end, "MM/DD/YYYY").format("MMMM");
         const momentObj = Moment().format("MM/DD/YYYY");
-        // const currentDate = Moment("01/17/2024","MM/DD/YYYY")
         const currentDate = Moment(momentObj, "MM/DD/YYYY");
         const currentmonth = currentDate.format("MMMM");
 
@@ -80,8 +86,6 @@ const TicketForm = ({
             ) {
                 m.isSameOrAfter(currentDate) && date.push(m.format("DD"));
             }
-
-            // Moment(movie?.end_date,"MM/DD/YYYY").isSameOrAfter(currentDate)
             return [
                 {
                     month: startD_month,
@@ -105,7 +109,6 @@ const TicketForm = ({
                     m.isSameOrAfter(currentDate) && date2.push(m.format("DD"));
                 }
             }
-            // console.log(Moment(startD).isSameOrAfter(currentDate))
             return [
                 {
                     month: startD_month === currentmonth ? startD_month : null,
@@ -121,7 +124,6 @@ const TicketForm = ({
 
     return (
         <form className={`${styles.main_container}`}>
-            {console.log(days(start_date, end_date))}
             {days(start_date, end_date) ? (
                 <>
                     <div
@@ -165,7 +167,9 @@ const TicketForm = ({
                 </>
             ) : (
                 <div className={`flex-container`}>
-                    <h3 className={`${styles.not_in_message}`}>This movie is not currently in theatres</h3>
+                    <h3 className={`${styles.not_in_message}`}>
+                        This movie is not currently in theatres
+                    </h3>
                 </div>
             )}
         </form>

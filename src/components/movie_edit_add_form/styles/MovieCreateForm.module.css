@@ -1,36 +1,40 @@
-.cancel_button{
-    background-color: #65646C;
+.cancel_button {
+    background-color: #65646c;
     margin-left: 16px;
 }
-.cancel_button:hover{
-    background-color: #2A2727;
+
+.cancel_button:hover {
+    background-color: #2a2727;
 }
-.poster_main_container{
+
+.poster_main_container {
     margin-left: 32px;
 }
 
-.poster_container{
+.poster_container {
     width: 100%;
     margin-bottom: 32px;
-    
-    
 }
-.poster{
+
+.poster {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.header{
-   font-size: 32px; 
-   margin: 32px 0 24px 0;
+
+.header {
+    font-size: 32px;
+    margin: 32px 0 24px 0;
 }
 
-.buttons_container{
-margin-top: 16px;
+.buttons_container {
+    margin-top: 16px;
 }
+
+/* Responsiveness------------------------- */
 
 @media (max-width: 992px) {
-    .poster_main_container{
+    .poster_main_container {
         margin: 0;
         margin-top: 32px;
     }

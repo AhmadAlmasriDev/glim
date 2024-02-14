@@ -10,7 +10,6 @@ const SeatItem = ({
     is_owner,
     on_change_function,
     seatInfo,
-    // resetTickets,
 }) => {
     const seatdetails = seatInfo(seat, price);
     const grayed = (
@@ -20,7 +19,9 @@ const SeatItem = ({
             </div>
         </div>
     );
-
+    /*
+    Check if the seat is reserved purchased or not
+    */
     const seat_check = (checked) => (
         <div className={`${styles.seat_item}`}>
             <OverlayTrigger
@@ -51,13 +52,13 @@ const SeatItem = ({
                     className={`fa-solid fa-couch ${
                         checked ? styles.seat_icon_red : styles.seat_icon_white
                     }`}
-                    // className={`${
-                    //     reserve ? styles.seat_icon_red : styles.seat_icon_white
-                    // } fa-solid fa-couch`}
                 ></i>
             </label>
         </div>
     );
+    /*
+    return the seats color and functionality dipending on there state
+    */
     const seatlogic = () => {
         if (purchased) {
             return grayed;
@@ -71,18 +72,10 @@ const SeatItem = ({
             return seat_check(false);
         }
     };
+
     return (
         <li className={`${styles.seat_item_container}  flex-container`}>
-            {
-                seatlogic()
-                // purchased
-                //     ? grayed
-                //     : reserve
-                //     ? is_owner
-                //         ? seat_check(true)
-                //         : grayed
-                //     : seat_check(false)
-            }
+            {seatlogic()}
         </li>
     );
 };

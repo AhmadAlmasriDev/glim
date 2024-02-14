@@ -1,28 +1,15 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Moment from "moment";
-import DataContext from "../../context/DataContext";
-import {
-    Form,
-    Button,
-    Alert,
-    Col,
-    Row,
-    Container,
-    Image,
-} from "react-bootstrap";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Form, Button, Alert, Col, Container, Image } from "react-bootstrap";
+import { useHistory, useParams } from "react-router-dom";
 import styles from "./styles/MovieCreateForm.module.css";
-import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults";
-
 import Asset from "../asset/Asset";
 
 const MovieEditForm = () => {
     const [errors, setErrors] = useState({});
     const [ratings, setRatings] = useState([]);
-    const { currentUser } = useContext(DataContext);
     const posterInput = useRef(null);
-
     const history = useHistory();
 
     const years = () => {
@@ -34,30 +21,10 @@ const MovieEditForm = () => {
         return yearsArr;
     };
 
-    // const currentDate = Moment().format("YYYY-MM-DD");
-
-    const [postData, setPostData] = useState({
-        // title: "",
-        // trailer: "",
-        // manager: "",
-        // start_date: currentDate,
-        // end_date: currentDate,
-        // session_time: "00:00:00",
-        // rated: "",
-        // year: "",
-        // director: "",
-        // genre: "",
-        // distribution: "",
-        // actors: "",
-        // poster: "",
-        // discreption: "",
-        // price: "",
-        // status: "",
-    });
+    const [postData, setPostData] = useState({});
     const {
         title,
         trailer,
-
         start_date,
         end_date,
         session_time,
@@ -72,9 +39,11 @@ const MovieEditForm = () => {
         price,
         status,
     } = postData;
-
     const { id } = useParams();
 
+    /* 
+    Fetch film list and ratings 
+    */
     useEffect(() => {
         const fetchAll = async () => {
             try {
@@ -84,7 +53,6 @@ const MovieEditForm = () => {
                         axiosReq.get(`/movies/${id}`),
                     ]);
                 setRatings(ratings[0]?.service.ratings);
-
                 prev_data?.is_admin
                     ? setPostData({
                           ...prev_data,
@@ -96,33 +64,26 @@ const MovieEditForm = () => {
                           ),
                       })
                     : history.push("/");
-                // setPostData({test: "test"})
             } catch (err) {
                 console.log(err);
             }
         };
-        // const fetchRatings = async () => {
-        //     try {
-        //         const { data } = await axiosReq.get(`/movies/service`);
-        //         setRatings(data[0]?.service.ratings);
-
-        //     } catch (err) {
-        //         console.log(err);
-        //     }
-
-        // };
-
         fetchAll();
     }, [history, id]);
 
+    /* 
+    Change handle function
+    */
     const handleChange = (event) => {
         setPostData({
             ...postData,
             [event.target.name]: event.target.value,
         });
-        // console.log(postData)
     };
 
+    /* 
+    Change image handle function
+    */
     const handleChangeImage = (event) => {
         if (event.target.files.length) {
             URL.revokeObjectURL(poster);
@@ -133,6 +94,9 @@ const MovieEditForm = () => {
         }
     };
 
+    /* 
+    Submit function
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
@@ -153,10 +117,7 @@ const MovieEditForm = () => {
         formData.append("discreption", discreption);
         formData.append("price", price);
         formData.append("status", status);
-        // formData.append("manager_name", currentUser?.username);
-
         try {
-        
             await axiosReq.put(`/movies/${id}`, formData);
             history.push(`/movies/${id}`);
         } catch (err) {
@@ -169,7 +130,6 @@ const MovieEditForm = () => {
 
     return (
         <Container>
-            
             <h1 className={`${styles.header}`}>Edit a movie</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Row>
@@ -177,7 +137,7 @@ const MovieEditForm = () => {
                         <Form.Row>
                             <Col sm={12} md={6}>
                                 <Form.Group controlId="title">
-                                    <Form.Label>Title</Form.Label>
+                                    <Form.Label>Title*</Form.Label>
                                     <Form.Control
                                         type="text"
                                         value={title}
@@ -310,7 +270,7 @@ const MovieEditForm = () => {
                             </Col>
                             <Col xs={12} sm={4}>
                                 <Form.Group controlId="price">
-                                    <Form.Label>Price</Form.Label>
+                                    <Form.Label>Price*</Form.Label>
                                     <Form.Control
                                         type="number"
                                         min={1}

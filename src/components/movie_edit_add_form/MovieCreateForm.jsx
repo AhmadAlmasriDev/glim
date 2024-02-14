@@ -1,31 +1,20 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Moment from "moment";
-import DataContext from "../../context/DataContext";
-import {
-    Form,
-    Button,
-    Alert,
-    Col,
-    Row,
-    Container,
-    Image,
-} from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Form, Button, Alert, Col, Container, Image } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import styles from "./styles/MovieCreateForm.module.css";
-import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults";
-
 import Asset from "../asset/Asset";
 
 const MovieCreateForm = () => {
     const [errors, setErrors] = useState({});
     const [ratings, setRatings] = useState([]);
-    const {currentUser} = useContext(DataContext);
     const posterInput = useRef(null);
-    
     const history = useHistory();
 
-
+    /*
+    Generate years till current
+    */
     const years = () => {
         let yearsArr = [];
         let currentYear = new Date().getFullYear();
@@ -36,12 +25,10 @@ const MovieCreateForm = () => {
     };
 
     const currentDate = Moment().format("YYYY-MM-DD");
-
     const [postData, setPostData] = useState({
         title: "",
         trailer: "",
         manager: "",
-
         start_date: currentDate,
         end_date: currentDate,
         session_time: "00:00:00",
@@ -59,7 +46,6 @@ const MovieCreateForm = () => {
     const {
         title,
         trailer,
-
         start_date,
         end_date,
         session_time,
@@ -74,36 +60,36 @@ const MovieCreateForm = () => {
         price,
         status,
     } = postData;
-    
 
-
+    /*
+    Fetch ratings function
+    */
     useEffect(() => {
         const fetchRatings = async () => {
             try {
                 const { data } = await axiosReq.get(`/movies/service`);
                 setRatings(data[0]?.service.ratings);
-                
             } catch (err) {
                 console.log(err);
             }
-            
         };
 
-        
         fetchRatings();
-    }, []); 
+    }, []);
 
-
-
-
+    /*
+    Change handle function
+    */
     const handleChange = (event) => {
         setPostData({
             ...postData,
             [event.target.name]: event.target.value,
         });
-        // console.log(postData)
     };
 
+    /*
+    Change image handle function
+    */
     const handleChangeImage = (event) => {
         if (event.target.files.length) {
             URL.revokeObjectURL(poster);
@@ -114,10 +100,12 @@ const MovieCreateForm = () => {
         }
     };
 
+    /*
+    Submit handle function
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-
         formData.append("title", title);
         formData.append("trailer", trailer);
         formData.append("poster", posterInput.current.files[0]);
@@ -133,12 +121,9 @@ const MovieCreateForm = () => {
         formData.append("discreption", discreption);
         formData.append("price", price);
         formData.append("status", status);
-        // formData.append("manager_name", currentUser?.username);
 
         try {
-            console.log(formData);
             const { data } = await axiosReq.post("/movies/", formData);
-            console.log(data);
             history.push(`/movies/${data.id}`);
         } catch (err) {
             console.log(err);
@@ -157,7 +142,7 @@ const MovieCreateForm = () => {
                         <Form.Row>
                             <Col sm={12} md={6}>
                                 <Form.Group controlId="title">
-                                    <Form.Label>Title</Form.Label>
+                                    <Form.Label>Title*</Form.Label>
                                     <Form.Control
                                         type="text"
                                         value={title}
@@ -290,7 +275,7 @@ const MovieCreateForm = () => {
                             </Col>
                             <Col xs={12} sm={4}>
                                 <Form.Group controlId="price">
-                                    <Form.Label>Price</Form.Label>
+                                    <Form.Label>Price*</Form.Label>
                                     <Form.Control
                                         type="number"
                                         min={1}
@@ -446,7 +431,7 @@ const MovieCreateForm = () => {
                                 >
                                     <Asset
                                         upload={true}
-                                        message="Click or tap to upload an image"
+                                        message="Click or tap to upload an image*"
                                     />
                                 </Form.Label>
                             )}

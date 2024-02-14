@@ -3,12 +3,16 @@ import styles from "./styles/Movies.module.css";
 import { Link } from "react-router-dom";
 
 const MoviesButtons = ({ id, title, setMovieToDelete }) => {
+    /*
+    Delete handle function
+    */
     const handelDelete = () => {
         setMovieToDelete({
             id: id,
             title: title,
         });
     };
+
     return (
         <div>
             <Link

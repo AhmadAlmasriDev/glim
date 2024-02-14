@@ -17,6 +17,9 @@ const Movies = () => {
     const currentDate = Moment(momentObj, "MM/DD/YYYY");
     const [movieToDelete, setMovieToDelete] = useState(null);
 
+    /* 
+    Fetch movies list
+    */
     useEffect(() => {
         const fetchmovies = async () => {
             try {
@@ -31,11 +34,15 @@ const Movies = () => {
         setHasLoaded(false);
         fetchmovies();
     }, [currentUser]);
-
+    /* 
+    Close handle function
+    */
     const handleClose = () => {
         setMovieToDelete(null);
     };
-
+    /* 
+    Delete handle function
+    */
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/movies/${movieToDelete?.id}`);
@@ -50,7 +57,6 @@ const Movies = () => {
 
     const main = (
         <div className={`${styles.movies_wrapper} wrapper flex-container`}>
-            {console.log(movies)}
             {movieToDelete ? (
                 <div
                     className={`${styles.movies_delete_main_container} flex-container`}

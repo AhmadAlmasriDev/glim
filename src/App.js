@@ -7,13 +7,8 @@ import SignUp from "./components/sign/SignUp";
 import Movies from "./components/movies/Movies";
 import About from "./components/about/About";
 import MovieCreateForm from "./components/movie_edit_add_form/MovieCreateForm";
-
-import { useContext, useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { DataProvider } from "./context/DataContext";
-
-import { axiosReq, axiosRes } from "./api/axiosDefaults";
-
 import "./api/axiosDefaults";
 import MovieDetail from "./components/movie_details/MovieDetail";
 import Tickets from "./components/tickets/Tickets";

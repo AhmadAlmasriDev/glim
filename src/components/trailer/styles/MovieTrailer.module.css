@@ -1,20 +1,24 @@
 .slider_button_container {
     padding: 16px 0;
     justify-content: flex-start;
-    /* margin-right: -150px; */
     margin-left: 75px;
 }
+
 .frame_container {
     padding-right: 150px;
 }
+
+/* Responsiveness------------------------- */
 
 @media screen and (max-width: 1024px) {
     .frame_container {
         padding-right: 15px;
     }
+
     .main_container {
         flex-direction: column;
     }
+
     .slider_button_container {
         justify-content: center;
         margin-left: 0;

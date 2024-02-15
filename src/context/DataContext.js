@@ -25,16 +25,6 @@ export const DataProvider = ({ children }) => {
         } catch (err) {
             console.log(err);
         }
-        // try {
-        //     const [{ data: user }, { data: ratings }] = await Promise.all([
-        //       axiosReq.get(`/dj-rest-auth/user/`),
-        //       axiosReq.get(`/movies/service`),
-        //     ]);
-        //     setCurrentUser(user);
-        //     setRatings(ratings[0]?.service.ratings);
-        //   } catch (err) {
-        //     console.log(err);
-        //   }
     };
 
     useEffect(() => {

@@ -15,6 +15,7 @@ import Tickets from "./components/tickets/Tickets";
 import MovieEditForm from "./components/movie_edit_add_form/MovieEditForm";
 import Profile from "./components/Profile/Profile";
 import ProfileEditForm from "./components/Profile/ProfileEditForm";
+import NotFound from "./components/not_found/NotFound";
 
 function App() {
     return (
@@ -55,6 +56,7 @@ function App() {
                         path="/profiles/:id/edit"
                         render={() => <ProfileEditForm />}
                     />
+                    <Route render={() => <NotFound />} />
                 </Switch>
             </DataProvider>
         </div>

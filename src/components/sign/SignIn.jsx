@@ -6,6 +6,7 @@ import Logo from "../Logo";
 
 import DataContext from "../../context/DataContext";
 import axios from "axios";
+import { setTokenTimestamp } from "../../utils/utils";
 
 const SignIn = () => {
     const { setCurrentUser } = useContext(DataContext);
@@ -37,7 +38,8 @@ const SignIn = () => {
                 signInData
             );
             setCurrentUser(data.user);
-            history.push("/");
+            setTokenTimestamp(data);
+            history.goBack();
         } catch (err) {
             setErrors(err.response?.data);
         }

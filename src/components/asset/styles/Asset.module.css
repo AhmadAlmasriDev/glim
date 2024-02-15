@@ -6,12 +6,16 @@
     min-height: 120px;
 }
 
-.icon_container {
+.icon_container,
+.find_icon_container {
     border: solid 3px #f50000;
     background-color: #221f1f;
     border-radius: 5px;
     width: 100%;
     height: 300px;
+}
+
+.find_icon_container {
 }
 
 .icon {
@@ -33,5 +37,14 @@
 }
 
 .message {
+    text-align: center;
     font-size: 32px;
+}
+
+/* Responsiveness------------------------- */
+
+@media screen and (max-width: 480px) {
+    .message {
+        font-size: 24px;
+    }
 }

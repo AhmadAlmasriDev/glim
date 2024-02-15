@@ -9,6 +9,7 @@ import { useContext, useEffect } from "react";
 import DataContext from "../../context/DataContext";
 import axios from "axios";
 import CloseButton from "../CloseButton/CloseButton";
+import { removeTokenTimestamp } from "../../utils/utils";
 
 const SideNav = () => {
     const { viewSideNav, setViewSideNav, currentUser, setCurrentUser } =
@@ -20,6 +21,7 @@ const SideNav = () => {
         try {
             await axios.post("/dj-rest-auth/logout/");
             setCurrentUser(null);
+            removeTokenTimestamp();
         } catch (err) {
             console.log(err);
         }

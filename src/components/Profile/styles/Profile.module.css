@@ -138,8 +138,8 @@
     background-color: #cc0000;
 }
 
-.profile_tickets_button:active,
-.profile_comments_button :active {
+.profile_tickets_button:focus,
+.profile_comments_button:focus {
     background-color: #cc0000;
 }
 

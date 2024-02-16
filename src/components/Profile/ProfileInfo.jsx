@@ -14,14 +14,16 @@ const ProfileInfo = ({ profile, currentUser, infoToggle, setInfoToggle }) => {
         <section
             className={`${styles.profile_main_container} v-flex-container`}
         >
-            <NavLink
-                to={`/profiles/${currentUser?.profile_id}/edit`}
+            <div
                 className={`${styles.profile_edit_button_container} flex-container`}
             >
-                <button className={`${styles.profile_edit_button} button`}>
+                <NavLink
+                    className={`${styles.profile_edit_button} button`}
+                    to={`/profiles/${currentUser?.profile_id}/edit`}
+                >
                     Edit
-                </button>
-            </NavLink>
+                </NavLink>
+            </div>
             <div
                 className={`${styles.profile_avatar_upper_container} v-flex-container`}
             >

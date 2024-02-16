@@ -1,4 +1,3 @@
-import React, { useEffect, useState, useRef } from "react";
 import styles from "./styles/Seats.module.css";
 import Asset from "../asset/Asset";
 import SeatItem from "./SeatItem";
@@ -15,24 +14,6 @@ const Seats = ({
     deleteTicket,
 }) => {
     const [currentBook, setCurrentBook] = useLocalStorage("currentBook", {});
-    const [toDelTicketId, setToDelTicketId] = useState(null);
-    const timerRef = useRef();
-
-    /*
-    Delete reserved ticket after interval
-    */
-    useEffect(() => {
-        const timer = () => {
-            setTimeout(() => {
-                deleteTicket(toDelTicketId);
-            }, 2 * 60 * 1000); // This will delete the ticket after 2 min
-
-            return () => {
-                clearTimeout(timerRef.current);
-            };
-        };
-        toDelTicketId && timer();
-    }, [toDelTicketId]);
 
     /*
     Create a ticket with reserve true flag
@@ -41,7 +22,6 @@ const Seats = ({
         try {
             const { data } = await axiosRes.post("/tickets/", obj);
             setSeatToggle((prevSeatToggle) => !prevSeatToggle);
-            setToDelTicketId(data.id);
         } catch (err) {
             console.log(err);
         }
@@ -71,7 +51,6 @@ const Seats = ({
     Change handle function
     */
     const handleChange = (event) => {
-
         try {
             checkSeat(event);
         } catch (err) {

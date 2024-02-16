@@ -187,7 +187,7 @@ const Tickets = () => {
                                     to={`/profiles/${currentUser?.profile_id}`}
                                     className={`button`}
                                 >
-                                    Check Teckits
+                                    Check Tickets
                                 </NavLink>
                             </div>
                         </div>

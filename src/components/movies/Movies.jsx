@@ -125,6 +125,7 @@ const Movies = () => {
                                             >
                                                 <MoviePoster
                                                     key={idx}
+                                                    width={240}
                                                     title={movie?.title}
                                                     shade={true}
                                                     poster={movie?.poster}

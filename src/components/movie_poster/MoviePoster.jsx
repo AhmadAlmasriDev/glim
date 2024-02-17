@@ -1,6 +1,7 @@
 import React from "react";
 import TrailerButton from "../home/TrailerButton";
 import styles from "./styles/MoviePoster.module.css";
+import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 
 const MoviePoster = ({
     title,
@@ -19,11 +20,15 @@ const MoviePoster = ({
                         className={`${styles.poster_shade} image-container`}
                     ></div>
                 )}
-                <img
-                    className={`image`}
-                    src={poster}
-                    alt={`${title} movie poster`}
-                />
+                <CloudinaryContext cloudName="ahmad-mas">
+                    <Image
+                        className={`image`}
+                        alt={`${title} movie poster`}
+                        publicId={poster.substr(53)}
+                    >
+                        <Transformation width={width} crop="limit" />
+                    </Image>
+                </CloudinaryContext>
             </div>
             <TrailerButton
                 on_click_function={on_click_function}

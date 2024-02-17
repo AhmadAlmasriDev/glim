@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import SideNavAvatar from "../side_nav/SideNavAvatar";
-import { NavLink } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "./styles/MovieDetail.module.css";
 

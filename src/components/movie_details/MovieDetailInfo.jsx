@@ -3,6 +3,7 @@ import styles from "./styles/MovieDetail.module.css";
 import MovieDetailInfoItem from "./MovieDetailInfoItem";
 
 const MovieDetailInfo = ({
+    all_ratings,
     rated,
     year,
     director,
@@ -13,14 +14,12 @@ const MovieDetailInfo = ({
     end_date,
     discreption,
 }) => {
-    const RATING = ["G", "PG", "PG-13", "NC-17", "R"];
-
     return (
         <div>
             <ul className={`${styles.info_container}`}>
                 <MovieDetailInfoItem
                     itemName={"Rated"}
-                    itemValue={RATING[rated]}
+                    itemValue={all_ratings[rated]}
                 />
                 <MovieDetailInfoItem itemName={"Year"} itemValue={year} />
                 <MovieDetailInfoItem
@@ -42,32 +41,6 @@ const MovieDetailInfo = ({
                 <p className={`${styles.movie_discreption}`}>{discreption}</p>
             </div>
         </div>
-        // <div>
-        //     <ul>
-        //         {infoData?.map((item) => {
-        //             switch (item[0]) {
-        //                 case "Show period":
-        //                     <MovieDetailInfoItem
-        //                         itemName={"Show period"}
-        //                         itemValue={`${item[1]} - ${item[2]}`}
-        //                     />;
-        //                     break;
-        //                 case "discreption":
-        //                     break;
-        //                 default:
-        //                     <MovieDetailInfoItem
-        //                         itemName={item[0]}
-        //                         itemValue={item[1]}
-        //                     />;
-        //             }
-        //         })}
-        //     </ul>
-        //     <div>
-        //         <p className={`${styles.movie_discreption}`}>
-        //             {infoData.pop()[1]}
-        //         </p>
-        //     </div>
-        // </div>
     );
 };
 

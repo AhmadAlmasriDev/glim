@@ -5,7 +5,9 @@ import styles from "./styles/MovieDetail.module.css";
 
 const MovieDetailComment = ({ comment, setComments, setCurrentMovie }) => {
     const [delConfirm, setDelConfirm] = useState(false);
-
+    /*
+    Delete handle function
+    */
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/comments/${comment?.id}`);

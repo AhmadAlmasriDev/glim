@@ -13,7 +13,10 @@ const MoviePoster = ({
     on_click_function,
 }) => {
     return (
-        <div className={`v-flex-container`} style={{ width: width }}>
+        <div
+            className={`v-flex-container`}
+            style={{ width: width ? width : "unset" }}
+        >
             <div className={`${styles.image_container} image-container`}>
                 {shade && (
                     <div

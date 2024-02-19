@@ -12,6 +12,9 @@ const MovieEditForm = () => {
     const posterInput = useRef(null);
     const history = useHistory();
 
+    /*
+    Return all the years from 1980 till now
+    */
     const years = () => {
         let yearsArr = [];
         let currentYear = new Date().getFullYear();

@@ -17,6 +17,9 @@ const MovieDetailcommentForm = ({
         setContent(event.target.value);
     };
 
+    /*
+    Submit handle function
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {

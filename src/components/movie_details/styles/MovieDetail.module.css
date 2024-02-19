@@ -9,12 +9,14 @@
 }
 
 /* poster section ----------------------------------- */
+
 .poster_section {
     position: sticky;
     top: 123px;
 }
 
 /* Info section ----------------------------------- */
+
 .movie_title_container {
     justify-content: flex-start;
 }
@@ -56,6 +58,7 @@
     font-size: 18px;
     margin-bottom: 64px;
 }
+
 /* comment section ----------------------------------- */
 
 .comments_main_container {
@@ -145,7 +148,6 @@
     padding: 16px;
     background-color: #65646c;
     border-radius: 10px;
-
     margin-bottom: 16px;
 }
 
@@ -201,7 +203,6 @@
 .tickets_main_container {
     width: 350px;
     border-radius: 10px;
-
     background-color: #2a2727;
 }
 
@@ -217,6 +218,7 @@
         align-items: center;
         justify-content: flex-start;
     }
+
     .tickets_section {
         position: relative;
         top: 0;
@@ -229,41 +231,47 @@
         flex-direction: column;
         align-items: center;
     }
+
     .poster_section {
         position: relative;
         top: 0;
         margin-bottom: 32px;
     }
+}
+@media screen and (max-width: 480px) {
+    .info_name {
+        min-width: 120px;
+    }
 
-    @media screen and (max-width: 480px) {
-        .info_name {
-            min-width: 120px;
-        }
-        .movie_title_container {
-            flex-direction: column-reverse;
-            justify-content: center;
-        }
-        .info_main_container {
-            padding: 0;
-        }
-        .movie_title {
-            font-size: 32px;
-        }
-        .tickets_main_container {
-            width: 250px;
-        }
+    .movie_title_container {
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
 
-        .movie_discreption {
-            font-size: 16px;
-        }
-        .comment_container {
-            flex-direction: column;
-            align-items: center;
-        }
-        .comment_text_container,
-        .comment_text_main_container {
-            margin-top: 12px;
-            padding: 0;
-        }
+    .info_main_container {
+        padding: 0;
+    }
+
+    .movie_title {
+        font-size: 32px;
+    }
+
+    .tickets_main_container {
+        width: 250px;
+    }
+
+    .movie_discreption {
+        font-size: 16px;
+    }
+
+    .comment_container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .comment_text_container,
+    .comment_text_main_container {
+        margin-top: 12px;
+        padding: 0;
     }
 }

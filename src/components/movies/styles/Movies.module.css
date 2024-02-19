@@ -36,7 +36,9 @@
 .movies_add_button:hover {
     background-color: #65646c;
 }
-
+.delete_button {
+    line-height: 1;
+}
 .edit_button {
     margin-right: 16px;
     background-color: #a0a0b1cc;

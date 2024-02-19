@@ -36,12 +36,20 @@ const MovieDetailComment = ({ comment, setComments, setCurrentMovie }) => {
                 <h4 className={`${styles.comment_confirm_text}`}>
                     Delete this comment!
                 </h4>
-                <button
-                    className={`${styles.comment_delete_button} button`}
-                    onClick={handleDelete}
-                >
-                    Confirm
-                </button>
+                <div className={`flex-container`}>
+                    <button
+                        className={`${styles.comment_delete_button} button`}
+                        onClick={handleDelete}
+                    >
+                        Confirm
+                    </button>
+                    <button
+                        className={`${styles.comment_cancel_button} button`}
+                        onClick={() => setDelConfirm(false)}
+                    >
+                        Cancel
+                    </button>
+                </div>
             </div>
         </div>
     ) : (

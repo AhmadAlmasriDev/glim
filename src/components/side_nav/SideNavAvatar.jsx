@@ -25,13 +25,6 @@ const SideNavAvatar = ({
                     <Transformation width={width} crop="limit" />
                 </Image>
             </CloudinaryContext>
-            {/* <img
-                src={profile_avatar ? profile_avatar : user?.profile_avatar}
-                width={width}
-                height={width}
-                className={`${styles.avatar_image}`}
-                alt="User Avatar"
-            /> */}
             {show_name && (
                 <h3 className={`${styles.avatar_name}`}>
                     {greating && "Hello,"}

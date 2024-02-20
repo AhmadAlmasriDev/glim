@@ -14,7 +14,11 @@ const ProfileTicket = ({ currentMovie, seat, date }) => {
                 to={`/movies/${currentMovie?.id}`}
                 className={`${styles.poster_container}`}
             >
-                <MoviePoster poster={currentMovie?.poster} width={100} />
+                <MoviePoster
+                    poster={currentMovie?.poster}
+                    width={100}
+                    shade={true}
+                />
             </Link>
             <div className={`${styles.info_container} flex-container`}>
                 <div

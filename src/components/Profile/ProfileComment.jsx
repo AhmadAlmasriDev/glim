@@ -10,7 +10,11 @@ const ProfileComment = ({ currentMovie, comment }) => {
                 to={`/movies/${currentMovie?.id}`}
                 className={`${styles.poster_container}`}
             >
-                <MoviePoster poster={currentMovie?.poster} width={100} />
+                <MoviePoster
+                    poster={currentMovie?.poster}
+                    width={100}
+                    shade={true}
+                />
             </Link>
             <div
                 className={`${styles.info_main_comment_container} v-flex-container`}

@@ -1,7 +1,5 @@
 import { createContext, useState, useEffect, useMemo } from "react";
-
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
-
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "../api/axiosDefaults";

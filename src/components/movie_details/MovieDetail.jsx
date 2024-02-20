@@ -13,6 +13,7 @@ import MovieDetailcommentForm from "./MovieDetailcommentForm";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import TicketForm from "../home/TicketForm";
+import { useLocation } from "react-router-dom";
 
 const MovieDetail = () => {
     const { id } = useParams();
@@ -22,6 +23,15 @@ const MovieDetail = () => {
     const [comments, setComments] = useState({ results: [] });
     const { currentUser, showTrailer, setShowTrailer } =
         useContext(DataContext);
+    const location = useLocation();
+
+    /*
+    Set the shorTrailer state to false when rout changes 
+    */
+    useEffect(() => {
+        setShowTrailer(false);
+    }, [location]);
+
     /*
     Fetch the movies list, comments, and rating categories  
     */

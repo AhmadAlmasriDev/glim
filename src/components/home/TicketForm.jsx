@@ -111,7 +111,7 @@ const TicketForm = ({
             }
             return [
                 {
-                    month: startD_month === currentmonth ? startD_month : null,
+                    month: startD_month,
                     days: date1,
                 },
                 {

@@ -11,9 +11,9 @@ const FilmBanner = ({ movies, setMovies, currentMovie }) => {
     const { setMainPage, setShowTrailer } = useContext(DataContext);
     const history = useHistory();
     const handlTrailer = (id) => {
-        history.push(`/movies/${id}`);
         setMainPage(true);
         setShowTrailer(true);
+        history.push(`/movies/${id}`, { prevPath: "/" });
     };
 
     return (

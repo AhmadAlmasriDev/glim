@@ -13,6 +13,7 @@ import MovieDetailcommentForm from "./MovieDetailcommentForm";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import TicketForm from "../home/TicketForm";
+import { useHistory } from "react-router-dom";
 
 const MovieDetail = () => {
     const { id } = useParams();
@@ -22,7 +23,17 @@ const MovieDetail = () => {
     const [comments, setComments] = useState({ results: [] });
     const { currentUser, showTrailer, setShowTrailer } =
         useContext(DataContext);
+    const history = useHistory();
 
+    /*
+    Check if previous page is "/" and set trailer triger  
+    */
+    useEffect(() => {
+        console.log(history?.location?.state?.prevPath);
+        if (history?.location?.state?.prevPath != "/") {
+            setShowTrailer(false);
+        }
+    }, [history]);
     /*
     Fetch the movies list, comments, and rating categories  
     */

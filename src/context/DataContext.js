@@ -14,6 +14,7 @@ export const DataProvider = ({ children }) => {
     const [currentBook, setCurrentBook] = useState({});
     const [showTrailer, setShowTrailer] = useState(false);
     const [mainPage, setMainPage] = useState(false);
+
     const handleToggleSideBar = () => setViewSideNav(!viewSideNav);
 
     const handleMount = async () => {

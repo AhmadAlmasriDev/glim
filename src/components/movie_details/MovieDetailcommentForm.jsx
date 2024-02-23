@@ -90,7 +90,7 @@ const MovieDetailcommentForm = ({
             <p className={`${styles.comment_form_header} `}>
                 Please login to comment
             </p>
-            <Link className={`button`} to="/login">
+            <Link className={`button`} to="/signin">
                 Login
             </Link>
         </div>

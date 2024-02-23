@@ -46,7 +46,7 @@ All CSS files were passed through the W3C validator and no errors were flagged.
 
 ### JS Validation
 
-Code errors and issues were detected using the Prettier plugin in GitPod, and immediately fixed throughout development.
+Code errors and issues were detected using ESlint in GitPod, and immediately fixed throughout development.
 
 ### Lighthouse
 
@@ -286,62 +286,61 @@ Google Chrome on Windows, Edge
 
 `Home Page`
 
-| Feature                                 | Expected Outcome                                                       | Testing Performed     | Result                                              | Pass/Fail |
-| --------------------------------------- | ---------------------------------------------------------------------- | --------------------- | --------------------------------------------------- | --------- | --- |
-| **NAVBAR**                              |                                                                        |                       |                                                     |           |
-|                                         |                                                                        |                       |                                                     |           |
-| Logo link                               | When clicked you are redirected to the home page                       | Clicked Logo          | Redirected to home page                             | Pass      |
-| Bar menu button                         | When clicked side navmenu appears                                      | Clicked button        | Side navmenu appeared                               | Pass      |
-| Sign-in link                            | When clicked you are redirected to the sign-in page                    | Clicked link          | Redirected to sign-in page                          | Pass      |
-| Sign-in link                            | When hover user icon turns red                                         | Hover over the link   | User icon turned red                                | Pass      |
-| Hello user link                         | When clicked you are redirected to the profile page                    | Clicked link          | Redirected to profile page                          | Pass      |
-| Hello user link                         | When hover message turns red                                           | Hover over the link   | Message turned red                                  | Pass      |
-| **SIDE NAVMENU**                        |                                                                        |                       |                                                     |           |
-|                                         |                                                                        |                       |                                                     |           |
-| Logo link                               | When clicked you are redirected to the home page                       | Clicked Logo          | Redirected to home page                             | Pass      |
-| Sign-in button                          | When clicked you are redirected to the sign-in page                    | Clicked button        | Redirected to sign-in page                          | Pass      |
-| Sign-in button                          | When hover button color become dark                                    | Hover over the button | Button color became dark                            | Pass      |
-| Home link                               | When clicked you are redirected to the home page                       | Clicked the link      | Redirected to home page                             | Pass      | --> |
-| Home link hover                         | When hover back ground highlights                                      | Hover over the link   | Background highlighted                              | Pass      |
-| About link                              | When clicked you are redirected to the About page                      | Clicked the link      | Redirected to About page                            | Pass      |
-| About link hover                        | When hover back ground highlights                                      | Hover over the link   | Background highlighted                              | Pass      |
-| Social media link                       | When clicked you are redirected to the corresponding social media page | Clicked the link      | Redirected to the corresponding social media page   | Pass      |
-| Social media link hover                 | When hover a red circle appears around social media logo               | Hover over the link   | A red circle appeared around social media logo      | Pass      |
-| My cabinet link (registered user)       | When clicked you are redirected to the profile page                    | Clicked the link      | Redirected to profile page                          | Pass      |
-| My cabinet link (registered user) hover | When hover text color become red                                       | Hover over the link   | Text color became red                               | Pass      |
-| Sign out button (registered user)       | When clicked the user logs out and redirected to the home page         | Clicked button        | The user logged out and redirected to the home page | Pass      |
-| Sign out button (registered user)       | When hover button color becomes dark                                   | Hover over the button | Button color became dark                            | Pass      |
-| User's avatar (registered user)         | When sign in avatar appears in the side navmenu                        | signed in             | Avatar appeared in the side navmenu                 | Pass      |
-| My cabinet link (registered user)       | When sign in my cabinet link appears in the side navmenu               | signed in             | My cabinet link appeared in the side navmenu        | Pass      |
-| Sign out button (registered user)       | When sign in Sign out button appears in the side navmenu               | signed in             | Sign out button appeared in the side navmenu        | Pass      |
-| Close button                            | When clicked the side navmenu closes                                   | Clicked button        | The side navmenu closed                             | Pass      |
-| Close button                            | When hover button color becomes red                                    | Hover over the button | Button color became red                             | Pass      |
-
-| **MOVIES CAROUSEL** | | | | |
-| | | | | |
-| Carousel slider left | When clicked the slider shift one position to the left| Clicked menu | The slider shifted one position to the left| Pass|
-| Carousel slider right | When clicked the slider shift one position to the right| Clicked menu | The slider shifted one position to the right| Pass|
-| Movie banner | When hover info appears| Hovered movie banner | Info appeared| Pass|
-| Like button hover (registered user)| When hover heart color become red | Hover over the button | Heart color became red | Pass|
-| Like button hover (unregistered user)| When hover log in message appears | Hover over the button | Log in message appeared | Pass|
-| Like button hover (manager)| When hover not allowed message appears | Hover over the button | Not allowed message appeared | Pass|
-| Like button (unregistered user)| When clicked disabled | Clicked the button | Button disabled | Pass|
-| Like button (registered user)| When clicked heart changes to solid and the the like counter increases by one and movie is liked | Clicked the button | Heart changed to solid and the the like counter increased by one and movie was liked | Pass|
-| Like button (manager)| When clicked disabled | Clicked the button | Button disabled | Pass|
-| Comments button hover | When hover icon color becomes red | Hover over the button | Icon color became red | Pass|
-| Comments button| When clicked redirects the user to the movie page | Clicked the button | Redirected the user to the movie page | Pass|
-| Watch trailer button hover | When hover button color becomes red | Hover over the button | Button color became red | Pass|
-| Watch trailer button| When clicked redirects the user to the movie trailer page | Clicked the button | Redirected the user to the movie trailer page | Pass|
-| Watch trailer button hover | When hover button color becomes red | Hover over the button | Button color became red | Pass|
-| Watch trailer button| When clicked redirects the user to the movie trailer page | Clicked the button | Redirected the user to the movie trailer page | Pass|
-| Buy a ticket button hover | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Buy a ticket button hover (unregistered user) | When hover button color becomes darker and log in message appears | Hover over the button | Button color became darker and log in message appeared| Pass|
-| Buy a ticket button (unregistered user) | When clicked redirects the user to sign-in page | Clicked the button | Redirected the user to the sign-in page | Pass|
-| Buy a ticket button (registered user and date button clicked) | When clicked redirects the tickets page | Clicked the button | Redirected the user to the tickets page | Pass|
-| Date button hover | When hover button color becomes dark gray | Hover over the button | Button color became dark gray | Pass|
-| Date button| When clicked button color becomes red | Clicked the button | Button color becomes red | Pass|
-| Movie title button hover | When hover curser changes to pointer | Hover over the button | Curser changed to a pointer | Pass|
-| Movie title button| When clicked redirects the user to the movie page | Clicked the button | Redirected the user to the movie page | Pass|
+| Feature                                                       | Expected Outcome                                                                                 | Testing Performed     | Result                                                                               | Pass/Fail |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | --------------------- | ------------------------------------------------------------------------------------ | --------- |
+| **NAVBAR**                                                    |                                                                                                  |                       |                                                                                      |           |
+|                                                               |                                                                                                  |                       |                                                                                      |           |
+| Logo link                                                     | When clicked you are redirected to the home page                                                 | Clicked Logo          | Redirected to home page                                                              | Pass      |
+| Bar menu button                                               | When clicked side navmenu appears                                                                | Clicked button        | Side navmenu appeared                                                                | Pass      |
+| Sign-in link                                                  | When clicked you are redirected to the sign-in page                                              | Clicked link          | Redirected to sign-in page                                                           | Pass      |
+| Sign-in link                                                  | When hover user icon turns red                                                                   | Hover over the link   | User icon turned red                                                                 | Pass      |
+| Hello user link                                               | When clicked you are redirected to the profile page                                              | Clicked link          | Redirected to profile page                                                           | Pass      |
+| Hello user link                                               | When hover message turns red                                                                     | Hover over the link   | Message turned red                                                                   | Pass      |
+| **SIDENAVMENU**                                               |                                                                                                  |                       |                                                                                      |           |
+|                                                               |                                                                                                  |                       |                                                                                      |           |
+| Logo link                                                     | When clicked you are redirected to the home page                                                 | Clicked Logo          | Redirected to home page                                                              | Pass      |
+| Sign-in button                                                | When clicked you are redirected to the sign-in page                                              | Clicked button        | Redirected to sign-in page                                                           | Pass      |
+| Sign-in button                                                | When hover button color become dark                                                              | Hover over the button | Button color became dark                                                             | Pass      |
+| Home link                                                     | When clicked you are redirected to the home page                                                 | Clicked the link      | Redirected to home page                                                              | Pass      | --> |
+| Home link hover                                               | When hover back ground highlights                                                                | Hover over the link   | Background highlighted                                                               | Pass      |
+| About link                                                    | When clicked you are redirected to the About page                                                | Clicked the link      | Redirected to About page                                                             | Pass      |
+| About link hover                                              | When hover back ground highlights                                                                | Hover over the link   | Background highlighted                                                               | Pass      |
+| Social media link                                             | When clicked you are redirected to the corresponding social media page                           | Clicked the link      | Redirected to the corresponding social media page                                    | Pass      |
+| Social media link hover                                       | When hover a red circle appears around social media logo                                         | Hover over the link   | A red circle appeared around social media logo                                       | Pass      |
+| My cabinet link (registered user)                             | When clicked you are redirected to the profile page                                              | Clicked the link      | Redirected to profile page                                                           | Pass      |
+| My cabinet link (registered user) hover                       | When hover text color become red                                                                 | Hover over the link   | Text color became red                                                                | Pass      |
+| Sign out button (registered user)                             | When clicked the user logs out and redirected to the home page                                   | Clicked button        | The user logged out and redirected to the home page                                  | Pass      |
+| Sign out button (registered user)                             | When hover button color becomes dark                                                             | Hover over the button | Button color became dark                                                             | Pass      |
+| User's avatar (registered user)                               | When sign in avatar appears in the side navmenu                                                  | signed in             | Avatar appeared in the side navmenu                                                  | Pass      |
+| My cabinet link (registered user)                             | When sign in my cabinet link appears in the side navmenu                                         | signed in             | My cabinet link appeared in the side navmenu                                         | Pass      |
+| Sign out button (registered user)                             | When sign in Sign out button appears in the side navmenu                                         | signed in             | Sign out button appeared in the side navmenu                                         | Pass      |
+| Close button                                                  | When clicked the side navmenu closes                                                             | Clicked button        | The side navmenu closed                                                              | Pass      |
+| Close button                                                  | When hover button color becomes red                                                              | Hover over the button | Button color became red                                                              | Pass      |
+| **MOVIES CAROUSEL**                                           |                                                                                                  |                       |                                                                                      |           |
+|                                                               |                                                                                                  |                       |                                                                                      |           |
+| Carousel slider left                                          | When clicked the slider shift one position to the left                                           | Clicked menu          | The slider shifted one position to the left                                          | Pass      |
+| Carousel slider right                                         | When clicked the slider shift one position to the right                                          | Clicked menu          | The slider shifted one position to the right                                         | Pass      |
+| Movie banner                                                  | When hover info appears                                                                          | Hovered movie banner  | Info appeared                                                                        | Pass      |
+| Like button hover (registered user)                           | When hover heart color become red                                                                | Hover over the button | Heart color became red                                                               | Pass      |
+| Like button hover (unregistered user)                         | When hover log in message appears                                                                | Hover over the button | Log in message appeared                                                              | Pass      |
+| Like button hover (manager)                                   | When hover not allowed message appears                                                           | Hover over the button | Not allowed message appeared                                                         | Pass      |
+| Like button (unregistered user)                               | When clicked disabled                                                                            | Clicked the button    | Button disabled                                                                      | Pass      |
+| Like button (registered user)                                 | When clicked heart changes to solid and the the like counter increases by one and movie is liked | Clicked the button    | Heart changed to solid and the the like counter increased by one and movie was liked | Pass      |
+| Like button (manager)                                         | When clicked disabled                                                                            | Clicked the button    | Button disabled                                                                      | Pass      |
+| Comments button hover                                         | When hover icon color becomes red                                                                | Hover over the button | Icon color became red                                                                | Pass      |
+| Comments button                                               | When clicked redirects the user to the movie page                                                | Clicked the button    | Redirected the user to the movie page                                                | Pass      |
+| Watch trailer button hover                                    | When hover button color becomes red                                                              | Hover over the button | Button color became red                                                              | Pass      |
+| Watch trailer button                                          | When clicked redirects the user to the movie trailer page                                        | Clicked the button    | Redirected the user to the movie trailer page                                        | Pass      |
+| Watch trailer button hover                                    | When hover button color becomes red                                                              | Hover over the button | Button color became red                                                              | Pass      |
+| Watch trailer button                                          | When clicked redirects the user to the movie trailer page                                        | Clicked the button    | Redirected the user to the movie trailer page                                        | Pass      |
+| Buy a ticket button hover                                     | When hover button color becomes darker                                                           | Hover over the button | Button color became darker                                                           | Pass      |
+| Buy a ticket button hover (unregistered user)                 | When hover button color becomes darker and log in message appears                                | Hover over the button | Button color became darker and log in message appeared                               | Pass      |
+| Buy a ticket button (unregistered user)                       | When clicked redirects the user to sign-in page                                                  | Clicked the button    | Redirected the user to the sign-in page                                              | Pass      |
+| Buy a ticket button (registered user and date button clicked) | When clicked redirects the tickets page                                                          | Clicked the button    | Redirected the user to the tickets page                                              | Pass      |
+| Date button hover                                             | When hover button color becomes dark gray                                                        | Hover over the button | Button color became dark gray                                                        | Pass      |
+| Date button                                                   | When clicked button color becomes red                                                            | Clicked the button    | Button color becomes red                                                             | Pass      |
+| Movie title button hover                                      | When hover curser changes to pointer                                                             | Hover over the button | Curser changed to a pointer                                                          | Pass      |
+| Movie title button                                            | When clicked redirects the user to the movie page                                                | Clicked the button    | Redirected the user to the movie page                                                | Pass      |
 
 <br>
 
@@ -359,14 +358,12 @@ Google Chrome on Windows, Edge
 | Edit button (manager)         | When clicked redirects the user to the movie edit form page   | Clicked the button    | Redirected the user to the movie edit form page | Pass      |
 | Delete button (manager) hover | When hover button color becomes darker                        | Hover over the button | Button color became darker                      | Pass      |
 | Delete button (manager)       | When clicked a confirmation modal appears with the movie name | Clicked the button    | A Confirmation modal appeared                   | Pass      |
-
-| **CONFIRMATION MODAL** | | | | |
-| | | | | |
-
-| Close button (manager) hover | When hover button color becomes red | Hover over the button | Button color became red | Pass|
-| Close button (manager)| When clicked the confirmation modal disappears | Clicked the button | The Confirmation modal disappeared | Pass|
-| Delete button (manager) hover | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Delete button (manager)| When clicked the Movie is deleted from DB | Clicked the button | The Movie is deleted from DB | Pass|
+| **CONFIRMATION MODAL**        |                                                               |                       |                                                 |           |
+|                               |                                                               |                       |                                                 |           |
+| Close button (manager) hover  | When hover button color becomes red                           | Hover over the button | Button color became red                         | Pass      |
+| Close button (manager)        | When clicked the confirmation modal disappears                | Clicked the button    | The Confirmation modal disappeared              | Pass      |
+| Delete button (manager) hover | When hover button color becomes darker                        | Hover over the button | Button color became darker                      | Pass      |
+| Delete button (manager)       | When clicked the Movie is deleted from DB                     | Clicked the button    | The Movie is deleted from DB                    | Pass      |
 
 <br>
 
@@ -395,165 +392,144 @@ Google Chrome on Windows, Edge
 | My tickets button (registered user and tickets not active)       | When clicked the user tickets appears                     | Clicked the button    | The user tickets appeared                     | Pass      |
 | My comments button (registered user and comments active)         | When clicked nothing happens                              | Clicked the button    | Nothing happened                              | Pass      |
 | My comments button (registered user and comments not active)     | When clicked the user comments appears                    | Clicked the button    | The user comments appeared                    | Pass      |
-
-| **TICKETS** | | | | |
-| | | | | |
-| Movie poster button (registered user) hover| When hover the poster image become darker| Hover over the button | The poster image become darker | Pass|
-| Movie poster button (registered user)| When clicked redirects the user to the movie page | Clicked the button | Redirected the user to the movie page | Pass|
-
-| **COMMENTS** | | | | |
-| | | | | |
-| Movie poster button (registered user) hover| When hover the poster image become darker| Hover over the button| The poster image become darker | Pass|
-| Movie poster button (registered user)| When clicked redirects the user to the movie page | Clicked the button | Redirected the user to the movie page | Pass|
+| **TICKETS**                                                      |                                                           |                       |                                               |           |
+|                                                                  |                                                           |                       |                                               |           |
+| Movie poster button (registered user) hover                      | When hover the poster image become darker                 | Hover over the button | The poster image become darker                | Pass      |
+| Movie poster button (registered user)                            | When clicked redirects the user to the movie page         | Clicked the button    | Redirected the user to the movie page         | Pass      |
+| **COMMENTS**                                                     |                                                           |                       |                                               |           |
+|                                                                  |                                                           |                       |                                               |           |
+| Movie poster button (registered user) hover                      | When hover the poster image become darker                 | Hover over the button | The poster image become darker                | Pass      |
+| Movie poster button (registered user)                            | When clicked redirects the user to the movie page         | Clicked the button    | Redirected the user to the movie page         | Pass      |
 
 <br>
 
 `Movie Page`
 
-| Feature                               | Expected Outcome                                                                                 | Testing Performed     | Result                                                                               | Pass/Fail |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------ | --------------------- | ------------------------------------------------------------------------------------ | --------- |
-| **INFO**                              |                                                                                                  |                       |                                                                                      |           |
-|                                       |                                                                                                  |                       |                                                                                      |           |
-| Watch trailer button hover            | When hover the button color becomes red                                                          | Hover over the button | the button color becomes red                                                         | Pass      |
-| Watch trailer button                  | When clicked redirects the user to the movie trailer page                                        | Clicked the button    | Redirected the user to the movie trailer page                                        | Pass      |
-| Like button hover (registered user)   | When hover heart color become red                                                                | Hover over the button | Heart color became red                                                               | Pass      |
-| Like button hover (unregistered user) | When hover log in message appears                                                                | Hover over the button | Log in message appeared                                                              | Pass      |
-| Like button hover (manager)           | When hover not allowed message appears                                                           | Hover over the button | Not allowed message appeared                                                         | Pass      |
-| Like button (unregistered user)       | When clicked disabled                                                                            | Clicked the button    | Button disabled                                                                      | Pass      |
-| Like button (registered user)         | When clicked heart changes to solid and the the like counter increases by one and movie is liked | Clicked the button    | Heart changed to solid and the the like counter increased by one and movie was liked | Pass      |
-
-| **CALENDAR** | | | | |
-| | | | | |
-| Buy a ticket button hover | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Buy a ticket button hover (unregistered user) | When hover button color becomes darker and log in message appears | Hover over the button | Button color became darker and log in message appeared| Pass|
-| Buy a ticket button (unregistered user) | When clicked redirects the user to sign-in page | Clicked the button | Redirected the user to the sign-in page | Pass|
-| Buy a ticket button (registered user and date button clicked) | When clicked redirects the tickets page | Clicked the button | Redirected the user to the tickets page | Pass|
-| Date button hover | When hover button color becomes dark gray | Hover over the button | Button color became dark gray | Pass|
-| Date button| When clicked button color becomes red | Clicked the button | Button color becomes red | Pass|
-
-| **COMMENTS** | | | | |
-| | | | | |
-| Login button hover | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Login button (unregistered user)| When clicked redirects the user to the Sign-in page | Clicked the button | Redirected the user to the Sign-in page | Pass|
-| Login button (registered user and empty comment)| When clicked nothing happens | Clicked the button | Nothing happened | Pass|
-| Login button (registered user and comment and previous comment validated )| When clicked submits comment and disables the button and wait approval message appears | Clicked the button | Comment submitted and the button is disabled and wait approval message appeared | Pass|
-| Login button (registered user and previous comment not validated )| When clicked button disabled | Clicked the button | Button disabled| Pass|
-| Page scroll down | When scroll down (end of page) next 10 comments downloads | Page scrolled down | next 10 comments downloaded | Pass|
-| Delete button hover (User is owner) | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Delete button (User is owner) | When clicked a confirmation modal appears | Clicked the button | A confirmation modal appeared | Pass|
-
-| **CONFIRMATION MODAL** | | | | |
-| | | | | |
-| Confirm button hover (User is owner) | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Confirm button (User is owner) | When clicked the comment is deleted from the DB | Clicked the button | The comment is deleted from the DB | Pass|
-| Cancel button hover (User is owner) | When hover button color becomes red | Hover over the button | Button color became red | Pass|
-| Cancel button (User is owner) | When clicked the Modal disappears | Clicked the button | The Modal disappeared | Pass|
+| Feature                                                                    | Expected Outcome                                                                                 | Testing Performed     | Result                                                                               | Pass/Fail |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | --------------------- | ------------------------------------------------------------------------------------ | --------- |
+| **INFO**                                                                   |                                                                                                  |                       |                                                                                      |           |
+|                                                                            |                                                                                                  |                       |                                                                                      |           |
+| Watch trailer button hover                                                 | When hover the button color becomes red                                                          | Hover over the button | the button color becomes red                                                         | Pass      |
+| Watch trailer button                                                       | When clicked redirects the user to the movie trailer page                                        | Clicked the button    | Redirected the user to the movie trailer page                                        | Pass      |
+| Like button hover (registered user)                                        | When hover heart color become red                                                                | Hover over the button | Heart color became red                                                               | Pass      |
+| Like button hover (unregistered user)                                      | When hover log in message appears                                                                | Hover over the button | Log in message appeared                                                              | Pass      |
+| Like button hover (manager)                                                | When hover not allowed message appears                                                           | Hover over the button | Not allowed message appeared                                                         | Pass      |
+| Like button (unregistered user)                                            | When clicked disabled                                                                            | Clicked the button    | Button disabled                                                                      | Pass      |
+| Like button (registered user)                                              | When clicked heart changes to solid and the the like counter increases by one and movie is liked | Clicked the button    | Heart changed to solid and the the like counter increased by one and movie was liked | Pass      |
+| **CALENDAR**                                                               |                                                                                                  |                       |                                                                                      |           |
+|                                                                            |                                                                                                  |                       |                                                                                      |           |
+| Buy a ticket button hover                                                  | When hover button color becomes darker                                                           | Hover over the button | Button color became darker                                                           | Pass      |
+| Buy a ticket button hover (unregistered user)                              | When hover button color becomes darker and log in message appears                                | Hover over the button | Button color became darker and log in message appeared                               | Pass      |
+| Buy a ticket button (unregistered user)                                    | When clicked redirects the user to sign-in page                                                  | Clicked the button    | Redirected the user to the sign-in page                                              | Pass      |
+| Buy a ticket button (registered user and date button clicked)              | When clicked redirects the tickets page                                                          | Clicked the button    | Redirected the user to the tickets page                                              | Pass      |
+| Date button hover                                                          | When hover button color becomes dark gray                                                        | Hover over the button | Button color became dark gray                                                        | Pass      |
+| Date button                                                                | When clicked button color becomes red                                                            | Clicked the button    | Button color becomes red                                                             | Pass      |
+| **COMMENTS**                                                               |                                                                                                  |                       |                                                                                      |           |
+|                                                                            |                                                                                                  |                       |                                                                                      |           |
+| Login button hover                                                         | When hover button color becomes darker                                                           | Hover over the button | Button color became darker                                                           | Pass      |
+| Login button (unregistered user)                                           | When clicked redirects the user to the Sign-in page                                              | Clicked the button    | Redirected the user to the Sign-in page                                              | Pass      |
+| Login button (registered user and empty comment)                           | When clicked nothing happens                                                                     | Clicked the button    | Nothing happened                                                                     | Pass      |
+| Login button (registered user and comment and previous comment validated ) | When clicked submits comment and disables the button and wait approval message appears           | Clicked the button    | Comment submitted and the button is disabled and wait approval message appeared      | Pass      |
+| Login button (registered user and previous comment not validated )         | When clicked button disabled                                                                     | Clicked the button    | Button disabled                                                                      | Pass      |
+| Page scroll down                                                           | When scroll down (end of page) next 10 comments downloads                                        | Page scrolled down    | next 10 comments downloaded                                                          | Pass      |
+| Delete button hover (User is owner)                                        | When hover button color becomes darker                                                           | Hover over the button | Button color became darker                                                           | Pass      |
+| Delete button (User is owner)                                              | When clicked a confirmation modal appears                                                        | Clicked the button    | A confirmation modal appeared                                                        | Pass      |
+| **CONFIRMATION MODAL**                                                     |                                                                                                  |                       |                                                                                      |           |
+|                                                                            |                                                                                                  |                       |                                                                                      |           |
+| Confirm button hover (User is owner)                                       | When hover button color becomes darker                                                           | Hover over the button | Button color became darker                                                           | Pass      |
+| Confirm button (User is owner)                                             | When clicked the comment is deleted from the DB                                                  | Clicked the button    | The comment is deleted from the DB                                                   | Pass      |
+| Cancel button hover (User is owner)                                        | When hover button color becomes red                                                              | Hover over the button | Button color became red                                                              | Pass      |
+| Cancel button (User is owner)                                              | When clicked the Modal disappears                                                                | Clicked the button    | The Modal disappeared                                                                | Pass      |
 
 <br>
 
 `Tickets Page`
 
-| Feature                                                                             | Expected Outcome                                                              | Testing Performed       | Result                                                           | Pass/Fail |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------- | --------- |
-| **SEATS**                                                                           |                                                                               |                         |                                                                  |           |
-|                                                                                     |                                                                               |                         |                                                                  |           |
-| Seat button hover (Registered user and seat not purchased and not reserved)         | When hovered a seat info bubble message appears on top of the button          | Hovered over the button | a seat info bubble message appears on top of the button          | Pass      |
-| Seat button hover(Registered user and ( seat purchased or reserved by other user) ) | When hovered nothing happens                                                  | Hovered over the button | Nothing happened                                                 | Pass      |
-| Seat button (Registered user and seat not purchased and not reserved)               | When Clicked the button becomes red and a ticket appears in the tickets panel | Clicked the button      | The button became red and a ticket appeared in the tickets panel | Pass      |
+| Feature                                                                             | Expected Outcome                                                                     | Testing Performed       | Result                                                                  | Pass/Fail |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ----------------------- | ----------------------------------------------------------------------- | --------- |
+| **SEATS**                                                                           |                                                                                      |                         |                                                                         |           |
+|                                                                                     |                                                                                      |                         |                                                                         |           |
+| Seat button hover (Registered user and seat not purchased and not reserved)         | When hovered a seat info bubble message appears on top of the button                 | Hovered over the button | a seat info bubble message appears on top of the button                 | Pass      |
+| Seat button hover(Registered user and ( seat purchased or reserved by other user) ) | When hovered nothing happens                                                         | Hovered over the button | Nothing happened                                                        | Pass      |
+| Seat button (Registered user and seat not purchased and not reserved)               | When Clicked the button becomes red and a ticket appears in the tickets panel        | Clicked the button      | The button became red and a ticket appeared in the tickets panel        | Pass      |
+| Seat button (Registered user and reserved by the user)                              | When Clicked the button becomes white and a ticket disappears from the tickets panel | Clicked the button      | The button became white and a ticket disappeared from the tickets panel | Pass      |
+| Seat button (Registered user and purchased)                                         | When Clicked the button is disabled icon color is dark gray                          | Clicked the button      | The button is disabled icon color is dark gray                          | Pass      |
+| Seat button (Registered user and reserved and expired(more than 3 minutes))         | When Clicked button is enabled icon color is white                                   | Clicked the button      | button is enabled icon color is white                                   | Pass      |
+| **TICKETS**                                                                         |                                                                                      |                         |                                                                         |           |
+|                                                                                     |                                                                                      |                         |                                                                         |           |
+| Ticket                                                                              | When Added the sum updates                                                           | Ticket added            | the sum updated                                                         | Pass      |
+| Ticket                                                                              | When deleted the sum updates                                                         | Ticket deleted          | the sum updated                                                         | Pass      |
+| Reserve button hover (Registered user)                                              | When hover button color becomes darker                                               | Hover over the button   | Button color became darker                                              | Pass      |
+| Reserve button (Registered user)                                                    | When clicked a confirmation modal appears                                            | Clicked the button      | A confirmation modal appears                                            | Pass      |
+| **CONFIRMATION MODAL**                                                              |                                                                                      |                         |                                                                         |           |
+|                                                                                     |                                                                                      |                         |                                                                         |           |
+| Cancel button hover                                                                 | When hover button color becomes red                                                  | Hover over the button   | Button color became red                                                 | Pass      |
+| Cancel button                                                                       | When clicked redirects the user to the home page                                     | Clicked the button      | The user is redirected to the home page                                 | Pass      |
+| Check tickets button hover                                                          | When hover button color becomes darker                                               | Hover over the button   | Button color became darker                                              | Pass      |
+| Check tickets button                                                                | When clicked redirects the user to the profile page                                  | Clicked the button      | The user is redirected to the profile page                              | Pass      |
 
-| Seat button (Registered user and reserved by the user)| When Clicked the button becomes white and a ticket disappears from the tickets panel | Clicked the button | The button became white and a ticket disappeared from the tickets panel | Pass|
-| Seat button (Registered user and purchased)| When Clicked the button is disabled icon color is dark gray | Clicked the button | The button is disabled icon color is dark gray | Pass|
-| Seat button (Registered user and reserved and expired(more than 3 minutes))| When Clicked button is enabled icon color is white | Clicked the button | button is enabled icon color is white | Pass|
-| **TICKETS** | | | | |
-| | | | | |
-| Ticket| When Added the sum updates | Ticket added | the sum updated | Pass|
-| Ticket| When deleted the sum updates | Ticket deleted | the sum updated | Pass|
-
-| Reserve button hover (Registered user) | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Reserve button (Registered user) | When clicked a confirmation modal appears | Clicked the button | A confirmation modal appears | Pass|
-| **CONFIRMATION MODAL** | | | | |
-| | | | | |
-| Cancel button hover | When hover button color becomes red | Hover over the button | Button color became red | Pass|
-| Cancel button | When clicked redirects the user to the home page | Clicked the button | The user is redirected to the home page | Pass|
-| Check tickets button hover | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Check tickets button | When clicked redirects the user to the profile page | Clicked the button | The user is redirected to the profile page | Pass|
 <br>
 
 `Edit Profile Form Page`
 
-| Feature                                    | Expected Outcome                         | Testing Performed     | Result                       | Pass/Fail |
-| ------------------------------------------ | ---------------------------------------- | --------------------- | ---------------------------- | --------- |
-| **FORM**                                   |                                          |                       |                              |           |
-|                                            |                                          |                       |                              |           |
-| Change the image button hover              | When hover button color becomes darker   | Hover over the button | Button color became darker   | Pass      |
-| Change the image button                    | When clicked a file browser window opens | Clicked the button    | A file browser window opened | Pass      |
-| Change the image button (image is chosen ) | When clicked the avatar image changes    | Clicked the button    | The avatar image changed     | Pass      |
-
-| Input elements | When text typed input text updates | Typed text | input text updated | Pass|
-
-| Cancel button hover | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Cancel button | When clicked a redirects the user back to the profile page | Clicked the button | The user is redirected back to the profile page | Pass|
-
-| Save button hover | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Save button | When clicked the form submits and redirects the user back to the profile page | Clicked the button | The form is submitted and the user is redirected back to the profile page | Pass|
+| Feature                                    | Expected Outcome                                                              | Testing Performed     | Result                                                                    | Pass/Fail |
+| ------------------------------------------ | ----------------------------------------------------------------------------- | --------------------- | ------------------------------------------------------------------------- | --------- |
+| **FORM**                                   |                                                                               |                       |                                                                           |           |
+|                                            |                                                                               |                       |                                                                           |           |
+| Change the image button hover              | When hover button color becomes darker                                        | Hover over the button | Button color became darker                                                | Pass      |
+| Change the image button                    | When clicked a file browser window opens                                      | Clicked the button    | A file browser window opened                                              | Pass      |
+| Change the image button (image is chosen ) | When clicked the avatar image changes                                         | Clicked the button    | The avatar image changed                                                  | Pass      |
+| Input elements                             | When text typed input text updates                                            | Typed text            | input text updated                                                        | Pass      |
+| Cancel button hover                        | When hover button color becomes darker                                        | Hover over the button | Button color became darker                                                | Pass      |
+| Cancel button                              | When clicked a redirects the user back to the profile page                    | Clicked the button    | The user is redirected back to the profile page                           | Pass      |
+| Save button hover                          | When hover button color becomes darker                                        | Hover over the button | Button color became darker                                                | Pass      |
+| Save button                                | When clicked the form submits and redirects the user back to the profile page | Clicked the button    | The form is submitted and the user is redirected back to the profile page | Pass      |
 
 <br>
 
 `Add Movie Form Page`
 
-| Feature                                    | Expected Outcome                         | Testing Performed     | Result                       | Pass/Fail |
-| ------------------------------------------ | ---------------------------------------- | --------------------- | ---------------------------- | --------- |
-| **FORM**                                   |                                          |                       |                              |           |
-|                                            |                                          |                       |                              |           |
-| Upload the image button hover              | When hover button color becomes lighter  | Hover over the button | Button color became lighter  | Pass      |
-| Upload the image button                    | When clicked a file browser window opens | Clicked the button    | A file browser window opened | Pass      |
-| Upload the image button (image is chosen ) | When clicked the avatar image uploads    | Clicked the button    | The avatar image uploaded    | Pass      |
-
-| Input elements | When text typed input text updates | Typed text | input text updated | Pass|
-
-| Date input elements | When clicked a calendar appears | Input clicked | A calendar appeared | Pass|
-| Date input elements (calendar) | When date picked the input date updates | Date picked | The input date updated | Pass|
-
-| Time input elements | When clicked a clock appears | Input clicked | A clock appeared | Pass|
-| Time input elements (clock) | When date picked the input time updates | Time picked | The input time updated | Pass|
-
-| Drop down menu input elements | When clicked a menu appears | Input clicked | A menu appeared | Pass|
-| Drop down menu input (menu) | When item picked the input element updates | Time picked | The input element updated | Pass|
-
-| Cancel button hover | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Cancel button | When clicked a redirects the user back to the movies page | Clicked the button | The user is redirected back to the movies page | Pass|
-
-| Save button hover | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Save button | When clicked the form submits and redirects the user to the created movie page | Clicked the button | The form is submitted and the user is redirected to the created movie page | Pass|
+| Feature                                    | Expected Outcome                                                               | Testing Performed     | Result                                                                     | Pass/Fail |
+| ------------------------------------------ | ------------------------------------------------------------------------------ | --------------------- | -------------------------------------------------------------------------- | --------- |
+| **FORM**                                   |                                                                                |                       |                                                                            |           |
+|                                            |                                                                                |                       |                                                                            |           |
+| Upload the image button hover              | When hover button color becomes lighter                                        | Hover over the button | Button color became lighter                                                | Pass      |
+| Upload the image button                    | When clicked a file browser window opens                                       | Clicked the button    | A file browser window opened                                               | Pass      |
+| Upload the image button (image is chosen ) | When clicked the avatar image uploads                                          | Clicked the button    | The avatar image uploaded                                                  | Pass      |
+| Input elements                             | When text typed input text updates                                             | Typed text            | input text updated                                                         | Pass      |
+| Date input elements                        | When clicked a calendar appears                                                | Input clicked         | A calendar appeared                                                        | Pass      |
+| Date input elements (calendar)             | When date picked the input date updates                                        | Date picked           | The input date updated                                                     | Pass      |
+| Time input elements                        | When clicked a clock appears                                                   | Input clicked         | A clock appeared                                                           | Pass      |
+| Time input elements (clock)                | When date picked the input time updates                                        | Time picked           | The input time updated                                                     | Pass      |
+| Drop down menu input elements              | When clicked a menu appears                                                    | Input clicked         | A menu appeared                                                            | Pass      |
+| Drop down menu input (menu)                | When item picked the input element updates                                     | Time picked           | The input element updated                                                  | Pass      |
+| Cancel button hover                        | When hover button color becomes darker                                         | Hover over the button | Button color became darker                                                 | Pass      |
+| Cancel button                              | When clicked a redirects the user back to the movies page                      | Clicked the button    | The user is redirected back to the movies page                             | Pass      |
+| Save button hover                          | When hover button color becomes darker                                         | Hover over the button | Button color became darker                                                 | Pass      |
+| Save button                                | When clicked the form submits and redirects the user to the created movie page | Clicked the button    | The form is submitted and the user is redirected to the created movie page | Pass      |
 
 <br>
 
 `Edit Movie Form Page`
 
-| Feature                                    | Expected Outcome                         | Testing Performed     | Result                       | Pass/Fail |
-| ------------------------------------------ | ---------------------------------------- | --------------------- | ---------------------------- | --------- |
-| **FORM**                                   |                                          |                       |                              |           |
-|                                            |                                          |                       |                              |           |
-| Change the image button hover              | When hover button color becomes darker   | Hover over the button | Button color became darker   | Pass      |
-| Change the image button                    | When clicked a file browser window opens | Clicked the button    | A file browser window opened | Pass      |
-| Change the image button (image is chosen ) | When clicked the avatar image changes    | Clicked the button    | The avatar image changed     | Pass      |
-
-| Input elements | When text typed input text updates | Typed text | input text updated | Pass|
-
-| Date input elements | When clicked a calendar appears | Input clicked | A calendar appeared | Pass|
-| Date input elements (calendar) | When date picked the input date updates | Date picked | The input date updated | Pass|
-
-| Time input elements | When clicked a clock appears | Input clicked | A clock appeared | Pass|
-| Time input elements (clock) | When date picked the input time updates | Time picked | The input time updated | Pass|
-
-| Drop down menu input elements | When clicked a menu appears | Input clicked | A menu appeared | Pass|
-| Drop down menu input (menu) | When item picked the input element updates | Time picked | The input element updated | Pass|
-
-| Cancel button hover | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Cancel button | When clicked a redirects the user back to the movies page | Clicked the button | The user is redirected back to the movies page | Pass|
-
-| Save button hover | When hover button color becomes darker | Hover over the button | Button color became darker | Pass|
-| Save button | When clicked the form submits and redirects the user to the created movie page | Clicked the button | The form is submitted and the user is redirected to the created movie page | Pass|
+| Feature                                    | Expected Outcome                                                               | Testing Performed     | Result                                                                     | Pass/Fail |
+| ------------------------------------------ | ------------------------------------------------------------------------------ | --------------------- | -------------------------------------------------------------------------- | --------- |
+| **FORM**                                   |                                                                                |                       |                                                                            |           |
+|                                            |                                                                                |                       |                                                                            |           |
+| Change the image button hover              | When hover button color becomes darker                                         | Hover over the button | Button color became darker                                                 | Pass      |
+| Change the image button                    | When clicked a file browser window opens                                       | Clicked the button    | A file browser window opened                                               | Pass      |
+| Change the image button (image is chosen ) | When clicked the avatar image changes                                          | Clicked the button    | The avatar image changed                                                   | Pass      |
+| Input elements                             | When text typed input text updates                                             | Typed text            | input text updated                                                         | Pass      |
+| Date input elements                        | When clicked a calendar appears                                                | Input clicked         | A calendar appeared                                                        | Pass      |
+| Date input elements (calendar)             | When date picked the input date updates                                        | Date picked           | The input date updated                                                     | Pass      |
+| Time input elements                        | When clicked a clock appears                                                   | Input clicked         | A clock appeared                                                           | Pass      |
+| Time input elements (clock)                | When date picked the input time updates                                        | Time picked           | The input time updated                                                     | Pass      |
+| Drop down menu input elements              | When clicked a menu appears                                                    | Input clicked         | A menu appeared                                                            | Pass      |
+| Drop down menu input (menu)                | When item picked the input element updates                                     | Time picked           | The input element updated                                                  | Pass      |
+| Cancel button hover                        | When hover button color becomes darker                                         | Hover over the button | Button color became darker                                                 | Pass      |
+| Cancel button                              | When clicked a redirects the user back to the movies page                      | Clicked the button    | The user is redirected back to the movies page                             | Pass      |
+| Save button hover                          | When hover button color becomes darker                                         | Hover over the button | Button color became darker                                                 | Pass      |
+| Save button                                | When clicked the form submits and redirects the user to the created movie page | Clicked the button    | The form is submitted and the user is redirected to the created movie page | Pass      |
 
 <br>
 

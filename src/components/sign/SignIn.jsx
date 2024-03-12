@@ -7,9 +7,11 @@ import Logo from "../Logo";
 import DataContext from "../../context/DataContext";
 import axios from "axios";
 import { setTokenTimestamp } from "../../utils/utils";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignIn = () => {
     const { setCurrentUser } = useContext(DataContext);
+    useRedirect("loggedIn");
     const [signInData, setSignInData] = useState({
         username: "",
         password: "",

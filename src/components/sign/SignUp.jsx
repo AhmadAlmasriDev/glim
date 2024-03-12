@@ -4,8 +4,10 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "./styles/SignInUp.module.css";
 import Logo from "../Logo";
 import axios from "axios";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUp = () => {
+    useRedirect("loggedIn");
     const [signUpData, setSignUpData] = useState({
         username: "",
         password1: "",

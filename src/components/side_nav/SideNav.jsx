@@ -118,10 +118,22 @@ const SideNav = () => {
                         </ul>
 
                         <ul className={`${styles.media_links_container}`}>
-                            <SideNavMediaLink brand={"facebook"} />
-                            <SideNavMediaLink brand={"twitter"} />
-                            <SideNavMediaLink brand={"instagram"} />
-                            <SideNavMediaLink brand={"youtube"} />
+                            <SideNavMediaLink
+                                brand={"facebook"}
+                                link={"https://www.facebook.com/"}
+                            />
+                            <SideNavMediaLink
+                                brand={"twitter"}
+                                link={"https://twitter.com/"}
+                            />
+                            <SideNavMediaLink
+                                brand={"instagram"}
+                                link={"https://www.instagram.com/"}
+                            />
+                            <SideNavMediaLink
+                                brand={"youtube"}
+                                link={"https://www.youtube.com/"}
+                            />
                         </ul>
                     </nav>
                 </div>
